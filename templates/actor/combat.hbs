@@ -1,0 +1,282 @@
+<section class="yze-tab-panel {{#if (eq activeTab 'combat')}}active{{/if}}" data-tab-content="combat">
+  {{!-- WEAPONS --}}
+  <div class="yze-panel-section">
+    <header class="yze-section-toolbar">
+      <span class="yze-section-title"><i class="fa-solid fa-gun"></i> {{localize "YZE.Weapons"}} ({{localize "YZE.AtHand"}}: {{system.encumbrance.atHandCount}}/3)</span>
+      <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="weapon">
+        <i class="fa-solid fa-plus"></i> {{localize "TYPES.Item.weapon"}}
+      </button>
+    </header>
+
+    <table class="yze-table">
+      <thead>
+        <tr>
+          <th class="col-hand" title="{{localize 'YZE.AtHand'}}">{{localize "YZE.AtHand"}}</th>
+          <th class="col-name">{{localize "YZE.Name"}}</th>
+          <th>{{localize "YZE.Weapon.Grip.Label"}}</th>
+          <th>{{localize "YZE.Bonus"}}</th>
+          <th>{{localize "YZE.Damage"}}</th>
+          <th>{{localize "YZE.Range.Label"}}</th>
+          <th>{{localize "YZE.Weapon.Magazine"}}</th>
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each weapons as |wpn|}}
+        <tr class="draggable" data-item-id="{{wpn.id}}">
+          <td class="col-hand">
+            <input type="checkbox" data-item-field="system.atHand" {{#if wpn.system.atHand}}checked{{/if}} />
+          </td>
+          <td class="col-name">
+            <button type="button" class="yze-item-roll-btn" data-action="rollItem">
+              <i class="fa-solid fa-crosshairs"></i>
+              <span>{{wpn.name}}</span>
+              {{#if wpn.system.artifactDie}}<span class="yze-tag">+{{upper wpn.system.artifactDie}}</span>{{/if}}
+            </button>
+          </td>
+          <td>{{localize (concat "YZE.Weapon.Grip." wpn.system.grip)}}</td>
+          <td>
+            <div class="yze-inline-repair">
+              <input type="number" class="yze-mini-input" data-item-field="system.bonus" data-dtype="Number" value="{{wpn.system.bonus}}" min="0" />
+              <span>/{{wpn.system.maxBonus}}</span>
+              {{#if (lt wpn.system.bonus wpn.system.maxBonus)}}
+                <a data-action="repairItem" title="{{localize 'YZE.Repair'}}"><i class="fa-solid fa-wrench"></i></a>
+              {{/if}}
+            </div>
+          </td>
+          <td><strong>{{wpn.system.damage}}</strong>{{#if wpn.system.critThreshold}} <small>(Crit {{wpn.system.critThreshold}})</small>{{/if}}</td>
+          <td>{{localize (concat "YZE.Range." wpn.system.range)}}</td>
+          <td>
+            {{#if (gt wpn.system.mag.max 0)}}
+              <input type="number" class="yze-mini-input" data-item-field="system.mag.value" data-dtype="Number" value="{{wpn.system.mag.value}}" min="0" />
+              <span>/{{wpn.system.mag.max}}</span>
+              <a data-action="reloadWeapon" title="{{localize 'YZE.Reload'}}"><i class="fa-solid fa-rotate"></i></a>
+            {{else}}
+              —
+            {{/if}}
+          </td>
+          <td class="col-actions">
+            <a data-action="chatItem" title="{{localize 'YZE.SendToChat'}}"><i class="fa-solid fa-comment"></i></a>
+            <a data-action="editItem" title="{{localize 'YZE.Edit'}}"><i class="fa-solid fa-pen"></i></a>
+            <a data-action="deleteItem" title="{{localize 'YZE.Delete'}}"><i class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
+        {{else}}
+        <tr><td colspan="8" class="yze-empty">{{localize "YZE.EmptyList"}}</td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  {{!-- ARMOR & COVER --}}
+  <div class="yze-panel-section">
+    <header class="yze-section-toolbar">
+      <span class="yze-section-title"><i class="fa-solid fa-shield-halved"></i> {{localize "YZE.ArmorAndCover"}}</span>
+      <div class="yze-toolbar-actions">
+        <select name="coverPreset" class="yze-select-sm">
+          {{#each config.coverPresets}}
+            <option value="{{this.key}}">{{localize this.label}} ({{#if ../isStepDice}}{{stepLetter this.step}}{{else}}{{this.pool}}{{/if}})</option>
+          {{/each}}
+        </select>
+        <button type="button" class="yze-btn yze-btn-sm" data-action="rollCover">
+          <i class="fa-solid fa-dice"></i> {{localize "YZE.CoverRoll"}}
+        </button>
+        <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="armor">
+          <i class="fa-solid fa-plus"></i> {{localize "TYPES.Item.armor"}}
+        </button>
+      </div>
+    </header>
+
+    <table class="yze-table">
+      <thead>
+        <tr>
+          <th class="col-hand">{{localize "YZE.Equipped"}}</th>
+          <th class="col-name">{{localize "YZE.Name"}}</th>
+          <th>{{localize "YZE.Armor.Part.Label"}}</th>
+          <th>{{localize "YZE.Armor.Rating"}}</th>
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each armors as |arm|}}
+        <tr class="draggable" data-item-id="{{arm.id}}">
+          <td class="col-hand">
+            <input type="checkbox" data-item-field="system.equipped" {{#if arm.system.equipped}}checked{{/if}} />
+          </td>
+          <td class="col-name">
+            <button type="button" class="yze-item-roll-btn" data-action="rollItem">
+              <i class="fa-solid fa-shield"></i>
+              <span>{{arm.name}}</span>
+            </button>
+          </td>
+          <td>{{localize (concat "YZE.Armor.Part." arm.system.part)}}</td>
+          <td>
+            {{#if ../isStepDice}}
+              <select data-item-field="system.die">
+                {{#each ../config.skillStepChoices as |sLabel sKey|}}
+                  <option value="{{sKey}}" {{#if (eq arm.system.die sKey)}}selected{{/if}}>{{stepLabel sKey}}</option>
+                {{/each}}
+              </select>
+            {{else}}
+              <input type="number" class="yze-mini-input" data-item-field="system.rating" data-dtype="Number" value="{{arm.system.rating}}" min="0" />
+              <span>/{{arm.system.maxRating}}</span>
+              {{#if (lt arm.system.rating arm.system.maxRating)}}
+                <a data-action="repairItem" title="{{localize 'YZE.Repair'}}"><i class="fa-solid fa-wrench"></i></a>
+              {{/if}}
+            {{/if}}
+          </td>
+          <td class="col-actions">
+            <a data-action="chatItem" title="{{localize 'YZE.SendToChat'}}"><i class="fa-solid fa-comment"></i></a>
+            <a data-action="editItem" title="{{localize 'YZE.Edit'}}"><i class="fa-solid fa-pen"></i></a>
+            <a data-action="deleteItem" title="{{localize 'YZE.Delete'}}"><i class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
+        {{else}}
+        <tr><td colspan="5" class="yze-empty">{{localize "YZE.EmptyList"}}</td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  {{!-- GEAR & CONSUMABLES --}}
+  <div class="yze-panel-section">
+    <header class="yze-section-toolbar">
+      <span class="yze-section-title">
+        <i class="fa-solid fa-sack-xmark"></i> {{localize "YZE.GearAndConsumables"}}
+        <label class="yze-inline-backpack">
+          <input type="checkbox" name="system.hasBackpack" {{#if system.hasBackpack}}checked{{/if}} />
+          <span>{{localize "YZE.Backpack"}} (+{{system.encumbrance.baseMax}} {{localize "YZE.CarryLimit"}}, −2 {{localize "YZE.CoreSkill.mobility"}})</span>
+        </label>
+      </span>
+      <div class="yze-toolbar-actions">
+        <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="gear" data-subtype="consumable">
+          <i class="fa-solid fa-plus"></i> {{localize "YZE.Gear.Subtype.consumable"}}
+        </button>
+        <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="gear" data-subtype="gear">
+          <i class="fa-solid fa-plus"></i> {{localize "TYPES.Item.gear"}}
+        </button>
+      </div>
+    </header>
+
+    <table class="yze-table">
+      <thead>
+        <tr>
+          <th class="col-hand">{{localize "YZE.Carried"}}</th>
+          <th class="col-name">{{localize "YZE.Name"}}</th>
+          <th>{{localize "YZE.Bonus"}}</th>
+          <th>{{localize "YZE.SupplyRating"}}</th>
+          <th>{{localize "YZE.Quantity"}}</th>
+          <th>{{localize "YZE.Weight.Label"}}</th>
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each gears as |gr|}}
+        <tr class="draggable" data-item-id="{{gr.id}}">
+          <td class="col-hand">
+            <input type="checkbox" data-item-field="system.carried" {{#if gr.system.carried}}checked{{/if}} />
+          </td>
+          <td class="col-name">
+            <button type="button" class="yze-item-roll-btn" data-action="rollItem">
+              <i class="fa-solid fa-dice"></i>
+              <span>{{gr.name}}</span>
+              {{#if gr.system.isBackpack}}<span class="yze-tag">{{localize "YZE.Backpack"}}</span>{{/if}}
+            </button>
+          </td>
+          <td>
+            {{#if (gt gr.system.maxBonus 0)}}
+              <input type="number" class="yze-mini-input" data-item-field="system.bonus" data-dtype="Number" value="{{gr.system.bonus}}" min="0" />
+              <span>/{{gr.system.maxBonus}}</span>
+            {{else}}
+              —
+            {{/if}}
+          </td>
+          <td>
+            {{#if (eq gr.system.subtype "consumable")}}
+              <input type="number" class="yze-mini-input" data-item-field="system.supplyRating" data-dtype="Number" value="{{gr.system.supplyRating}}" min="0" max="12" />
+              <a data-action="rollItem" title="{{localize 'YZE.SupplyRoll'}}"><i class="fa-solid fa-dice-d6"></i></a>
+            {{else}}
+              —
+            {{/if}}
+          </td>
+          <td>
+            <input type="number" class="yze-mini-input" data-item-field="system.quantity" data-dtype="Number" value="{{gr.system.quantity}}" min="0" />
+          </td>
+          <td>{{gr.system.weight}}</td>
+          <td class="col-actions">
+            <a data-action="chatItem" title="{{localize 'YZE.SendToChat'}}"><i class="fa-solid fa-comment"></i></a>
+            <a data-action="editItem" title="{{localize 'YZE.Edit'}}"><i class="fa-solid fa-pen"></i></a>
+            <a data-action="deleteItem" title="{{localize 'YZE.Delete'}}"><i class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
+        {{else}}
+        <tr><td colspan="7" class="yze-empty">{{localize "YZE.EmptyList"}}</td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  {{!-- CRITICAL INJURIES --}}
+  <div class="yze-panel-section">
+    <header class="yze-section-toolbar">
+      <span class="yze-section-title"><i class="fa-solid fa-skull"></i> {{localize "YZE.CriticalInjuries"}}</span>
+      <div class="yze-toolbar-actions">
+        <button type="button" class="yze-btn yze-btn-sm" data-action="rollCritTable" data-category="physical">
+          <i class="fa-solid fa-dice"></i> {{localize "YZE.Critical.RollPhysical"}} (D66)
+        </button>
+        <button type="button" class="yze-btn yze-btn-sm" data-action="rollCritTable" data-category="mental">
+          <i class="fa-solid fa-dice"></i> {{localize "YZE.Critical.RollMental"}} (D66)
+        </button>
+        <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="critical">
+          <i class="fa-solid fa-plus"></i> {{localize "TYPES.Item.critical"}}
+        </button>
+      </div>
+    </header>
+
+    <table class="yze-table">
+      <thead>
+        <tr>
+          <th class="col-name">{{localize "YZE.Name"}}</th>
+          <th>{{localize "YZE.Critical.Lethal"}}</th>
+          <th>{{localize "YZE.TimeLimit.Label"}}</th>
+          <th>{{localize "YZE.Critical.HealingTime"}}</th>
+          <th>{{localize "YZE.Critical.EffectsSummary"}}</th>
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each criticals as |crit|}}
+        <tr class="draggable" data-item-id="{{crit.id}}">
+          <td class="col-name">
+            <button type="button" class="yze-item-roll-btn" data-action="rollItem">
+              <i class="fa-solid fa-heart-pulse"></i>
+              <span>{{crit.name}}</span>
+            </button>
+          </td>
+          <td>
+            {{#if crit.system.lethal}}
+              <span class="yze-tag yze-tag-danger">{{localize "YZE.Yes"}}</span>
+              <label class="yze-check-inline" title="{{localize 'YZE.Critical.Stabilized'}}">
+                <input type="checkbox" data-item-field="system.stabilized" {{#if crit.system.stabilized}}checked{{/if}} />
+                <small>{{localize "YZE.Critical.Stabilized"}}</small>
+              </label>
+            {{else}}
+              {{localize "YZE.No"}}
+            {{/if}}
+          </td>
+          <td>{{localize (concat "YZE.TimeLimit." crit.system.timeLimit)}}</td>
+          <td>{{crit.system.healingTime}}</td>
+          <td>{{crit.system.effectsSummary}}</td>
+          <td class="col-actions">
+            <a data-action="chatItem" title="{{localize 'YZE.SendToChat'}}"><i class="fa-solid fa-comment"></i></a>
+            <a data-action="editItem" title="{{localize 'YZE.Edit'}}"><i class="fa-solid fa-pen"></i></a>
+            <a data-action="deleteItem" title="{{localize 'YZE.Delete'}}"><i class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
+        {{else}}
+        <tr><td colspan="6" class="yze-empty">{{localize "YZE.EmptyList"}}</td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

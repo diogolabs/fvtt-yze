@@ -1,0 +1,139 @@
+<header class="yze-actor-header">
+  <div class="yze-header-top">
+    <img class="yze-actor-img" src="{{actor.img}}" data-action="editImage" data-edit="img" alt="{{actor.name}}" />
+
+    <div class="yze-identity-grid">
+      <div class="yze-identity-main">
+        <input class="yze-actor-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'YZE.Name'}}" />
+        {{#if isBroken}}
+          <span class="yze-broken-badge"><i class="fa-solid fa-heart-crack"></i> {{localize "YZE.Broken"}}</span>
+        {{/if}}
+      </div>
+      <div class="yze-identity-sub">
+        <div class="yze-inline-field">
+          <label>{{localize "YZE.Archetype"}}</label>
+          <input type="text" name="system.archetype" value="{{system.archetype}}" placeholder="{{localize 'YZE.Archetype'}}" />
+        </div>
+        <div class="yze-inline-field">
+          <label>{{localize "YZE.Mode"}}</label>
+          <select name="system.resolutionMode">
+            <option value="" {{#if (eq system.resolutionMode "")}}selected{{/if}}>
+              {{localize "YZE.Default"}} ({{#if isStepDice}}{{localize "YZE.StepDice"}}{{else}}{{localize "YZE.DicePool"}}{{/if}})
+            </option>
+            <option value="dicePool" {{#if (eq system.resolutionMode "dicePool")}}selected{{/if}}>{{localize "YZE.DicePool"}}</option>
+            <option value="stepDice" {{#if (eq system.resolutionMode "stepDice")}}selected{{/if}}>{{localize "YZE.StepDice"}}</option>
+          </select>
+        </div>
+        <div class="yze-inline-field">
+          <label>{{localize "YZE.XP"}}</label>
+          <input type="number" name="system.experience.value" value="{{system.experience.value}}" min="0" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- 4 CORE ATTRIBUTES --}}
+  <div class="yze-attributes-bar">
+    {{#each config.attributes as |label key|}}
+      {{#with (lookup ../system.attributes key) as |attr|}}
+      <div class="yze-attr-card">
+        <button type="button" class="yze-attr-roll" data-action="rollAttribute" data-attribute="{{key}}" title="{{localize 'YZE.Roll'}} {{localize label}}">
+          <span class="yze-attr-name">{{localize label}}</span>
+          <i class="fa-solid fa-dice-d6"></i>
+        </button>
+
+        {{#if ../../isStepDice}}
+          <div class="yze-attr-controls">
+            <select name="system.attributes.{{key}}.die">
+              {{#each ../../config.attributeStepChoices as |sLabel sKey|}}
+                <option value="{{sKey}}" {{#if (eq attr.die sKey)}}selected{{/if}}>{{stepLabel sKey}}</option>
+              {{/each}}
+            </select>
+          </div>
+        {{else}}
+          <div class="yze-attr-controls yze-pair-inputs">
+            <input type="number" name="system.attributes.{{key}}.value" value="{{attr.value}}" min="0" max="12" title="{{localize 'YZE.Current'}}" />
+            <span>/</span>
+            <input type="number" name="system.attributes.{{key}}.max" value="{{attr.max}}" min="1" max="12" title="{{localize 'YZE.Max'}}" />
+          </div>
+        {{/if}}
+      </div>
+      {{/with}}
+    {{/each}}
+  </div>
+
+  {{!-- DERIVED RESOURCES BAR: Health, Resolve, Willpower, Stress, Encumbrance --}}
+  <div class="yze-resources-bar">
+    <div class="yze-resource-box">
+      <label>{{localize "YZE.Health"}}</label>
+      <div class="yze-pair-inputs">
+        <input type="number" name="system.health.value" value="{{system.health.value}}" min="0" />
+        <span>/</span>
+        <span class="yze-max-val">{{system.health.max}}</span>
+      </div>
+    </div>
+
+    <div class="yze-resource-box">
+      <label>{{localize "YZE.Resolve"}}</label>
+      <div class="yze-pair-inputs">
+        <input type="number" name="system.resolve.value" value="{{system.resolve.value}}" min="0" />
+        <span>/</span>
+        <span class="yze-max-val">{{system.resolve.max}}</span>
+      </div>
+    </div>
+
+    {{#if enableWillpower}}
+    <div class="yze-resource-box">
+      <label>{{localize "YZE.Willpower"}} (WP)</label>
+      <div class="yze-pair-inputs">
+        <input type="number" name="system.willpower.value" value="{{system.willpower.value}}" min="0" />
+        <span>/</span>
+        <input type="number" name="system.willpower.max" value="{{system.willpower.max}}" min="0" />
+      </div>
+    </div>
+    {{/if}}
+
+    {{#if enableStressTrack}}
+    <div class="yze-resource-box">
+      <label>
+        {{localize "YZE.Stress"}}
+        <a data-action="rollPanic" title="{{localize 'YZE.PanicRoll'}}"><i class="fa-solid fa-triangle-exclamation"></i></a>
+      </label>
+      <div class="yze-pair-inputs">
+        <input type="number" name="system.stress.value" value="{{system.stress.value}}" min="0" />
+      </div>
+    </div>
+    {{/if}}
+
+    {{#if enableEncumbrance}}
+    <div class="yze-resource-box {{#if system.encumbrance.overloaded}}yze-overloaded{{/if}}">
+      <label>{{localize "YZE.Encumbrance"}}</label>
+      <div class="yze-enc-value">
+        <strong>{{system.encumbrance.value}}</strong> / {{system.encumbrance.max}}
+      </div>
+    </div>
+    {{/if}}
+  </div>
+
+  {{!-- CONDITIONS BAR (SRD p. 21) --}}
+  <div class="yze-conditions-bar">
+    <div class="yze-cond-group">
+      <span class="yze-cond-title">{{localize "YZE.PhysicalConditions"}} (−{{system.physicalConditionsCount}}):</span>
+      {{#each config.conditions.physical}}
+        <button type="button" class="yze-cond-pill {{#if (lookup ../system.conditions this.id)}}active{{/if}}"
+                data-action="toggleCondition" data-condition="{{this.id}}">
+          {{localize this.label}}
+        </button>
+      {{/each}}
+    </div>
+    <div class="yze-cond-group">
+      <span class="yze-cond-title">{{localize "YZE.MentalConditions"}} (−{{system.mentalConditionsCount}}):</span>
+      {{#each config.conditions.mental}}
+        <button type="button" class="yze-cond-pill {{#if (lookup ../system.conditions this.id)}}active{{/if}}"
+                data-action="toggleCondition" data-condition="{{this.id}}">
+          {{localize this.label}}
+        </button>
+      {{/each}}
+    </div>
+  </div>
+</header>

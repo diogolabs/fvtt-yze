@@ -1,0 +1,94 @@
+{
+  "id": "fvtt-yze",
+  "title": "Year Zero Engine (Generic SRD)",
+  "description": "A minimalist, generic Year Zero Engine (YZE SRD v1.0) system for Foundry VTT supporting both Dice Pool and Step Dice modes, with skills, specialties, gear, weapons, armor, spells, and critical injuries as items.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "diogolabs",
+      "url": "https://github.com/diogolabs"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": {
+        "htmlFields": ["biography", "notes"]
+      },
+      "npc": {
+        "htmlFields": ["notes"]
+      },
+      "vehicle": {
+        "htmlFields": ["notes"]
+      }
+    },
+    "Item": {
+      "skill": {
+        "htmlFields": ["description"]
+      },
+      "specialty": {
+        "htmlFields": ["description"]
+      },
+      "gear": {
+        "htmlFields": ["description"]
+      },
+      "weapon": {
+        "htmlFields": ["description"]
+      },
+      "armor": {
+        "htmlFields": ["description"]
+      },
+      "spell": {
+        "htmlFields": ["description"]
+      },
+      "critical": {
+        "htmlFields": ["description"]
+      }
+    }
+  },
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "html", "hbs", "json"],
+      "paths": ["css", "lang", "templates"]
+    }
+  },
+  "url": "https://github.com/diogolabs/fvtt-yze",
+  "license": "LICENSE.txt",
+  "readme": "README.md",
+  "bugs": "https://github.com/diogolabs/fvtt-yze/issues",
+  "changelog": "CHANGELOG.md",
+  "esmodules": [
+    "module/fvtt-yze.mjs"
+  ],
+  "styles": [
+    "css/fvtt-yze.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
+    }
+  ],
+  "packs": [],
+  "packFolders": [],
+  "socket": false,
+  "manifest": "https://github.com/diogolabs/fvtt-yze/releases/latest/download/system.json",
+  "download": "https://github.com/diogolabs/fvtt-yze/releases/latest/download/system.zip",
+  "grid": {
+    "type": 1,
+    "distance": 1,
+    "units": "m",
+    "diagonals": 0
+  },
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "resolve"
+}

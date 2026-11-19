@@ -1,0 +1,60 @@
+<section class="yze-tab-panel {{#if (eq activeTab 'skills')}}active{{/if}}" data-tab-content="skills">
+  <div class="yze-section-toolbar">
+    <span class="yze-section-title">{{localize "YZE.SkillsAndAttributes"}}</span>
+    <div class="yze-toolbar-actions">
+      <button type="button" class="yze-btn yze-btn-sm" data-action="seedCoreSkills" title="{{localize 'YZE.SeedCoreSkillsHint'}}">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> {{localize "YZE.SeedCoreSkills"}}
+      </button>
+      <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="skill">
+        <i class="fa-solid fa-plus"></i> {{localize "TYPES.Item.skill"}}
+      </button>
+    </div>
+  </div>
+
+  <div class="yze-skills-columns">
+    {{#each config.attributes as |attrLabel attrKey|}}
+    <div class="yze-skill-group">
+      <header class="yze-skill-group-header">
+        <span>{{localize attrLabel}}</span>
+        <button type="button" class="yze-btn-link" data-action="createItem" data-type="skill" data-attribute="{{attrKey}}" title="{{localize 'YZE.Add'}}">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </header>
+
+      <div class="yze-skill-list">
+        {{#each (lookup ../skillsByAttribute attrKey) as |skill|}}
+        <div class="yze-skill-row draggable" data-item-id="{{skill.id}}">
+          <button type="button" class="yze-xp-dot {{#if skill.system.xpMarked}}marked{{/if}}"
+                  data-action="toggleItemBool" data-field="system.xpMarked"
+                  title="{{localize 'YZE.Skill.XpMark'}}">
+            <i class="fa-{{#if skill.system.xpMarked}}solid{{else}}regular{{/if}} fa-circle-check"></i>
+          </button>
+
+          <button type="button" class="yze-skill-roll" data-action="rollItem">
+            <i class="fa-solid fa-dice-d6"></i>
+            <span>{{skill.name}}</span>
+          </button>
+
+          <div class="yze-skill-value">
+            {{#if ../../isStepDice}}
+              <select data-item-field="system.die">
+                {{#each ../../config.skillStepChoices as |sLabel sKey|}}
+                  <option value="{{sKey}}" {{#if (eq skill.system.die sKey)}}selected{{/if}}>{{stepLetter sKey}}</option>
+                {{/each}}
+              </select>
+            {{else}}
+              <input type="number" data-item-field="system.level" data-dtype="Number" value="{{skill.system.level}}" min="0" max="10" />
+            {{/if}}
+          </div>
+
+          <div class="yze-row-controls">
+            <a data-action="editItem" title="{{localize 'YZE.Edit'}}"><i class="fa-solid fa-pen"></i></a>
+            <a data-action="deleteItem" title="{{localize 'YZE.Delete'}}"><i class="fa-solid fa-trash"></i></a>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</section>

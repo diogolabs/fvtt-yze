@@ -1,0 +1,181 @@
+<div class="yze-npc-sheet">
+  <header class="yze-actor-header">
+    <div class="yze-header-top">
+      <img class="yze-actor-img" src="{{actor.img}}" data-action="editImage" data-edit="img" alt="{{actor.name}}" />
+      <div class="yze-identity-grid">
+        <div class="yze-identity-main">
+          <input class="yze-actor-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'YZE.Name'}}" />
+          {{#if isBroken}}
+            <span class="yze-broken-badge"><i class="fa-solid fa-heart-crack"></i> {{localize "YZE.Broken"}}</span>
+          {{/if}}
+        </div>
+        <div class="yze-identity-sub">
+          <div class="yze-inline-field">
+            <label>{{localize "YZE.Archetype"}}</label>
+            <input type="text" name="system.role" value="{{system.role}}" />
+          </div>
+          <div class="yze-inline-field">
+            <label>{{localize "YZE.Health"}}</label>
+            <div class="yze-pair-inputs">
+              <input type="number" name="system.health.value" value="{{system.health.value}}" min="0" />
+              <span>/</span>
+              <input type="number" name="system.health.customMax" value="{{system.health.max}}" min="0" />
+            </div>
+          </div>
+          <div class="yze-inline-field">
+            <label>{{localize "YZE.Resolve"}}</label>
+            <div class="yze-pair-inputs">
+              <input type="number" name="system.resolve.value" value="{{system.resolve.value}}" min="0" />
+              <span>/</span>
+              <input type="number" name="system.resolve.customMax" value="{{system.resolve.max}}" min="0" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="yze-attributes-bar">
+      {{#each config.attributes as |label key|}}
+        {{#with (lookup ../system.attributes key) as |attr|}}
+        <div class="yze-attr-card">
+          <button type="button" class="yze-attr-roll" data-action="rollAttribute" data-attribute="{{key}}">
+            <span class="yze-attr-name">{{localize label}}</span>
+            <i class="fa-solid fa-dice-d6"></i>
+          </button>
+          {{#if ../../isStepDice}}
+            <select name="system.attributes.{{key}}.die">
+              {{#each ../../config.attributeStepChoices as |sLabel sKey|}}
+                <option value="{{sKey}}" {{#if (eq attr.die sKey)}}selected{{/if}}>{{stepLabel sKey}}</option>
+              {{/each}}
+            </select>
+          {{else}}
+            <div class="yze-attr-controls yze-pair-inputs">
+              <input type="number" name="system.attributes.{{key}}.value" value="{{attr.value}}" min="0" max="12" />
+              <span>/</span>
+              <input type="number" name="system.attributes.{{key}}.max" value="{{attr.max}}" min="1" max="12" />
+            </div>
+          {{/if}}
+        </div>
+        {{/with}}
+      {{/each}}
+    </div>
+  </header>
+
+  <section class="yze-npc-body">
+    <div class="yze-npc-columns">
+      {{!-- NPC SKILLS --}}
+      <div class="yze-panel-section">
+        <header class="yze-section-toolbar">
+          <span class="yze-section-title">{{localize "TYPES.Item.skill"}}</span>
+          <div class="yze-toolbar-actions">
+            <button type="button" class="yze-btn yze-btn-sm" data-action="seedCoreSkills">{{localize "YZE.SeedCoreSkills"}}</button>
+            <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="skill"><i class="fa-solid fa-plus"></i></button>
+          </div>
+        </header>
+        <div class="yze-skill-list">
+          {{#each skills as |skill|}}
+          <div class="yze-skill-row draggable" data-item-id="{{skill.id}}">
+            <button type="button" class="yze-skill-roll" data-action="rollItem">
+              <i class="fa-solid fa-dice-d6"></i>
+              <span>{{skill.name}} <small>({{localize (concat "YZE.AttributeAbbr." skill.system.attribute)}})</small></span>
+            </button>
+            <div class="yze-skill-value">
+              {{#if ../isStepDice}}
+                <select data-item-field="system.die">
+                  {{#each ../config.skillStepChoices as |sLabel sKey|}}
+                    <option value="{{sKey}}" {{#if (eq skill.system.die sKey)}}selected{{/if}}>{{stepLetter sKey}}</option>
+                  {{/each}}
+                </select>
+              {{else}}
+                <input type="number" data-item-field="system.level" data-dtype="Number" value="{{skill.system.level}}" min="0" max="10" />
+              {{/if}}
+            </div>
+            <div class="yze-row-controls">
+              <a data-action="editItem"><i class="fa-solid fa-pen"></i></a>
+              <a data-action="deleteItem"><i class="fa-solid fa-trash"></i></a>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+
+      {{!-- NPC WEAPONS, ARMOR, SPECIALTIES, SPELLS --}}
+      <div class="yze-panel-section">
+        <header class="yze-section-toolbar">
+          <span class="yze-section-title">{{localize "YZE.CombatAndAbilities"}}</span>
+          <div class="yze-toolbar-actions">
+            <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="weapon">+ {{localize "TYPES.Item.weapon"}}</button>
+            <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="armor">+ {{localize "TYPES.Item.armor"}}</button>
+            <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="specialty">+ {{localize "TYPES.Item.specialty"}}</button>
+            <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="spell">+ {{localize "TYPES.Item.spell"}}</button>
+          </div>
+        </header>
+
+        <div class="yze-skill-list">
+          {{#each weapons as |it|}}
+          <div class="yze-skill-row draggable" data-item-id="{{it.id}}">
+            <button type="button" class="yze-skill-roll" data-action="rollItem">
+              <i class="fa-solid fa-crosshairs"></i>
+              <span>{{it.name}} (+{{it.system.bonus}}, {{localize "YZE.Damage"}} {{it.system.damage}})</span>
+            </button>
+            <div class="yze-row-controls">
+              <a data-action="chatItem"><i class="fa-solid fa-comment"></i></a>
+              <a data-action="editItem"><i class="fa-solid fa-pen"></i></a>
+              <a data-action="deleteItem"><i class="fa-solid fa-trash"></i></a>
+            </div>
+          </div>
+          {{/each}}
+          {{#each armors as |it|}}
+          <div class="yze-skill-row draggable" data-item-id="{{it.id}}">
+            <button type="button" class="yze-skill-roll" data-action="rollItem">
+              <i class="fa-solid fa-shield"></i>
+              <span>{{it.name}} ({{it.system.rating}} / {{stepLetter it.system.die}})</span>
+            </button>
+            <div class="yze-row-controls">
+              <a data-action="editItem"><i class="fa-solid fa-pen"></i></a>
+              <a data-action="deleteItem"><i class="fa-solid fa-trash"></i></a>
+            </div>
+          </div>
+          {{/each}}
+          {{#each specialties as |it|}}
+          <div class="yze-skill-row draggable" data-item-id="{{it.id}}">
+            <button type="button" class="yze-skill-roll" data-action="rollItem">
+              <i class="fa-solid fa-star"></i>
+              <span>{{it.name}}</span>
+            </button>
+            <div class="yze-row-controls">
+              <a data-action="chatItem"><i class="fa-solid fa-comment"></i></a>
+              <a data-action="editItem"><i class="fa-solid fa-pen"></i></a>
+              <a data-action="deleteItem"><i class="fa-solid fa-trash"></i></a>
+            </div>
+          </div>
+          {{/each}}
+          {{#each spells as |it|}}
+          <div class="yze-skill-row draggable" data-item-id="{{it.id}}">
+            <button type="button" class="yze-skill-roll" data-action="rollItem">
+              <i class="fa-solid fa-wand-sparkles"></i>
+              <span>{{it.name}} ({{localize "YZE.Rank"}} {{it.system.rank}})</span>
+            </button>
+            <div class="yze-row-controls">
+              <a data-action="chatItem"><i class="fa-solid fa-comment"></i></a>
+              <a data-action="editItem"><i class="fa-solid fa-pen"></i></a>
+              <a data-action="deleteItem"><i class="fa-solid fa-trash"></i></a>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+
+        <div class="yze-description-block" style="margin-top: 10px;">
+          <label class="yze-section-title">{{localize "YZE.BiographyAndNotes"}}</label>
+          {{#if editable}}
+            <prose-mirror name="system.notes" value="{{system.notes}}" toggled="true">
+              {{{enrichedNotes}}}
+            </prose-mirror>
+          {{else}}
+            <div class="yze-prose">{{{enrichedNotes}}}</div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

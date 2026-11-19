@@ -1,0 +1,8 @@
+<nav class="yze-tabs">
+  {{#each tabs}}
+    <button type="button" class="yze-tab-btn {{#if this.active}}active{{/if}}" data-action="switchTab" data-tab="{{this.id}}">
+      <i class="{{this.icon}}"></i>
+      <span>{{localize this.label}}</span>
+    </button>
+  {{/each}}
+</nav>

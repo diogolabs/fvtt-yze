@@ -1,0 +1,428 @@
+{
+  "TYPES": {
+    "Actor": {
+      "character": "Player Character (PC)",
+      "npc": "Non-Player Character (NPC)",
+      "vehicle": "Vehicle / Mount"
+    },
+    "Item": {
+      "skill": "Skill",
+      "specialty": "Specialty / Talent",
+      "gear": "Gear / Consumable",
+      "weapon": "Weapon",
+      "armor": "Armor",
+      "spell": "Spell",
+      "critical": "Critical Injury"
+    }
+  },
+  "YZUR": {
+    "DIETERMS": {
+      "BaseDie": "Base Dice (Attribute)",
+      "SkillDie": "Skill Dice",
+      "GearDie": "Gear Dice",
+      "NegativeDie": "Negative Dice",
+      "StressDie": "Stress Dice",
+      "AmmoDie": "Ammo Dice",
+      "D6TwilightDie": "Step Die (D6)",
+      "D8TwilightDie": "Step Die (D8)",
+      "D10TwilightDie": "Step Die (D10)",
+      "D12TwilightDie": "Step Die (D12)",
+      "D8ArtifactDie": "Artifact Die (D8)",
+      "D10ArtifactDie": "Artifact Die (D10)",
+      "D12ArtifactDie": "Artifact Die (D12)"
+    }
+  },
+  "YZE": {
+    "Sheet": {
+      "Actor": "YZE Actor Sheet",
+      "Item": "YZE Item Sheet"
+    },
+    "Name": "Name",
+    "Type": "Type",
+    "Category": "Category",
+    "Archetype": "Archetype",
+    "Mode": "Dice Mode",
+    "Default": "World Default",
+    "DicePool": "Dice Pool",
+    "StepDice": "Step Dice",
+    "XP": "XP",
+    "Health": "Health",
+    "Resolve": "Resolve",
+    "Willpower": "Willpower",
+    "Stress": "Stress",
+    "Encumbrance": "Encumbrance",
+    "CarryLimit": "Carry Limit",
+    "Broken": "BROKEN",
+    "Conditions": "Conditions",
+    "PhysicalConditions": "Physical",
+    "MentalConditions": "Mental",
+    "Bonus": "Bonus",
+    "Damage": "Damage",
+    "Modifier": "Modifier",
+    "Rank": "Rank",
+    "Quantity": "Qty",
+    "Cost": "Cost",
+    "Current": "Cur",
+    "Max": "Max",
+    "Available": "Available",
+    "Remaining": "Remaining",
+    "Dice": "Dice",
+    "Roll": "Roll",
+    "GMRoll": "GM Roll",
+    "SendToChat": "Send to Chat",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Add": "Add",
+    "New": "New",
+    "None": "None",
+    "Optional": "Optional",
+    "Yes": "Yes",
+    "No": "No",
+    "Active": "Active",
+    "Disabled": "Disabled",
+    "NewEffect": "New Effect",
+    "EmptyList": "No items added yet.",
+    "Description": "Description",
+    "Features": "Features",
+    "Carried": "Carried",
+    "Equipped": "Equipped",
+    "AtHand": "At Hand",
+    "Backpack": "Backpack",
+    "Repair": "Repair",
+    "Reload": "Reload",
+    "AssociatedSkill": "Associated Skill",
+    "ArtifactDie": "Artifact Die",
+    "SupplyRating": "Supply Rating",
+    "SupplyRoll": "Supply Roll",
+    "PanicRoll": "Panic Roll",
+    "PanicTriggered": "PANIC ROLL TRIGGERED",
+    "ArmorRoll": "Armor Roll",
+    "CoverRoll": "Cover Roll",
+    "Help": "Help from Others",
+    "AimedShot": "Aimed Fire",
+    "PassiveRoll": "Passive Roll",
+    "NoPush": "No Push",
+    "AmmoDice": "Ammo Dice",
+    "AmmoSuccesses": "Ammo Successes",
+    "AmmoSpent": "Ammo Spent",
+    "DoomPoint": "Doom Point",
+    "Pride": "Pride",
+    "UsePride": "Use Pride",
+    "UsedThisSession": "Used this session",
+    "Weakness": "Weakness",
+    "DarkSecret": "Dark Secret",
+    "BigDream": "Big Dream",
+    "Buddy": "Buddy",
+    "Relationships": "Relationships",
+    "Appearance": "Appearance",
+    "PersonalityTraits": "Personality Traits",
+    "BiographyAndNotes": "Biography & Notes",
+    "SkillsAndAttributes": "Skills",
+    "SeedCoreSkills": "Add 12 Core SRD Skills",
+    "SeedCoreSkillsHint": "Adds the 12 core skills from the Year Zero Engine SRD as skill items.",
+    "Weapons": "Weapons",
+    "ArmorAndCover": "Armor & Cover",
+    "GearAndConsumables": "Gear & Consumables",
+    "CriticalInjuries": "Critical Injuries",
+    "SpecialtiesAndTalents": "Specialties / Talents",
+    "Spells": "Spells (Magic)",
+    "CombatAndAbilities": "Combat, Gear & Abilities",
+    "Tabs": {
+      "Skills": "Skills",
+      "CombatGear": "Combat & Gear",
+      "SpecialtiesMagic": "Specialties & Magic",
+      "Biography": "Traits & Bio",
+      "Effects": "Effects"
+    },
+    "Attribute": {
+      "Label": "Attribute",
+      "strength": "Strength",
+      "agility": "Agility",
+      "wits": "Wits",
+      "empathy": "Empathy"
+    },
+    "AttributeAbbr": {
+      "strength": "STR",
+      "agility": "AGI",
+      "wits": "WIT",
+      "empathy": "EMP"
+    },
+    "CoreSkill": {
+      "force": "Force",
+      "melee": "Melee",
+      "stamina": "Stamina",
+      "marksmanship": "Marksmanship",
+      "mobility": "Mobility",
+      "stealth": "Stealth",
+      "crafting": "Crafting",
+      "observation": "Observation",
+      "survival": "Survival",
+      "healing": "Healing",
+      "insight": "Insight",
+      "persuasion": "Persuasion"
+    },
+    "CoreSkillDesc": {
+      "force": "Lift, push, or break heavy obstacles; feats of raw strength.",
+      "melee": "Fight hand-to-hand or block attacks in close combat.",
+      "stamina": "Physical endurance, surviving underwater, resisting poison/disease, and Death Saves.",
+      "marksmanship": "Fire ranged weapons in combat.",
+      "mobility": "Speed and motor control: risky climbs, jumps, retreats, and foot/vehicle chases.",
+      "stealth": "Sneak undetected, hide, or perform sneak attacks (opposed by Observation).",
+      "crafting": "Repair broken gear or vehicles and build or operate mechanical constructions.",
+      "observation": "Spot approaching threats or examine an area for clues.",
+      "survival": "Navigate, make camp, forage, hunt, and fish in hazardous environments.",
+      "healing": "Help broken characters recover and stabilize lethal critical injuries.",
+      "insight": "Read NPC emotions, detect lies, and resist Persuasion or stressful situations.",
+      "persuasion": "Convince, trick, or interrogate others without violence (opposed by Insight)."
+    },
+    "Condition": {
+      "exhausted": "Exhausted",
+      "battered": "Battered",
+      "wounded": "Wounded",
+      "angry": "Angry",
+      "scared": "Scared",
+      "disheartened": "Disheartened"
+    },
+    "Difficulty": {
+      "Label": "Difficulty",
+      "trivial": "Trivial",
+      "simple": "Simple",
+      "easy": "Easy",
+      "average": "Average",
+      "demanding": "Demanding",
+      "hard": "Hard",
+      "formidable": "Formidable"
+    },
+    "Range": {
+      "Label": "Range",
+      "personal": "Personal",
+      "engaged": "Engaged",
+      "short": "Short",
+      "medium": "Medium",
+      "long": "Long",
+      "extreme": "Extreme",
+      "unlimited": "Unlimited"
+    },
+    "Weight": {
+      "Label": "Weight",
+      "tiny": "0 — Tiny",
+      "quarter": "¼ — Light (0.25)",
+      "light": "½ — Light (0.5)",
+      "regular": "1 — Regular",
+      "heavy": "2 — Heavy",
+      "veryHeavy": "3 — Very Heavy"
+    },
+    "Skill": {
+      "PoolLevel": "Skill Level (Dice Pool)",
+      "StepDie": "Die Rating (Step Dice)",
+      "XpMark": "Used & succeeded this session (XP Mark)"
+    },
+    "Specialty": {
+      "Tiered": "Tiered Specialty (Ranks 1–3)",
+      "MaxPush": "Max Push Count",
+      "Category": {
+        "general": "General",
+        "combat": "Combat",
+        "archetype": "Archetype",
+        "magic": "Magic Discipline"
+      }
+    },
+    "Weapon": {
+      "Grip": {
+        "Label": "Grip",
+        "1h": "1H",
+        "2h": "2H",
+        "unarmed": "Unarmed"
+      },
+      "CritThreshold": "Crit Threshold",
+      "RoF": "Rate of Fire (RoF)",
+      "Magazine": "Magazine"
+    },
+    "Armor": {
+      "Rating": "Armor Rating",
+      "Part": {
+        "Label": "Part",
+        "body": "Body Armor",
+        "helmet": "Helmet",
+        "shield": "Shield",
+        "cover": "Cover"
+      }
+    },
+    "Cover": {
+      "none": "Select Cover...",
+      "furniture": "Furniture",
+      "woodenDoor": "Wooden Door",
+      "treeTrunk": "Tree Trunk",
+      "woodenWall": "Wooden Wall",
+      "stoneWall": "Stone Wall"
+    },
+    "Gear": {
+      "Subtype": {
+        "gear": "Standard Gear",
+        "consumable": "Consumable",
+        "container": "Container"
+      }
+    },
+    "Magic": {
+      "CastSpell": "Cast Spell",
+      "WillpowerToSpend": "Willpower Points (Base Power)",
+      "ExtraWillpower": "Extra WP",
+      "BasePower": "Base Power",
+      "Overcharge": "Overcharge",
+      "FinalPowerLevel": "Final Power Level",
+      "SafeCasting": "Safe Casting (Reduce Dice)",
+      "ChanceCasting": "Chance Casting",
+      "ChanceCastingWarning": "Chance Casting (1 rank above your discipline rank): Automatically triggers a Magic Mishap!",
+      "RankTooHighWarning": "Cannot cast a spell 2 or more ranks above your discipline rank.",
+      "CastFromGrimoire": "Cast from Grimoire",
+      "InGrimoire": "Written in Grimoire",
+      "Grimoire": "Grimoire",
+      "DrawnOrCarved": "Drawn or Carved Symbol",
+      "Ingredients": "Ingredients",
+      "Mishap": "Magic Mishap",
+      "MishapRoll": "Magic Mishap (D12)",
+      "MishapTriggered": "Magic Mishap Triggered",
+      "RollMishapD12": "Roll Mishap (D12)",
+      "Discipline": {
+        "Label": "Discipline",
+        "general": "General Spells",
+        "awareness": "Awareness (Druidic)",
+        "healing": "Healing (Druidic)",
+        "shapeshifting": "Shapeshifting (Druidic)",
+        "bloodMagic": "Blood Magic (Sorcery)",
+        "deathMagic": "Death Magic (Sorcery)",
+        "elementalism": "Elementalism (Sorcery)",
+        "symbolism": "Symbolism (Sorcery)"
+      },
+      "CastingType": {
+        "Label": "Casting Time",
+        "action": "Slow Action",
+        "powerWord": "Power Word (Fast Action)",
+        "ritual": "Ritual (Shift)"
+      },
+      "Duration": {
+        "Label": "Duration",
+        "immediate": "Immediate",
+        "round": "Round (Per Power Level)",
+        "stretch": "Stretch",
+        "shift": "Shift",
+        "varies": "Varies"
+      }
+    },
+    "Critical": {
+      "Category": {
+        "physical": "Physical",
+        "mental": "Mental"
+      },
+      "Lethal": "Lethal",
+      "Stabilized": "Stabilized",
+      "DeathSave": "Death Save (Stamina)",
+      "DeathSaveMod": "Death Save Modifier",
+      "HealingTime": "Healing Time",
+      "EffectsSummary": "Effects",
+      "ThresholdTriggered": "Crit Threshold Reached",
+      "RollPhysical": "Roll Physical Crit",
+      "RollMental": "Roll Mental Crit",
+      "PhysicalTable": "Physical Critical Injury (D66)",
+      "MentalTable": "Mental Critical Injury (D66)"
+    },
+    "TimeLimit": {
+      "Label": "Time Limit",
+      "none": "—",
+      "round": "Round",
+      "stretch": "Stretch",
+      "shift": "Shift",
+      "day": "Day"
+    },
+    "Vehicle": {
+      "Passengers": "Passengers",
+      "Maneuverability": "Maneuverability",
+      "Hull": "Hull",
+      "TravelSpeed": "Travel Speed",
+      "Fuel": "Fuel",
+      "Wrecked": "WRECKED",
+      "DriveRoll": "Drive / Maneuver",
+      "RammingAttack": "Ramming Attack",
+      "ComponentDamage": "Component Damage",
+      "WeaponsAndCargo": "Mounted Weapons & Cargo"
+    },
+    "RollDialog": {
+      "Title": "Roll Dice",
+      "PoolPreview": "Dice to Roll",
+      "NoSkill": "Unskilled (Attribute Only)",
+      "GearOrWeapon": "Gear / Weapon",
+      "ActorBrokenConfirm": "{name} is currently BROKEN! Are you sure you want to roll?"
+    },
+    "Chat": {
+      "Successes": "Successes",
+      "Banes": "Banes (1s)",
+      "GearDamage": "Gear Damage",
+      "PushCost": "Push Cost Applied",
+      "Push": "Push Roll",
+      "Accept": "Accept",
+      "ApplyDamage": "Apply Damage"
+    },
+    "Notifications": {
+      "NoDiceToRoll": "No dice available in pool to roll!",
+      "NotEnoughWillpower": "Not enough Willpower Points (WP)!",
+      "SupplyDepleted": "{name} supply is already depleted (0)!",
+      "SelectTargetToken": "Select one or more target tokens on the canvas first.",
+      "AppliedDamage": "Applied {dmg} damage to selected target(s).",
+      "MacroOwnedItemsOnly": "You can only create hotbar macros for owned items."
+    },
+    "Settings": {
+      "resolutionMode": {
+        "name": "Core Dice Mechanics",
+        "hint": "Choose between Dice Pool (pools of D6s, ratings 1–5) and Step Dice (polyhedral dice D6/D8/D10/D12, ratings D–A).",
+        "dicePool": "Dice Pool (D6 Pools)",
+        "stepDice": "Step Dice (D6 / D8 / D10 / D12)"
+      },
+      "stepModifierMode": {
+        "name": "Step Dice Modifier Style",
+        "hint": "Choose whether modifiers in Step Dice mode step dice up/down (SRD p. 10) or grant Advantage/Disadvantage (SRD p. 11).",
+        "step": "Step Up / Step Down Dice",
+        "advDisadv": "Advantage / Disadvantage"
+      },
+      "damageMode": {
+        "name": "Damage & Trauma System",
+        "hint": "Choose how damage and trauma are tracked (SRD p. 5 & 20–21).",
+        "healthResolve": "Health & Resolve Pools",
+        "attributeDamage": "Direct Attribute Damage",
+        "conditions": "Conditions Only"
+      },
+      "pushMode": {
+        "name": "Cost of Pushing",
+        "hint": "Choose what happens when a player pushes a roll (SRD p. 9).",
+        "damageStress": "Damage & Stress (Health/Resolve + Gear Degradation)",
+        "attributeDamage": "Attribute Damage (+1 Willpower Point per Bane + Gear Degradation)",
+        "stressDice": "Stress Dice (+1 Stress Point on push; 1s trigger Panic Roll)",
+        "conditions": "Conditions (Suffer a Physical or Mental Condition on push)",
+        "doomPoints": "Doom Points (GM gains +1 Doom Point on push)"
+      },
+      "enableWillpower": {
+        "name": "Enable Willpower Points (WP)",
+        "hint": "Show Willpower Points on character sheets (used for Magic and Willpower Specialties)."
+      },
+      "enableStressTrack": {
+        "name": "Enable Stress Track & Panic",
+        "hint": "Show Stress Points and add Stress Dice to skill rolls (horror variant, SRD p. 9–10)."
+      },
+      "enableEncumbrance": {
+        "name": "Enable Encumbrance Tracking",
+        "hint": "Track carried item weights against the character's carry limit (SRD p. 6)."
+      },
+      "weaponsAtHandRule": {
+        "name": "Weapons at Hand Variant",
+        "hint": "Up to 3 weapons marked 'At Hand' and worn armor do not count toward encumbrance (SRD p. 6)."
+      },
+      "autoSeedCoreSkills": {
+        "name": "Auto-Add 12 Core SRD Skills",
+        "hint": "Automatically add the 12 core YZE SRD skills as skill items when creating a new Character or NPC."
+      },
+      "doomPoints": {
+        "name": "GM Doom Points",
+        "hint": "Current pool of GM Doom Points accumulated from pushed rolls."
+      }
+    }
+  }
+}

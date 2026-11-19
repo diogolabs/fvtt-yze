@@ -1,0 +1,63 @@
+<div class="yze-dialog-content">
+  <div class="yze-preview-banner">
+    <div class="yze-preview-label">
+      {{localize (concat "YZE.Magic.Discipline." spell.system.discipline)}} • {{localize "YZE.Rank"}} {{effectiveSpellRank}}
+    </div>
+    <div class="yze-preview-formula">
+      {{localize "YZE.Magic.BasePower"}}: {{basePowerLevel}} | {{localize "YZE.Dice"}}: {{diceCount}}D6
+    </div>
+  </div>
+
+  <div class="yze-form-grid">
+    <div class="yze-field">
+      <label>{{localize "YZE.Magic.WillpowerToSpend"}} ({{localize "YZE.Available"}}: {{availableWp}})</label>
+      <input type="number" name="wpSpent" value="{{wpSpent}}" min="1" max="10" />
+    </div>
+
+    <div class="yze-field">
+      <label>{{localize "YZE.Magic.ExtraWillpower"}} (Obscure / Bind / Range)</label>
+      <input type="number" name="extraWp" value="{{extraWp}}" min="0" max="10" />
+    </div>
+
+    {{#if (gt maxSafeReduction 0)}}
+    <div class="yze-field">
+      <label>{{localize "YZE.Magic.SafeCasting"}} (0–{{maxSafeReduction}})</label>
+      <input type="number" name="safeCastingReduction" value="{{safeCastingReduction}}" min="0" max="{{maxSafeReduction}}" />
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="yze-checkbox-row">
+    <label class="yze-check">
+      <input type="checkbox" name="useGrimoire" {{#if useGrimoire}}checked{{/if}} />
+      <span>{{localize "YZE.Magic.CastFromGrimoire"}} (−1 {{localize "YZE.Rank"}})</span>
+    </label>
+
+    {{#if isSymbolism}}
+    <label class="yze-check">
+      <input type="checkbox" name="carvedSymbol" {{#if carvedSymbol}}checked{{/if}} />
+      <span>{{localize "YZE.Magic.DrawnOrCarved"}} (+1 {{localize "YZE.Magic.BasePower"}})</span>
+    </label>
+    {{/if}}
+  </div>
+
+  {{#if chanceCast}}
+  <div class="yze-mishap-alert">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    {{localize "YZE.Magic.ChanceCastingWarning"}}
+  </div>
+  {{/if}}
+
+  {{#if tooHighRank}}
+  <div class="yze-mishap-alert">
+    <i class="fa-solid fa-ban"></i>
+    {{localize "YZE.Magic.RankTooHighWarning"}}
+  </div>
+  {{/if}}
+
+  <footer class="yze-dialog-footer">
+    <button type="submit" class="yze-btn yze-btn-primary" {{#if tooHighRank}}disabled{{/if}}>
+      <i class="fa-solid fa-wand-sparkles"></i> {{localize "YZE.Magic.CastSpell"}} ({{totalWp}} WP)
+    </button>
+  </footer>
+</div>

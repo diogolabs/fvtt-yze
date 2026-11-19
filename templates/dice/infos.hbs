@@ -1,0 +1,65 @@
+<div class="yze-dice-infos">
+  {{#if (gt roll.attackDamage 0)}}
+  <div class="yze-info-row">
+    <span class="label">{{localize "YZE.Damage"}}:</span>
+    <span class="value"><strong>{{roll.attackDamage}}</strong></span>
+  </div>
+  {{#if (and roll.options.critical (gte roll.attackDamage roll.options.critical))}}
+  <div class="yze-info-row yze-alert">
+    <span class="label">{{localize "YZE.Critical.ThresholdTriggered"}}:</span>
+    <span class="value">≥ {{roll.options.critical}}</span>
+  </div>
+  {{/if}}
+  {{/if}}
+
+  {{#if (gt roll.hitCount 0)}}
+  <div class="yze-info-row">
+    <span class="label">{{localize "YZE.AmmoSuccesses"}}:</span>
+    <span class="value">+{{roll.hitCount}}</span>
+  </div>
+  {{/if}}
+
+  {{#if roll.options.totalAmmoUsed}}
+  <div class="yze-info-row">
+    <span class="label">{{localize "YZE.AmmoSpent"}}:</span>
+    <span class="value">{{roll.options.totalAmmoUsed}} ({{localize "YZE.Remaining"}}: {{roll.options.magRemaining}})</span>
+  </div>
+  {{/if}}
+
+  {{#if (eq roll.options.rollType "supply")}}
+  <div class="yze-info-row {{#if (gt roll.options.supplyLost 0)}}yze-alert{{/if}}">
+    <span class="label">{{localize "YZE.SupplyRoll"}}:</span>
+    <span class="value">
+      {{roll.options.supplyBefore}} − {{roll.options.supplyLost}} = <strong>{{roll.options.supplyAfter}}</strong>
+    </span>
+  </div>
+  {{/if}}
+
+  {{#if roll.pushed}}
+    {{#if (gt roll.attributeTrauma 0)}}
+    <div class="yze-info-row yze-alert">
+      <span class="label">{{localize "YZE.Chat.Banes"}} ({{localize "YZE.Attribute.Label"}}):</span>
+      <span class="value">{{roll.attributeTrauma}}</span>
+    </div>
+    {{/if}}
+    {{#if (gt roll.gearDamage 0)}}
+    <div class="yze-info-row yze-alert">
+      <span class="label">{{localize "YZE.Chat.GearDamage"}}:</span>
+      <span class="value">{{roll.gearDamage}}</span>
+    </div>
+    {{/if}}
+    {{#if roll.options.pushCostSummary}}
+    <div class="yze-info-row yze-push-summary">
+      <span class="label">{{localize "YZE.Chat.PushCost"}}:</span>
+      <span class="value">{{roll.options.pushCostSummary}}</span>
+    </div>
+    {{/if}}
+  {{/if}}
+
+  {{#if (gt roll.panic 0)}}
+  <div class="yze-info-row yze-alert">
+    <span class="label">{{localize "YZE.PanicTriggered"}}!</span>
+    <span class="value">{{roll.panic}} × 1 ({{localize "YZE.Stress"}})</span>
+  </div>
+  {{/if}}
+</div>

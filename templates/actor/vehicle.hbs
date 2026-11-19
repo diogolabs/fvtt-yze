@@ -1,0 +1,166 @@
+<div class="yze-vehicle-sheet">
+  <header class="yze-actor-header">
+    <div class="yze-header-top">
+      <img class="yze-actor-img" src="{{actor.img}}" data-action="editImage" data-edit="img" alt="{{actor.name}}" />
+      <div class="yze-identity-grid">
+        <div class="yze-identity-main">
+          <input class="yze-actor-name" type="text" name="name" value="{{actor.name}}" placeholder="{{localize 'YZE.Name'}}" />
+          {{#if isBroken}}
+            <span class="yze-broken-badge"><i class="fa-solid fa-burst"></i> {{localize "YZE.Vehicle.Wrecked"}}</span>
+          {{/if}}
+        </div>
+        <div class="yze-identity-sub">
+          <div class="yze-inline-field">
+            <label>{{localize "YZE.Type"}}</label>
+            <input type="text" name="system.vehicleType" value="{{system.vehicleType}}" />
+          </div>
+          <div class="yze-inline-field">
+            <label>{{localize "YZE.Vehicle.Passengers"}}</label>
+            <input type="number" name="system.passengers" value="{{system.passengers}}" min="0" />
+          </div>
+          <div class="yze-inline-field">
+            <label class="yze-check-inline">
+              <input type="checkbox" name="system.wrecked" {{#if system.wrecked}}checked{{/if}} />
+              <span>{{localize "YZE.Vehicle.Wrecked"}}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="yze-resources-bar">
+      <div class="yze-resource-box">
+        <label>{{localize "YZE.Vehicle.Maneuverability"}}</label>
+        <div class="yze-pair-inputs">
+          <input type="number" name="system.maneuverability" value="{{system.maneuverability}}" />
+          <span>/</span>
+          <input type="number" name="system.maxManeuverability" value="{{system.maxManeuverability}}" />
+        </div>
+      </div>
+
+      <div class="yze-resource-box">
+        <label>{{localize "YZE.Vehicle.Hull"}}</label>
+        <div class="yze-pair-inputs">
+          <input type="number" name="system.hull.value" value="{{system.hull.value}}" min="0" />
+          <span>/</span>
+          <input type="number" name="system.hull.max" value="{{system.hull.max}}" min="1" />
+        </div>
+      </div>
+
+      <div class="yze-resource-box">
+        <label>{{localize "YZE.Armor.Rating"}}</label>
+        <div class="yze-pair-inputs">
+          <input type="number" name="system.armor.rating" value="{{system.armor.rating}}" min="0" />
+          <select name="system.armor.die">
+            {{#each config.skillStepChoices as |sLabel sKey|}}
+              <option value="{{sKey}}" {{#if (eq ../system.armor.die sKey)}}selected{{/if}}>{{stepLetter sKey}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+
+      <div class="yze-resource-box">
+        <label>{{localize "YZE.Vehicle.TravelSpeed"}} (On/Off)</label>
+        <div class="yze-pair-inputs">
+          <input type="number" name="system.speed.onRoad" value="{{system.speed.onRoad}}" min="0" />
+          <span>/</span>
+          <input type="number" name="system.speed.offRoad" value="{{system.speed.offRoad}}" min="0" />
+        </div>
+      </div>
+
+      <div class="yze-resource-box">
+        <label>{{localize "YZE.Vehicle.Fuel"}}</label>
+        <div class="yze-pair-inputs">
+          <input type="number" name="system.fuel.value" value="{{system.fuel.value}}" min="0" />
+          <span>/</span>
+          <input type="number" name="system.fuel.max" value="{{system.fuel.max}}" min="0" />
+        </div>
+      </div>
+    </div>
+
+    <div class="yze-btn-row" style="margin-top: 8px;">
+      <button type="button" class="yze-btn yze-btn-primary" data-action="rollVehicleDrive">
+        <i class="fa-solid fa-gauge-high"></i> {{localize "YZE.Vehicle.DriveRoll"}} (+{{system.maneuverability}})
+      </button>
+      <button type="button" class="yze-btn" data-action="rollVehicleRam">
+        <i class="fa-solid fa-car-burst"></i> {{localize "YZE.Vehicle.RammingAttack"}} ({{localize "YZE.Damage"}} {{system.rammingDamage}})
+      </button>
+      <button type="button" class="yze-btn" data-action="rollVehicleArmor">
+        <i class="fa-solid fa-shield"></i> {{localize "YZE.ArmorRoll"}}
+      </button>
+      <button type="button" class="yze-btn yze-btn-danger" data-action="rollCritTable" data-category="vehicle">
+        <i class="fa-solid fa-dice-d12"></i> {{localize "YZE.Vehicle.ComponentDamage"}} (D12)
+      </button>
+    </div>
+  </header>
+
+  <section class="yze-vehicle-body">
+    <div class="yze-panel-section">
+      <header class="yze-section-toolbar">
+        <span class="yze-section-title">{{localize "YZE.Vehicle.WeaponsAndCargo"}} ({{system.cargoUsed}} / {{system.cargoCapacity}})</span>
+        <div class="yze-toolbar-actions">
+          <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="weapon">+ {{localize "TYPES.Item.weapon"}}</button>
+          <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="gear">+ {{localize "TYPES.Item.gear"}}</button>
+        </div>
+      </header>
+      <table class="yze-table">
+        <thead>
+          <tr>
+            <th class="col-name">{{localize "YZE.Name"}}</th>
+            <th>{{localize "YZE.Type"}}</th>
+            <th>{{localize "YZE.Bonus"}} / {{localize "YZE.Damage"}}</th>
+            <th>{{localize "YZE.Weight.Label"}}</th>
+            <th class="col-actions"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each weapons as |w|}}
+          <tr data-item-id="{{w.id}}">
+            <td class="col-name">
+              <button type="button" class="yze-item-roll-btn" data-action="rollItem">
+                <i class="fa-solid fa-crosshairs"></i> <span>{{w.name}}</span>
+              </button>
+            </td>
+            <td>{{localize "TYPES.Item.weapon"}}</td>
+            <td>+{{w.system.bonus}} / {{localize "YZE.Damage"}} {{w.system.damage}}</td>
+            <td>{{w.system.weight}}</td>
+            <td class="col-actions">
+              <a data-action="editItem"><i class="fa-solid fa-pen"></i></a>
+              <a data-action="deleteItem"><i class="fa-solid fa-trash"></i></a>
+            </td>
+          </tr>
+          {{/each}}
+          {{#each gears as |g|}}
+          <tr data-item-id="{{g.id}}">
+            <td class="col-name">
+              <button type="button" class="yze-item-roll-btn" data-action="rollItem">
+                <i class="fa-solid fa-box"></i> <span>{{g.name}} (×{{g.system.quantity}})</span>
+              </button>
+            </td>
+            <td>{{localize "TYPES.Item.gear"}}</td>
+            <td>+{{g.system.bonus}}</td>
+            <td>{{g.system.weight}}</td>
+            <td class="col-actions">
+              <a data-action="editItem"><i class="fa-solid fa-pen"></i></a>
+              <a data-action="deleteItem"><i class="fa-solid fa-trash"></i></a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="yze-panel-section">
+      <header class="yze-section-toolbar">
+        <span class="yze-section-title">{{localize "YZE.BiographyAndNotes"}}</span>
+      </header>
+      {{#if editable}}
+        <prose-mirror name="system.notes" value="{{system.notes}}" toggled="true">
+          {{{enrichedNotes}}}
+        </prose-mirror>
+      {{else}}
+        <div class="yze-prose">{{{enrichedNotes}}}</div>
+      {{/if}}
+    </div>
+  </section>
+</div>

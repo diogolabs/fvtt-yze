@@ -1,0 +1,63 @@
+<section class="yze-tab-panel {{#if (eq activeTab 'biography')}}active{{/if}}" data-tab-content="biography">
+  <div class="yze-panel-section">
+    <header class="yze-section-toolbar">
+      <span class="yze-section-title">{{localize "YZE.PersonalityTraits"}}</span>
+    </header>
+
+    <div class="yze-form-grid">
+      <div class="yze-field">
+        <label class="yze-flex-between">
+          <span>{{localize "YZE.Pride"}}</span>
+          <label class="yze-check-inline">
+            <input type="checkbox" name="system.traits.pride.used" {{#if system.traits.pride.used}}checked{{/if}} />
+            <small>{{localize "YZE.UsedThisSession"}}</small>
+          </label>
+        </label>
+        <input type="text" name="system.traits.pride.text" value="{{system.traits.pride.text}}" />
+      </div>
+
+      <div class="yze-field">
+        <label>{{localize "YZE.Weakness"}}</label>
+        <input type="text" name="system.traits.weakness" value="{{system.traits.weakness}}" />
+      </div>
+
+      <div class="yze-field">
+        <label>{{localize "YZE.DarkSecret"}}</label>
+        <input type="text" name="system.traits.darkSecret" value="{{system.traits.darkSecret}}" />
+      </div>
+
+      <div class="yze-field">
+        <label>{{localize "YZE.BigDream"}}</label>
+        <input type="text" name="system.traits.bigDream" value="{{system.traits.bigDream}}" />
+      </div>
+
+      <div class="yze-field">
+        <label>{{localize "YZE.Buddy"}}</label>
+        <input type="text" name="system.traits.buddy" value="{{system.traits.buddy}}" />
+      </div>
+
+      <div class="yze-field">
+        <label>{{localize "YZE.Appearance"}}</label>
+        <input type="text" name="system.traits.appearance" value="{{system.traits.appearance}}" />
+      </div>
+    </div>
+
+    <div class="yze-field" style="margin-top: 8px;">
+      <label>{{localize "YZE.Relationships"}}</label>
+      <textarea name="system.traits.relationships" rows="2">{{system.traits.relationships}}</textarea>
+    </div>
+  </div>
+
+  <div class="yze-panel-section">
+    <header class="yze-section-toolbar">
+      <span class="yze-section-title">{{localize "YZE.BiographyAndNotes"}}</span>
+    </header>
+    {{#if editable}}
+      <prose-mirror name="system.biography" value="{{system.biography}}" toggled="true">
+        {{{enrichedBiography}}}
+      </prose-mirror>
+    {{else}}
+      <div class="yze-prose">{{{enrichedBiography}}}</div>
+    {{/if}}
+  </div>
+</section>

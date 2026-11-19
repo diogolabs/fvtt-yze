@@ -1,0 +1,144 @@
+<div class="yze-dialog-content">
+  <div class="yze-preview-banner">
+    <div class="yze-preview-label">{{localize "YZE.RollDialog.PoolPreview"}}</div>
+    <div class="yze-preview-formula">{{previewText}}</div>
+  </div>
+
+  <div class="yze-form-grid">
+    <div class="yze-field">
+      <label>{{localize "YZE.Settings.resolutionMode.name"}}</label>
+      <select name="resolutionMode">
+        <option value="dicePool" {{#if (eq resolutionMode "dicePool")}}selected{{/if}}>{{localize "YZE.Settings.resolutionMode.dicePool"}}</option>
+        <option value="stepDice" {{#if (eq resolutionMode "stepDice")}}selected{{/if}}>{{localize "YZE.Settings.resolutionMode.stepDice"}}</option>
+      </select>
+    </div>
+
+    {{#if isStepDice}}
+    <div class="yze-field">
+      <label>{{localize "YZE.Settings.stepModifierMode.name"}}</label>
+      <select name="stepModifierMode">
+        <option value="step" {{#if (eq stepModifierMode "step")}}selected{{/if}}>{{localize "YZE.Settings.stepModifierMode.step"}}</option>
+        <option value="advDisadv" {{#if (eq stepModifierMode "advDisadv")}}selected{{/if}}>{{localize "YZE.Settings.stepModifierMode.advDisadv"}}</option>
+      </select>
+    </div>
+    {{/if}}
+
+    <div class="yze-field">
+      <label>{{localize "YZE.Attribute.Label"}}</label>
+      <select name="attribute">
+        {{#each config.attributes as |label key|}}
+        <option value="{{key}}" {{#if (eq ../attribute key)}}selected{{/if}}>
+          {{localize label}}
+        </option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="yze-field">
+      <label>{{localize "TYPES.Item.skill"}}</label>
+      <select name="skillId">
+        <option value="">— {{localize "YZE.RollDialog.NoSkill"}} —</option>
+        {{#each skills}}
+        <option value="{{this.id}}" {{#if (eq ../skillId this.id)}}selected{{/if}}>
+          {{this.name}} ({{#if ../isStepDice}}{{stepLetter this.system.die}}{{else}}{{this.system.level}}{{/if}})
+        </option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="yze-field">
+      <label>{{localize "YZE.RollDialog.GearOrWeapon"}}</label>
+      <select name="gearId">
+        <option value="">— {{localize "YZE.None"}} —</option>
+        {{#each gears}}
+        <option value="{{this.id}}" {{#if (eq ../gearId this.id)}}selected{{/if}}>
+          {{this.name}} (+{{this.system.bonus}}{{#if this.system.artifactDie}} / {{upper this.system.artifactDie}}{{/if}})
+        </option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="yze-field">
+      <label>{{localize "TYPES.Item.specialty"}}</label>
+      <select name="specialtyId">
+        <option value="">— {{localize "YZE.None"}} —</option>
+        {{#each specialties}}
+        <option value="{{this.id}}" {{#if (eq ../specialtyId this.id)}}selected{{/if}}>
+          {{this.name}} ({{#if (gte this.system.modifier 0)}}+{{/if}}{{this.system.modifier}})
+        </option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="yze-field">
+      <label>{{localize "YZE.Difficulty.Label"}}</label>
+      <select name="difficultyMod">
+        {{#each config.difficulties}}
+        <option value="{{this.mod}}" {{#if (eq ../difficultyMod this.mod)}}selected{{/if}}>
+          {{localize this.label}} ({{#if (gt this.mod 0)}}+{{/if}}{{this.mod}})
+        </option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="yze-field">
+      <label>{{localize "YZE.Help"}} (0–3)</label>
+      <input type="number" name="helpDice" value="{{helpDice}}" min="0" max="3" />
+    </div>
+
+    <div class="yze-field">
+      <label>{{localize "YZE.Modifier"}}</label>
+      <div class="yze-stepper">
+        <button type="button" class="yze-btn yze-btn-icon" data-action="adjustMod" data-delta="-1">−1</button>
+        <input type="number" name="customMod" value="{{customMod}}" />
+        <button type="button" class="yze-btn yze-btn-icon" data-action="adjustMod" data-delta="1">+1</button>
+      </div>
+    </div>
+
+    {{#if (gt maxAmmoDice 0)}}
+    <div class="yze-field">
+      <label>{{localize "YZE.AmmoDice"}} (0–{{maxAmmoDice}})</label>
+      <input type="number" name="ammoDice" value="{{ammoDice}}" min="0" max="{{maxAmmoDice}}" />
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="yze-checkbox-row">
+    <label class="yze-check">
+      <input type="checkbox" name="aimedShot" {{#if aimedShot}}checked{{/if}} />
+      <span>{{localize "YZE.AimedShot"}} (+2)</span>
+    </label>
+
+    <label class="yze-check">
+      <input type="checkbox" name="passiveRoll" {{#if passiveRoll}}checked{{/if}} />
+      <span>{{localize "YZE.PassiveRoll"}} ({{localize "YZE.NoPush"}})</span>
+    </label>
+
+    {{#if canUsePride}}
+    <label class="yze-check">
+      <input type="checkbox" name="usePride" {{#if usePride}}checked{{/if}} />
+      <span>{{localize "YZE.UsePride"}} (+1 {{localize "YZE.Chat.Successes"}})</span>
+    </label>
+    {{/if}}
+  </div>
+
+  {{#if (or (ne conditionMod 0) (ne backpackMod 0))}}
+  <div class="yze-mod-notes">
+    {{#if (ne conditionMod 0)}}
+      <span class="yze-tag yze-tag-danger">{{localize "YZE.Conditions"}}: {{conditionMod}}</span>
+    {{/if}}
+    {{#if (ne backpackMod 0)}}
+      <span class="yze-tag yze-tag-danger">{{localize "YZE.Backpack"}} ({{localize "YZE.CoreSkill.mobility"}}): {{backpackMod}}</span>
+    {{/if}}
+  </div>
+  {{/if}}
+
+  <footer class="yze-dialog-footer">
+    <button type="submit" class="yze-btn yze-btn-primary" data-roll-mode="publicroll">
+      <i class="fa-solid fa-dice"></i> {{localize "YZE.Roll"}}
+    </button>
+    <button type="submit" class="yze-btn" data-roll-mode="gmroll">
+      <i class="fa-solid fa-user-secret"></i> {{localize "YZE.GMRoll"}}
+    </button>
+  </footer>
+</div>

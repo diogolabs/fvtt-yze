@@ -1,0 +1,43 @@
+<div class="yze-chat-card">
+  <header class="yze-card-header">
+    <img src="{{item.img}}" alt="{{item.name}}" width="28" height="28" />
+    <div>
+      <h4>{{item.name}}</h4>
+      <span class="yze-card-subtitle">{{localize (concat "TYPES.Item." item.type)}}</span>
+    </div>
+  </header>
+
+  <div class="yze-card-tags">
+    {{#if (eq item.type "weapon")}}
+      <span class="yze-tag">{{localize "YZE.Bonus"}}: +{{system.bonus}}</span>
+      <span class="yze-tag">{{localize "YZE.Damage"}}: {{system.damage}}</span>
+      <span class="yze-tag">{{localize (concat "YZE.Range." system.range)}}</span>
+      {{#if system.features}}<span class="yze-tag">{{system.features}}</span>{{/if}}
+    {{/if}}
+    {{#if (eq item.type "armor")}}
+      <span class="yze-tag">{{localize "YZE.Armor.Rating"}}: {{system.rating}} / {{stepLetter system.die}}</span>
+    {{/if}}
+    {{#if (eq item.type "specialty")}}
+      {{#if system.tiered}}<span class="yze-tag">{{localize "YZE.Rank"}} {{system.rank}}</span>{{/if}}
+      {{#if system.modifier}}<span class="yze-tag">{{localize "YZE.Modifier"}}: {{system.modifier}}</span>{{/if}}
+    {{/if}}
+    {{#if (eq item.type "spell")}}
+      <span class="yze-tag">{{localize (concat "YZE.Magic.Discipline." system.discipline)}}</span>
+      <span class="yze-tag">{{localize "YZE.Rank"}} {{system.rank}}</span>
+      <span class="yze-tag">{{localize (concat "YZE.Range." system.range)}}</span>
+    {{/if}}
+    {{#if (eq item.type "critical")}}
+      {{#if system.d66}}<span class="yze-tag">D66: {{system.d66}}</span>{{/if}}
+      <span class="yze-tag">{{localize "YZE.Critical.Lethal"}}: {{#if system.lethal}}{{localize "YZE.Yes"}}{{else}}{{localize "YZE.No"}}{{/if}}</span>
+      {{#if system.healingTime}}<span class="yze-tag">{{localize "YZE.Critical.HealingTime"}}: {{system.healingTime}}</span>{{/if}}
+    {{/if}}
+  </div>
+
+  {{#if system.effectsSummary}}
+  <div class="yze-card-summary"><strong>{{system.effectsSummary}}</strong></div>
+  {{/if}}
+
+  {{#if system.description}}
+  <div class="yze-card-body">{{{system.description}}}</div>
+  {{/if}}
+</div>

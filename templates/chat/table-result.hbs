@@ -1,0 +1,15 @@
+<div class="yze-chat-card {{#if isAlert}}yze-card-alert{{/if}}">
+  <header class="yze-card-header">
+    <div>
+      <h4>{{tableTitle}}</h4>
+      <span class="yze-card-subtitle">{{rollLabel}}</span>
+    </div>
+  </header>
+  <div class="yze-card-body">
+    <h5 class="yze-result-title">{{resultTitle}}</h5>
+    <p>{{resultText}}</p>
+    {{#if metaLine}}
+    <p class="yze-result-meta"><small>{{metaLine}}</small></p>
+    {{/if}}
+  </div>
+</div>

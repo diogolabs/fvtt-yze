@@ -1,0 +1,41 @@
+<section class="yze-tab-panel {{#if (eq activeTab 'effects')}}active{{/if}}" data-tab-content="effects">
+  <div class="yze-panel-section">
+    <header class="yze-section-toolbar">
+      <span class="yze-section-title"><i class="fa-solid fa-bolt"></i> {{localize "YZE.Tabs.Effects"}}</span>
+      <button type="button" class="yze-btn yze-btn-sm" data-action="createEffect">
+        <i class="fa-solid fa-plus"></i> {{localize "YZE.NewEffect"}}
+      </button>
+    </header>
+
+    <table class="yze-table">
+      <thead>
+        <tr>
+          <th class="col-name">{{localize "YZE.Name"}}</th>
+          <th>{{localize "YZE.Active"}}</th>
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each effects as |ef|}}
+        <tr data-effect-id="{{ef.id}}">
+          <td class="col-name">
+            <img src="{{ef.img}}" width="20" height="20" style="vertical-align: middle; margin-right: 6px;" />
+            <span>{{ef.name}}</span>
+          </td>
+          <td>
+            <button type="button" class="yze-btn yze-btn-sm" data-action="toggleEffect">
+              {{#if ef.disabled}}{{localize "YZE.Disabled"}}{{else}}{{localize "YZE.Active"}}{{/if}}
+            </button>
+          </td>
+          <td class="col-actions">
+            <a data-action="editEffect" title="{{localize 'YZE.Edit'}}"><i class="fa-solid fa-pen"></i></a>
+            <a data-action="deleteEffect" title="{{localize 'YZE.Delete'}}"><i class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
+        {{else}}
+        <tr><td colspan="3" class="yze-empty">{{localize "YZE.EmptyList"}}</td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

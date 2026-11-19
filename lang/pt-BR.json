@@ -1,0 +1,428 @@
+{
+  "TYPES": {
+    "Actor": {
+      "character": "Personagem de Jogador (PJ)",
+      "npc": "Personagem do Mestre (PdM)",
+      "vehicle": "Veículo / Montaria"
+    },
+    "Item": {
+      "skill": "Perícia",
+      "specialty": "Especialidade / Talento",
+      "gear": "Equipamento / Consumível",
+      "weapon": "Arma",
+      "armor": "Armadura",
+      "spell": "Magia",
+      "critical": "Ferimento Crítico"
+    }
+  },
+  "YZUR": {
+    "DIETERMS": {
+      "BaseDie": "Dados Base (Atributo)",
+      "SkillDie": "Dados de Perícia",
+      "GearDie": "Dados de Equipamento",
+      "NegativeDie": "Dados Negativos",
+      "StressDie": "Dados de Estresse",
+      "AmmoDie": "Dados de Munição",
+      "D6TwilightDie": "Dado Escalonado (D6)",
+      "D8TwilightDie": "Dado Escalonado (D8)",
+      "D10TwilightDie": "Dado Escalonado (D10)",
+      "D12TwilightDie": "Dado Escalonado (D12)",
+      "D8ArtifactDie": "Dado de Artefato (D8)",
+      "D10ArtifactDie": "Dado de Artefato (D10)",
+      "D12ArtifactDie": "Dado de Artefato (D12)"
+    }
+  },
+  "YZE": {
+    "Sheet": {
+      "Actor": "Ficha de Ator YZE",
+      "Item": "Ficha de Item YZE"
+    },
+    "Name": "Nome",
+    "Type": "Tipo",
+    "Category": "Categoria",
+    "Archetype": "Arquétipo",
+    "Mode": "Modo de Dados",
+    "Default": "Padrão do Mundo",
+    "DicePool": "Parada de Dados (Dice Pool)",
+    "StepDice": "Dados Escalonados (Step Dice)",
+    "XP": "XP",
+    "Health": "Vitalidade (Health)",
+    "Resolve": "Determinação (Resolve)",
+    "Willpower": "Força de Vontade",
+    "Stress": "Estresse",
+    "Encumbrance": "Carga",
+    "CarryLimit": "Limite de Carga",
+    "Broken": "QUEBRADO",
+    "Conditions": "Condições",
+    "PhysicalConditions": "Físicas",
+    "MentalConditions": "Mentais",
+    "Bonus": "Bônus",
+    "Damage": "Dano",
+    "Modifier": "Modificador",
+    "Rank": "Grau",
+    "Quantity": "Qtd",
+    "Cost": "Custo",
+    "Current": "Atual",
+    "Max": "Máx",
+    "Available": "Disponível",
+    "Remaining": "Restante",
+    "Dice": "Dados",
+    "Roll": "Rolar",
+    "GMRoll": "Rolar p/ GM",
+    "SendToChat": "Enviar ao Chat",
+    "Edit": "Editar",
+    "Delete": "Excluir",
+    "Add": "Adicionar",
+    "New": "Novo",
+    "None": "Nenhum",
+    "Optional": "Opcional",
+    "Yes": "Sim",
+    "No": "Não",
+    "Active": "Ativo",
+    "Disabled": "Inativo",
+    "NewEffect": "Novo Efeito",
+    "EmptyList": "Nenhum item adicionado.",
+    "Description": "Descrição",
+    "Features": "Características",
+    "Carried": "Carregado",
+    "Equipped": "Equipado",
+    "AtHand": "À Mão",
+    "Backpack": "Mochila",
+    "Repair": "Reparar",
+    "Reload": "Recarregar",
+    "AssociatedSkill": "Perícia Associada",
+    "ArtifactDie": "Dado de Artefato",
+    "SupplyRating": "Nível de Suprimento",
+    "SupplyRoll": "Teste de Suprimento",
+    "PanicRoll": "Teste de Pânico",
+    "PanicTriggered": "PÂNICO DESENCADEADO",
+    "ArmorRoll": "Teste de Armadura",
+    "CoverRoll": "Teste de Cobertura",
+    "Help": "Ajuda de Outros",
+    "AimedShot": "Disparo Mirado",
+    "PassiveRoll": "Rolagem Passiva",
+    "NoPush": "Sem Forçar",
+    "AmmoDice": "Dados de Munição",
+    "AmmoSuccesses": "Sucessos de Munição",
+    "AmmoSpent": "Munição Gasta",
+    "DoomPoint": "Ponto de Ruína (Doom)",
+    "Pride": "Orgulho (Pride)",
+    "UsePride": "Usar Orgulho",
+    "UsedThisSession": "Usado nesta sessão",
+    "Weakness": "Fraqueza",
+    "DarkSecret": "Segredo Sombrio",
+    "BigDream": "Grande Sonho",
+    "Buddy": "Parceiro (Buddy)",
+    "Relationships": "Relacionamentos",
+    "Appearance": "Aparência",
+    "PersonalityTraits": "Traços de Personalidade",
+    "BiographyAndNotes": "Biografia e Notas",
+    "SkillsAndAttributes": "Perícias",
+    "SeedCoreSkills": "Adicionar 12 Perícias Básicas SRD",
+    "SeedCoreSkillsHint": "Adiciona as 12 perícias básicas do YZE SRD como itens na ficha.",
+    "Weapons": "Armas",
+    "ArmorAndCover": "Armaduras e Cobertura",
+    "GearAndConsumables": "Equipamentos e Consumíveis",
+    "CriticalInjuries": "Ferimentos Críticos",
+    "SpecialtiesAndTalents": "Especialidades / Talentos",
+    "Spells": "Magias",
+    "CombatAndAbilities": "Combate, Equipamento e Habilidades",
+    "Tabs": {
+      "Skills": "Perícias",
+      "CombatGear": "Combate e Equip.",
+      "SpecialtiesMagic": "Especialidades e Magia",
+      "Biography": "Traços e Bio",
+      "Effects": "Efeitos"
+    },
+    "Attribute": {
+      "Label": "Atributo",
+      "strength": "Força (Strength)",
+      "agility": "Agilidade (Agility)",
+      "wits": "Astúcia (Wits)",
+      "empathy": "Empatia (Empathy)"
+    },
+    "AttributeAbbr": {
+      "strength": "FOR",
+      "agility": "AGI",
+      "wits": "AST",
+      "empathy": "EMP"
+    },
+    "CoreSkill": {
+      "force": "Vigor (Force)",
+      "melee": "Combate Corpo a Corpo (Melee)",
+      "stamina": "Resistência (Stamina)",
+      "marksmanship": "Pontaria (Marksmanship)",
+      "mobility": "Mobilidade (Mobility)",
+      "stealth": "Furtividade (Stealth)",
+      "crafting": "Ofícios (Crafting)",
+      "observation": "Observação (Observation)",
+      "survival": "Sobrevivência (Survival)",
+      "healing": "Cura (Healing)",
+      "insight": "Intuição (Insight)",
+      "persuasion": "Persuasão (Persuasion)"
+    },
+    "CoreSkillDesc": {
+      "force": "Erguer, empurrar ou quebrar obstáculos pesados; feitos de força bruta.",
+      "melee": "Lutar corpo a corpo ou bloquear ataques em combate próximo.",
+      "stamina": "Resistência física, sobreviver debaixo d'água, resistir a venenos/doenças e Testes de Morte.",
+      "marksmanship": "Disparar armas de combate à distância.",
+      "mobility": "Velocidade e controle motor: escaladas, saltos, recuos e perseguições.",
+      "stealth": "Esgueirar-se sem ser detectado, esconder-se ou realizar ataques furtivos.",
+      "crafting": "Reparar equipamentos ou veículos quebrados e construir ou operar mecanismos.",
+      "observation": "Detectar ameaças se aproximando ou examinar uma área em busca de pistas.",
+      "survival": "Navegar, montar acampamento, forragear, caçar e pescar em ambientes hostis.",
+      "healing": "Ajudar personagens quebrados a se recuperar e estabilizar ferimentos críticos letais.",
+      "insight": "Ler emoções de PdMs, detectar mentiras e resistir a Persuasão ou situações estressantes.",
+      "persuasion": "Convencer, enganar ou interrogar outros sem violência (oposto por Intuição)."
+    },
+    "Condition": {
+      "exhausted": "Exausto",
+      "battered": "Surrado",
+      "wounded": "Ferido",
+      "angry": "Irritado",
+      "scared": "Assustado",
+      "disheartened": "Desanimado"
+    },
+    "Difficulty": {
+      "Label": "Dificuldade",
+      "trivial": "Trivial",
+      "simple": "Simples",
+      "easy": "Fácil",
+      "average": "Média",
+      "demanding": "Exigente",
+      "hard": "Difícil",
+      "formidable": "Formidável"
+    },
+    "Range": {
+      "Label": "Alcance",
+      "personal": "Pessoal",
+      "engaged": "Engajado",
+      "short": "Curto",
+      "medium": "Médio",
+      "long": "Longo",
+      "extreme": "Extremo",
+      "unlimited": "Ilimitado"
+    },
+    "Weight": {
+      "Label": "Peso",
+      "tiny": "0 — Minúsculo",
+      "quarter": "¼ — Leve (0.25)",
+      "light": "½ — Leve (0.5)",
+      "regular": "1 — Regular",
+      "heavy": "2 — Pesado",
+      "veryHeavy": "3 — Muito Pesado"
+    },
+    "Skill": {
+      "PoolLevel": "Nível de Perícia (Dice Pool)",
+      "StepDie": "Dado da Perícia (Step Dice)",
+      "XpMark": "Usada com sucesso nesta sessão (Marca de XP)"
+    },
+    "Specialty": {
+      "Tiered": "Especialidade com Graus (1–3)",
+      "MaxPush": "Máximo de Forçadas (Push)",
+      "Category": {
+        "general": "Geral",
+        "combat": "Combate",
+        "archetype": "Arquétipo",
+        "magic": "Disciplina Mágica"
+      }
+    },
+    "Weapon": {
+      "Grip": {
+        "Label": "Empunhadura",
+        "1h": "1M",
+        "2h": "2M",
+        "unarmed": "Desarmado"
+      },
+      "CritThreshold": "Limiar de Crítico",
+      "RoF": "Cadência de Tiro (RoF)",
+      "Magazine": "Carregador"
+    },
+    "Armor": {
+      "Rating": "Valor de Armadura",
+      "Part": {
+        "Label": "Parte",
+        "body": "Armadura Corporal",
+        "helmet": "Elmo / Capacete",
+        "shield": "Escudo",
+        "cover": "Cobertura"
+      }
+    },
+    "Cover": {
+      "none": "Selecionar Cobertura...",
+      "furniture": "Mobília",
+      "woodenDoor": "Porta de Madeira",
+      "treeTrunk": "Tronco de Árvore",
+      "woodenWall": "Parede de Madeira",
+      "stoneWall": "Muro de Pedra"
+    },
+    "Gear": {
+      "Subtype": {
+        "gear": "Equipamento",
+        "consumable": "Consumível",
+        "container": "Recipiente"
+      }
+    },
+    "Magic": {
+      "CastSpell": "Conjurar Magia",
+      "WillpowerToSpend": "Pontos de Vontade (Poder Base)",
+      "ExtraWillpower": "PV Extras",
+      "BasePower": "Poder Base",
+      "Overcharge": "Sobrecarga",
+      "FinalPowerLevel": "Nível de Poder Final",
+      "SafeCasting": "Conjuração Segura (Reduzir Dados)",
+      "ChanceCasting": "Conjuração Arriscada",
+      "ChanceCastingWarning": "Conjuração Arriscada (1 grau acima da sua disciplina): Causa automaticamente um Acidente Mágico!",
+      "RankTooHighWarning": "Não é possível conjurar magia 2 ou mais graus acima da sua disciplina.",
+      "CastFromGrimoire": "Conjurar de Grimório",
+      "InGrimoire": "Escrita em Grimório",
+      "Grimoire": "Grimório",
+      "DrawnOrCarved": "Símbolo Desenhado ou Entalhado",
+      "Ingredients": "Ingredientes",
+      "Mishap": "Acidente Mágico",
+      "MishapRoll": "Acidente Mágico (D12)",
+      "MishapTriggered": "Acidente Mágico Desencadeado",
+      "RollMishapD12": "Rolar Acidente (D12)",
+      "Discipline": {
+        "Label": "Disciplina",
+        "general": "Magias Gerais",
+        "awareness": "Percepção (Druídica)",
+        "healing": "Cura (Druídica)",
+        "shapeshifting": "Metamorfose (Druídica)",
+        "bloodMagic": "Magia de Sangue (Feitiçaria)",
+        "deathMagic": "Magia da Morte (Feitiçaria)",
+        "elementalism": "Elementalismo (Feitiçaria)",
+        "symbolism": "Simbolismo (Feitiçaria)"
+      },
+      "CastingType": {
+        "Label": "Tempo de Conjuração",
+        "action": "Ação Lenta",
+        "powerWord": "Palavra de Poder (Ação Rápida)",
+        "ritual": "Ritual (Turno / Shift)"
+      },
+      "Duration": {
+        "Label": "Duração",
+        "immediate": "Imediata",
+        "round": "Rodada (Por Nível de Poder)",
+        "stretch": "Trecho (Stretch)",
+        "shift": "Turno (Shift)",
+        "varies": "Varia"
+      }
+    },
+    "Critical": {
+      "Category": {
+        "physical": "Físico",
+        "mental": "Mental"
+      },
+      "Lethal": "Letal",
+      "Stabilized": "Estabilizado",
+      "DeathSave": "Teste de Morte (Resistência)",
+      "DeathSaveMod": "Mod. Teste de Morte",
+      "HealingTime": "Tempo de Recuperação",
+      "EffectsSummary": "Efeitos",
+      "ThresholdTriggered": "Limiar de Crítico Atingido",
+      "RollPhysical": "Crítico Físico",
+      "RollMental": "Crítico Mental",
+      "PhysicalTable": "Ferimento Crítico Físico (D66)",
+      "MentalTable": "Trauma Crítico Mental (D66)"
+    },
+    "TimeLimit": {
+      "Label": "Limite de Tempo",
+      "none": "—",
+      "round": "Rodada",
+      "stretch": "Trecho (Stretch)",
+      "shift": "Turno (Shift)",
+      "day": "Dia"
+    },
+    "Vehicle": {
+      "Passengers": "Passageiros",
+      "Maneuverability": "Manobrabilidade",
+      "Hull": "Casco (Hull)",
+      "TravelSpeed": "Velocidade",
+      "Fuel": "Combustível",
+      "Wrecked": "DESTRUÍDO",
+      "DriveRoll": "Dirigir / Manobra",
+      "RammingAttack": "Atropelar / Abalroar",
+      "ComponentDamage": "Dano a Componente",
+      "WeaponsAndCargo": "Armas Montadas e Carga"
+    },
+    "RollDialog": {
+      "Title": "Rolar Dados",
+      "PoolPreview": "Dados a Rolar",
+      "NoSkill": "Sem Perícia (Apenas Atributo)",
+      "GearOrWeapon": "Equipamento / Arma",
+      "ActorBrokenConfirm": "{name} está QUEBRADO! Tem certeza que deseja realizar a rolagem?"
+    },
+    "Chat": {
+      "Successes": "Sucessos",
+      "Banes": "Falhas Críticas (1s)",
+      "GearDamage": "Dano ao Equipamento",
+      "PushCost": "Custo de Forçar Aplicado",
+      "Push": "Forçar Rolagem",
+      "Accept": "Aceitar",
+      "ApplyDamage": "Aplicar Dano"
+    },
+    "Notifications": {
+      "NoDiceToRoll": "Nenhum dado disponível na parada para rolar!",
+      "NotEnoughWillpower": "Pontos de Força de Vontade (WP) insuficientes!",
+      "SupplyDepleted": "O suprimento de {name} já está esgotado (0)!",
+      "SelectTargetToken": "Selecione um ou mais tokens alvo na cena primeiro.",
+      "AppliedDamage": "{dmg} de dano aplicado ao(s) alvo(s) selecionado(s).",
+      "MacroOwnedItemsOnly": "Você só pode criar macros na barra para itens pertencentes a um ator."
+    },
+    "Settings": {
+      "resolutionMode": {
+        "name": "Mecânica Principal de Dados",
+        "hint": "Escolha entre Parada de Dados (Dice Pool: dados D6, valores 1–5) e Dados Escalonados (Step Dice: D6/D8/D10/D12, níveis D–A).",
+        "dicePool": "Parada de Dados (Dice Pool D6)",
+        "stepDice": "Dados Escalonados (Step Dice D6/D8/D10/D12)"
+      },
+      "stepModifierMode": {
+        "name": "Estilo de Modificadores no Step Dice",
+        "hint": "Define se modificadores no modo Step Dice aumentam/reduzem o tipo de dado (SRD p. 10) ou aplicam Vantagem/Desvantagem (SRD p. 11).",
+        "step": "Escalonar Dados (+1 / −1 Passo)",
+        "advDisadv": "Vantagem / Desvantagem"
+      },
+      "damageMode": {
+        "name": "Sistema de Dano e Trauma",
+        "hint": "Escolha como dano e trauma são registrados nos personagens (SRD p. 5 e 20–21).",
+        "healthResolve": "Vitalidade e Determinação (Health & Resolve)",
+        "attributeDamage": "Dano Direto nos Atributos",
+        "conditions": "Apenas Condições"
+      },
+      "pushMode": {
+        "name": "Custo de Forçar a Rolagem (Push)",
+        "hint": "Define o que acontece ao forçar uma rolagem (SRD p. 9).",
+        "damageStress": "Dano e Estresse (Health/Resolve + Desgaste de Equipamento)",
+        "attributeDamage": "Dano no Atributo (+1 Ponto de Vontade por 1 no atributo + Desgaste de Equip.)",
+        "stressDice": "Dados de Estresse (+1 Estresse ao forçar; 1s causam Teste de Pânico)",
+        "conditions": "Condições (Sofre uma Condição Física ou Mental ao forçar)",
+        "doomPoints": "Pontos de Ruína (Mestre ganha +1 Doom Point ao forçar)"
+      },
+      "enableWillpower": {
+        "name": "Habilitar Pontos de Força de Vontade (WP)",
+        "hint": "Exibe Pontos de Vontade na ficha (usados para Magias e Especialidades)."
+      },
+      "enableStressTrack": {
+        "name": "Habilitar Trilha de Estresse e Pânico",
+        "hint": "Exibe Pontos de Estresse e adiciona Dados de Estresse às rolagens (variante de horror, SRD p. 9–10)."
+      },
+      "enableEncumbrance": {
+        "name": "Habilitar Controle de Carga",
+        "hint": "Calcula o peso dos itens carregados contra o limite de carga do personagem (SRD p. 6)."
+      },
+      "weaponsAtHandRule": {
+        "name": "Variante: Armas à Mão",
+        "hint": "Até 3 armas marcadas como 'À Mão' e armaduras vestidas não contam na carga (SRD p. 6)."
+      },
+      "autoSeedCoreSkills": {
+        "name": "Adicionar Automaticamente as 12 Perícias do SRD",
+        "hint": "Cria automaticamente as 12 perícias básicas do YZE SRD como itens ao criar um novo Personagem ou PdM."
+      },
+      "doomPoints": {
+        "name": "Pontos de Ruína do Mestre (Doom Points)",
+        "hint": "Reserva atual de Doom Points acumulados por rolagens forçadas."
+      }
+    }
+  }
+}

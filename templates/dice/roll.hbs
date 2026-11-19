@@ -1,0 +1,70 @@
+<div class="yze-chat-roll">
+  <div class="dice-roll flexcol" data-action="expandRoll">
+    {{#if roll.options.description}}
+    <div class="yze-roll-desc">{{{roll.options.description}}}</div>
+    {{/if}}
+
+    {{#if flavor}}
+    <div class="dice-flavor">{{flavor}}</div>
+    {{/if}}
+
+    <div class="dice-result">
+      <div class="dice-formula">{{formula}}</div>
+      {{{tooltip}}}
+
+      {{#if roll.isSimpleRoll}}
+        <h4 class="dice-total">{{total}}</h4>
+      {{else}}
+        {{#if (gt (add success roll.options.prideBonus) 0)}}
+          <h4 class="dice-total yze-success">
+            <i class="fa-solid fa-eye"></i>
+            {{localize "YZE.Chat.Successes"}}: {{add success roll.options.prideBonus}}
+            {{#if roll.options.prideBonus}}
+              <span class="yze-tag">+1 {{localize "YZE.Pride"}}</span>
+            {{/if}}
+          </h4>
+        {{else}}
+          <h4 class="dice-total yze-failure">
+            {{localize "YZE.Chat.Successes"}}: 0
+          </h4>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+
+  {{#if showInfos}}
+    {{{infos}}}
+  {{/if}}
+
+  {{#if pushable}}
+  <div class="dice-buttons yze-btn-row" data-owner-id="{{roll.owner}}">
+    <button type="button" class="yze-btn yze-btn-primary dice-button push" data-action="pushRoll">
+      <i class="fa-solid fa-rotate-right"></i> {{localize "YZE.Chat.Push"}}
+    </button>
+    <button type="button" class="yze-btn dice-button accept" data-action="acceptRoll">
+      <i class="fa-solid fa-check"></i> {{localize "YZE.Chat.Accept"}}
+    </button>
+  </div>
+  {{/if}}
+
+  {{#if (and (not pushable) (gt roll.attackDamage 0))}}
+  <div class="dice-buttons yze-btn-row">
+    <button type="button" class="yze-btn yze-btn-danger" data-action="applyTargetDamage">
+      <i class="fa-solid fa-crosshairs"></i> {{localize "YZE.Chat.ApplyDamage"}} ({{roll.attackDamage}})
+    </button>
+    {{#if (and roll.options.critical (gte roll.attackDamage roll.options.critical))}}
+    <button type="button" class="yze-btn" data-action="rollCritTable" data-category="physical">
+      <i class="fa-solid fa-skull"></i> {{localize "YZE.Critical.RollPhysical"}}
+    </button>
+    {{/if}}
+  </div>
+  {{/if}}
+
+  {{#if (gt roll.panic 0)}}
+  <div class="dice-buttons yze-btn-row">
+    <button type="button" class="yze-btn yze-btn-danger" data-action="rollPanic">
+      <i class="fa-solid fa-triangle-exclamation"></i> {{localize "YZE.PanicRoll"}}
+    </button>
+  </div>
+  {{/if}}
+</div>

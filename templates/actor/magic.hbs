@@ -1,0 +1,104 @@
+<section class="yze-tab-panel {{#if (eq activeTab 'magic')}}active{{/if}}" data-tab-content="magic">
+  {{!-- SPECIALTIES / TALENTS --}}
+  <div class="yze-panel-section">
+    <header class="yze-section-toolbar">
+      <span class="yze-section-title"><i class="fa-solid fa-star"></i> {{localize "YZE.SpecialtiesAndTalents"}}</span>
+      <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="specialty">
+        <i class="fa-solid fa-plus"></i> {{localize "TYPES.Item.specialty"}}
+      </button>
+    </header>
+
+    <table class="yze-table">
+      <thead>
+        <tr>
+          <th class="col-name">{{localize "YZE.Name"}}</th>
+          <th>{{localize "YZE.Category"}}</th>
+          <th>{{localize "YZE.Rank"}}</th>
+          <th>{{localize "YZE.Modifier"}}</th>
+          <th>{{localize "YZE.AssociatedSkill"}}</th>
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each specialties as |spec|}}
+        <tr class="draggable" data-item-id="{{spec.id}}">
+          <td class="col-name">
+            <button type="button" class="yze-item-roll-btn" data-action="rollItem">
+              <i class="fa-solid fa-star"></i>
+              <span>{{spec.name}}</span>
+              {{#if (gt spec.system.willpowerCost 0)}}
+                <span class="yze-tag">{{spec.system.willpowerCost}} WP</span>
+              {{/if}}
+            </button>
+          </td>
+          <td>{{localize (concat "YZE.Specialty.Category." spec.system.category)}}</td>
+          <td>{{#if spec.system.tiered}}{{spec.system.rank}}{{else}}—{{/if}}</td>
+          <td>{{#if spec.system.modifier}}{{#if (gt spec.system.modifier 0)}}+{{/if}}{{spec.system.modifier}}{{else}}—{{/if}}</td>
+          <td>{{spec.system.associatedSkill}}</td>
+          <td class="col-actions">
+            <a data-action="chatItem" title="{{localize 'YZE.SendToChat'}}"><i class="fa-solid fa-comment"></i></a>
+            <a data-action="editItem" title="{{localize 'YZE.Edit'}}"><i class="fa-solid fa-pen"></i></a>
+            <a data-action="deleteItem" title="{{localize 'YZE.Delete'}}"><i class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
+        {{else}}
+        <tr><td colspan="6" class="yze-empty">{{localize "YZE.EmptyList"}}</td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  {{!-- SPELLS (SRD Chapter 5) --}}
+  <div class="yze-panel-section">
+    <header class="yze-section-toolbar">
+      <span class="yze-section-title"><i class="fa-solid fa-wand-sparkles"></i> {{localize "YZE.Spells"}}</span>
+      <div class="yze-toolbar-actions">
+        <button type="button" class="yze-btn yze-btn-sm" data-action="rollMagicMishap">
+          <i class="fa-solid fa-dice-d12"></i> {{localize "YZE.Magic.RollMishapD12"}}
+        </button>
+        <button type="button" class="yze-btn yze-btn-sm" data-action="createItem" data-type="spell">
+          <i class="fa-solid fa-plus"></i> {{localize "TYPES.Item.spell"}}
+        </button>
+      </div>
+    </header>
+
+    <table class="yze-table">
+      <thead>
+        <tr>
+          <th class="col-name">{{localize "YZE.Name"}}</th>
+          <th>{{localize "YZE.Magic.Discipline.Label"}}</th>
+          <th>{{localize "YZE.Rank"}}</th>
+          <th>{{localize "YZE.Magic.CastingType.Label"}}</th>
+          <th>{{localize "YZE.Range.Label"}}</th>
+          <th>{{localize "YZE.Magic.Duration.Label"}}</th>
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each spells as |sp|}}
+        <tr class="draggable" data-item-id="{{sp.id}}">
+          <td class="col-name">
+            <button type="button" class="yze-item-roll-btn" data-action="rollItem">
+              <i class="fa-solid fa-wand-sparkles"></i>
+              <span>{{sp.name}}</span>
+              {{#if sp.system.inGrimoire}}<span class="yze-tag">{{localize "YZE.Magic.Grimoire"}}</span>{{/if}}
+            </button>
+          </td>
+          <td>{{localize (concat "YZE.Magic.Discipline." sp.system.discipline)}}</td>
+          <td>{{sp.system.rank}}</td>
+          <td>{{localize (concat "YZE.Magic.CastingType." sp.system.castingType)}}</td>
+          <td>{{localize (concat "YZE.Range." sp.system.range)}}</td>
+          <td>{{localize (concat "YZE.Magic.Duration." sp.system.duration)}}</td>
+          <td class="col-actions">
+            <a data-action="chatItem" title="{{localize 'YZE.SendToChat'}}"><i class="fa-solid fa-comment"></i></a>
+            <a data-action="editItem" title="{{localize 'YZE.Edit'}}"><i class="fa-solid fa-pen"></i></a>
+            <a data-action="deleteItem" title="{{localize 'YZE.Delete'}}"><i class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
+        {{else}}
+        <tr><td colspan="7" class="yze-empty">{{localize "YZE.EmptyList"}}</td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

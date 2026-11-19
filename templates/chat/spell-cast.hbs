@@ -1,0 +1,47 @@
+<div class="yze-chat-card yze-spell-card">
+  <header class="yze-card-header">
+    <img src="{{spell.img}}" alt="{{spell.name}}" width="28" height="28" />
+    <div>
+      <h4>{{spell.name}}</h4>
+      <span class="yze-card-subtitle">
+        {{localize (concat "YZE.Magic.Discipline." spell.system.discipline)}} • {{localize "YZE.Rank"}} {{spell.system.rank}}
+      </span>
+    </div>
+  </header>
+
+  <div class="yze-card-tags">
+    <span class="yze-tag">{{localize "YZE.Willpower"}}: {{totalWp}}</span>
+    <span class="yze-tag">{{localize "YZE.Magic.BasePower"}}: {{basePowerLevel}}</span>
+    {{#if (gt overcharge 0)}}
+      <span class="yze-tag yze-tag-success">{{localize "YZE.Magic.Overcharge"}}: +{{overcharge}}</span>
+    {{/if}}
+    {{#if (gt safeCastingReduction 0)}}
+      <span class="yze-tag">{{localize "YZE.Magic.SafeCasting"}}: −{{safeCastingReduction}}d</span>
+    {{/if}}
+    {{#if chanceCast}}
+      <span class="yze-tag yze-tag-danger">{{localize "YZE.Magic.ChanceCasting"}}</span>
+    {{/if}}
+  </div>
+
+  <div class="yze-power-level-box">
+    <span>{{localize "YZE.Magic.FinalPowerLevel"}}</span>
+    <strong>{{finalPowerLevel}}</strong>
+  </div>
+
+  {{#if rollHtml}}
+  <div class="yze-embedded-roll">{{{rollHtml}}}</div>
+  {{/if}}
+
+  {{#if hasMishap}}
+  <div class="yze-mishap-alert">
+    <p><i class="fa-solid fa-skull-crossbones"></i> <strong>{{localize "YZE.Magic.MishapTriggered"}}!</strong> ({{banes}} {{localize "YZE.Chat.Banes"}})</p>
+    <button type="button" class="yze-btn yze-btn-danger" data-action="rollMagicMishap">
+      <i class="fa-solid fa-dice-d12"></i> {{localize "YZE.Magic.RollMishapD12"}}
+    </button>
+  </div>
+  {{/if}}
+
+  {{#if spell.system.description}}
+  <div class="yze-card-body">{{{spell.system.description}}}</div>
+  {{/if}}
+</div>
