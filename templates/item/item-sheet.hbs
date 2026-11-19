@@ -439,7 +439,7 @@
     <div class="yze-description-block">
       <label class="yze-section-title">{{localize "YZE.Description"}}</label>
       {{#if editable}}
-        <prose-mirror name="system.description" value="{{system.description}}" toggled="true">
+        <prose-mirror name="system.description" document-uuid="{{item.uuid}}" value="{{system.description}}" editable="{{editable}}" toggled="true">
           {{{enrichedDescription}}}
         </prose-mirror>
       {{else}}

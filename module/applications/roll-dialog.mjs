@@ -1,5 +1,11 @@
 import { YZE_CONFIG } from "../config.mjs";
-import { computeDicePool, computeStepDice, executeYzeRoll } from "../helpers/rolls.mjs";
+import {
+  computeDicePool,
+  computeStepDice,
+  executeYzeRoll,
+  getDefaultRollMode,
+  normalizeRollMode,
+} from "../helpers/rolls.mjs";
 
 const { HandlebarsApplicationMixin, ApplicationV2, DialogV2 } = foundry.applications.api;
 
@@ -97,7 +103,7 @@ export class YzeRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       this.ammoDice = 0;
     } else if (name === "specialtyId") this.specialtyId = target.value;
     else if (name === "difficultyMod") this.difficultyMod = Number(target.value) || 0;
-    else if (name === "helpDice") this.helpDice = Math.clamp(Number(target.value) || 0, 0, 3);
+    else if (name === "helpDice") this.helpDice = Math.min(3, Math.max(0, Number(target.value) || 0));
     else if (name === "customMod") this.customMod = Number(target.value) || 0;
     else if (name === "aimedShot") this.aimedShot = target.checked;
     else if (name === "ammoDice") this.ammoDice = Math.max(0, Number(target.value) || 0);
@@ -227,7 +233,7 @@ export class YzeRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   static async #onSubmit(event, form, formData) {
-    const rollMode = event.submitter?.dataset?.rollMode || game.settings.get("core", "messageMode");
+    const rollMode = normalizeRollMode(event.submitter?.dataset?.rollMode || getDefaultRollMode());
     await this._performRoll(rollMode);
   }
 
@@ -309,7 +315,7 @@ export class YzeRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
 
   async wait(event = null) {
     if (event?.shiftKey) {
-      return this._performRoll(game.settings.get("core", "messageMode"));
+      return this._performRoll(getDefaultRollMode());
     }
     return new Promise(resolve => {
       this.addEventListener("close", async () => {

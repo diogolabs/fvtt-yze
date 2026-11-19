@@ -3,6 +3,47 @@ import { YZE_CONFIG } from "../config.mjs";
 
 const STEP_LADDER = ["none", "d6", "d8", "d10", "d12"];
 
+const V13_TO_V14_MODES = {
+  publicroll: "public",
+  gmroll: "gm",
+  blindroll: "blind",
+  selfroll: "self",
+};
+
+const V14_TO_V13_MODES = {
+  public: "publicroll",
+  gm: "gmroll",
+  blind: "blindroll",
+  self: "selfroll",
+};
+
+export function isFoundryV14() {
+  return (game.release?.generation ?? 13) >= 14;
+}
+
+export function getDefaultRollMode() {
+  if (isFoundryV14() || game.settings?.settings?.has("core.messageMode")) {
+    return game.settings.get("core", "messageMode");
+  }
+  return game.settings.get("core", "rollMode");
+}
+
+export function normalizeRollMode(mode) {
+  const raw = mode || getDefaultRollMode();
+  if (isFoundryV14()) {
+    return V13_TO_V14_MODES[raw] ?? raw ?? "public";
+  }
+  return V14_TO_V13_MODES[raw] ?? raw ?? "publicroll";
+}
+
+export function buildToMessageOptions(mode, create = true) {
+  const normalized = normalizeRollMode(mode);
+  if (isFoundryV14()) {
+    return { messageMode: normalized, create };
+  }
+  return { rollMode: normalized, create };
+}
+
 export function registerDice3D(dice3d) {
   const ID = YZE_CONFIG.ID;
   dice3d.addSystem({ id: ID, name: "Year Zero Engine (SRD)" }, "preferred");
@@ -53,7 +94,7 @@ export function registerDice3D(dice3d) {
  */
 export function stepDieBy(dieKey, delta) {
   const idx = Math.max(0, STEP_LADDER.indexOf(dieKey || "none"));
-  const nextIdx = Math.clamp(idx + delta, 0, STEP_LADDER.length - 1);
+  const nextIdx = Math.min(STEP_LADDER.length - 1, Math.max(0, idx + delta));
   return STEP_LADDER[nextIdx];
 }
 
@@ -249,7 +290,7 @@ export async function executeYzeRoll(actor, {
     damage: damage > 0 ? damage : undefined,
     critical: critThreshold > 0 ? critThreshold : undefined,
     breakdown,
-    rollMode: rollMode || game.settings.get("core", "messageMode"),
+    rollMode: normalizeRollMode(rollMode),
     resolutionMode,
     rollType,
     attribute,
@@ -296,7 +337,7 @@ export async function executeYzeRoll(actor, {
         },
       },
     },
-    { rollMode: rollOptions.rollMode }
+    buildToMessageOptions(rollOptions.rollMode)
   );
 
   await game.dice3d?.waitFor3DAnimationByMessageID(message.id);
@@ -403,7 +444,7 @@ export async function pushYzeRoll(event) {
       flavor: message.flavor,
       flags: message.flags,
     },
-    { rollMode: roll.options.rollMode ?? game.settings.get("core", "messageMode") }
+    buildToMessageOptions(roll.options.rollMode)
   );
   await game.dice3d?.waitFor3DAnimationByMessageID(newMessage.id);
   return newMessage;

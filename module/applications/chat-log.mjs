@@ -8,19 +8,16 @@ import {
 } from "../helpers/rolls.mjs";
 
 export class YzeChatLog extends foundry.applications.sidebar.tabs.ChatLog {
-  static DEFAULT_OPTIONS = foundry.utils.mergeObject(
-    super.DEFAULT_OPTIONS,
-    {
-      actions: {
-        pushRoll: this.#pushRoll,
-        acceptRoll: this.#acceptRoll,
-        applyTargetDamage: this.#applyTargetDamage,
-        rollPanic: this.#rollPanic,
-        rollMagicMishap: this.#rollMagicMishap,
-        rollCritTable: this.#rollCritTable,
-      },
-    }
-  );
+  static DEFAULT_OPTIONS = {
+    actions: {
+      pushRoll: YzeChatLog.#pushRoll,
+      acceptRoll: YzeChatLog.#acceptRoll,
+      applyTargetDamage: YzeChatLog.#applyTargetDamage,
+      rollPanic: YzeChatLog.#rollPanic,
+      rollMagicMishap: YzeChatLog.#rollMagicMishap,
+      rollCritTable: YzeChatLog.#rollCritTable,
+    },
+  };
 
   static async #pushRoll(event) {
     await pushYzeRoll(event);

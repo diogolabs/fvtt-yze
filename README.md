@@ -25,9 +25,16 @@ A clean, minimalist, generic **Year Zero Engine (YZE)** system for **Foundry VTT
 
 ## 🚀 Installation
 
+### Foundry VTT v14 (Latest)
 Manifest URL:
 ```
 https://github.com/diogolabs/fvtt-yze/releases/latest/download/system.json
+```
+
+### Foundry VTT v13
+Manifest URL:
+```
+https://github.com/diogolabs/fvtt-yze/releases/download/v1.0.1/system.json
 ```
 
 ## 📜 License

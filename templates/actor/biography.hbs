@@ -53,7 +53,7 @@
       <span class="yze-section-title">{{localize "YZE.BiographyAndNotes"}}</span>
     </header>
     {{#if editable}}
-      <prose-mirror name="system.biography" value="{{system.biography}}" toggled="true">
+      <prose-mirror name="system.biography" document-uuid="{{actor.uuid}}" value="{{system.biography}}" editable="{{editable}}" toggled="true">
         {{{enrichedBiography}}}
       </prose-mirror>
     {{else}}

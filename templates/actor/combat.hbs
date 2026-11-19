@@ -73,7 +73,7 @@
     <header class="yze-section-toolbar">
       <span class="yze-section-title"><i class="fa-solid fa-shield-halved"></i> {{localize "YZE.ArmorAndCover"}}</span>
       <div class="yze-toolbar-actions">
-        <select name="coverPreset" class="yze-select-sm">
+        <select data-cover-select class="yze-select-sm">
           {{#each config.coverPresets}}
             <option value="{{this.key}}">{{localize this.label}} ({{#if ../isStepDice}}{{stepLetter this.step}}{{else}}{{this.pool}}{{/if}})</option>
           {{/each}}

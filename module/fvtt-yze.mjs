@@ -54,15 +54,23 @@ globalThis.yze = {
 };
 
 function registerHandlebarsHelpers() {
-  Handlebars.registerHelper("eq", (a, b) => a === b);
-  Handlebars.registerHelper("ne", (a, b) => a !== b);
-  Handlebars.registerHelper("gt", (a, b) => Number(a) > Number(b));
-  Handlebars.registerHelper("gte", (a, b) => Number(a) >= Number(b));
-  Handlebars.registerHelper("lt", (a, b) => Number(a) < Number(b));
-  Handlebars.registerHelper("lte", (a, b) => Number(a) <= Number(b));
-  Handlebars.registerHelper("and", (...args) => args.slice(0, -1).every(Boolean));
-  Handlebars.registerHelper("or", (...args) => args.slice(0, -1).some(Boolean));
-  Handlebars.registerHelper("not", a => !a);
+  const fallbackHelpers = {
+    eq: (a, b) => a === b,
+    ne: (a, b) => a !== b,
+    gt: (a, b) => Number(a) > Number(b),
+    gte: (a, b) => Number(a) >= Number(b),
+    lt: (a, b) => Number(a) < Number(b),
+    lte: (a, b) => Number(a) <= Number(b),
+    and: (...args) => args.slice(0, -1).every(Boolean),
+    or: (...args) => args.slice(0, -1).some(Boolean),
+    not: a => !a,
+  };
+  for (const [name, fn] of Object.entries(fallbackHelpers)) {
+    if (!Handlebars.helpers[name]) {
+      Handlebars.registerHelper(name, fn);
+    }
+  }
+
   Handlebars.registerHelper("add", (a, b) => (Number(a) || 0) + (Number(b) || 0));
   Handlebars.registerHelper("upper", str => String(str ?? "").toUpperCase());
   Handlebars.registerHelper("stepLetter", die => YZE_CONFIG.stepDice[die]?.letter ?? "—");
@@ -98,29 +106,42 @@ Hooks.once("init", () => {
   CONFIG.ChatMessage.documentClass = YzeChatMessage;
   CONFIG.ui.chat = YzeChatLog;
 
-  const ActorsCollection = foundry.documents?.collections?.Actors ?? Actors;
-  const ItemsCollection = foundry.documents?.collections?.Items ?? Items;
-  const CoreActorSheet = foundry.appv1?.sheets?.ActorSheet ?? ActorSheet;
-  const CoreItemSheet = foundry.appv1?.sheets?.ItemSheet ?? ItemSheet;
+  const DocumentSheetConfig = foundry.applications?.apps?.DocumentSheetConfig
+    ?? globalThis.DocumentSheetConfig;
+  const ActorDoc = foundry.documents?.Actor ?? globalThis.Actor;
+  const ItemDoc = foundry.documents?.Item ?? globalThis.Item;
 
-  ActorsCollection.unregisterSheet("core", CoreActorSheet);
-  ActorsCollection.registerSheet(YZE_CONFIG.ID, YzeActorSheet, {
+  // Unregister legacy V1 core sheets on Foundry v13 (v14 no longer pre-registers core V1 sheets)
+  if ((game.release?.generation ?? 13) < 14) {
+    const CoreActorSheet = foundry.appv1?.sheets?.ActorSheet;
+    const CoreItemSheet = foundry.appv1?.sheets?.ItemSheet;
+    if (CoreActorSheet) {
+      DocumentSheetConfig.unregisterSheet(ActorDoc, "core", CoreActorSheet);
+    }
+    if (CoreItemSheet) {
+      DocumentSheetConfig.unregisterSheet(ItemDoc, "core", CoreItemSheet);
+    }
+  }
+
+  DocumentSheetConfig.registerSheet(ActorDoc, YZE_CONFIG.ID, YzeActorSheet, {
     types: ["character", "npc", "vehicle"],
     makeDefault: true,
     label: "YZE.Sheet.Actor",
   });
 
-  ItemsCollection.unregisterSheet("core", CoreItemSheet);
-  ItemsCollection.registerSheet(YZE_CONFIG.ID, YzeItemSheet, {
+  DocumentSheetConfig.registerSheet(ItemDoc, YZE_CONFIG.ID, YzeItemSheet, {
+    types: ["skill", "specialty", "gear", "weapon", "armor", "spell", "critical"],
     makeDefault: true,
     label: "YZE.Sheet.Item",
   });
 
   YearZeroRollManager.register("yze", {
-    "ROLL.baseTemplate": `systems/${YZE_CONFIG.ID}/templates/dice/broll.hbs`,
-    "ROLL.chatTemplate": `systems/${YZE_CONFIG.ID}/templates/dice/roll.hbs`,
-    "ROLL.tooltipTemplate": `systems/${YZE_CONFIG.ID}/templates/dice/tooltip.hbs`,
-    "ROLL.infosTemplate": `systems/${YZE_CONFIG.ID}/templates/dice/infos.hbs`,
+    Roll: {
+      baseTemplate: `systems/${YZE_CONFIG.ID}/templates/dice/broll.hbs`,
+      chatTemplate: `systems/${YZE_CONFIG.ID}/templates/dice/roll.hbs`,
+      tooltipTemplate: `systems/${YZE_CONFIG.ID}/templates/dice/tooltip.hbs`,
+      infosTemplate: `systems/${YZE_CONFIG.ID}/templates/dice/infos.hbs`,
+    },
   });
 });
 

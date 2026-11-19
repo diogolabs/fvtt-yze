@@ -8,7 +8,7 @@ export class YzeChatMessage extends foundry.documents.ChatMessage {
       return html;
     }
 
-    html.querySelector(".dice-buttons")?.remove();
+    html.querySelectorAll(".dice-buttons").forEach(el => el.remove());
     return html;
   }
 }

@@ -352,7 +352,7 @@ export class YzeActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
   }
 
   static async #onRollCover(event, target) {
-    const select = this.element.querySelector("[name='coverPreset']");
+    const select = this.element.querySelector("[data-cover-select]");
     const key = select?.value || target.dataset.cover || "furniture";
     const preset = YZE_CONFIG.coverPresets.find(c => c.key === key);
     if (!preset || preset.key === "none") return;
@@ -473,13 +473,14 @@ export class YzeActorSheet extends api.HandlebarsApplicationMixin(sheets.ActorSh
   }
 
   static async #onCreateEffect() {
-    await this.actor.createEmbeddedDocuments("ActiveEffect", [
+    const created = await this.actor.createEmbeddedDocuments("ActiveEffect", [
       {
         name: game.i18n.localize("YZE.NewEffect"),
         img: "icons/svg/aura.svg",
         origin: this.actor.uuid,
       },
     ]);
+    created[0]?.sheet?.render(true);
   }
 
   static #onEditEffect(event, target) {
