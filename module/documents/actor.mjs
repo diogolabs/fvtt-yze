@@ -33,8 +33,11 @@ export class YzeActor extends foundry.documents.Actor {
   }
 
   get activeResolutionMode() {
-    return this.system?.activeResolutionMode
-      ?? (game.settings.get(YZE_CONFIG.ID, "resolutionMode") || "dicePool");
+    try {
+      return game.settings.get(YZE_CONFIG.ID, "resolutionMode") || "dicePool";
+    } catch {
+      return "dicePool";
+    }
   }
 
   /**
@@ -59,9 +62,17 @@ export class YzeActor extends foundry.documents.Actor {
   findSkill(nameOrKey) {
     if (!nameOrKey) return null;
     const norm = String(nameOrKey).trim().toLowerCase();
+    const coreMatch = YZE_CONFIG.coreSkills.find(
+      sk => sk.key.toLowerCase() === norm || game.i18n.localize(sk.nameKey).trim().toLowerCase() === norm
+    );
+    const targetKey = coreMatch?.key?.toLowerCase() ?? norm;
     return this.items.find(it =>
       it.type === "skill" &&
-      (it.system.skillKey?.toLowerCase() === norm || it.name.trim().toLowerCase() === norm)
+      (
+        it.system.skillKey?.toLowerCase() === targetKey ||
+        it.system.skillKey?.toLowerCase() === norm ||
+        it.name.trim().toLowerCase() === norm
+      )
     ) || null;
   }
 
@@ -128,6 +139,9 @@ export class YzeActor extends foundry.documents.Actor {
         actorLink: true,
         disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL,
       };
+      if (!data.system?.vehicleType) {
+        updates["system.vehicleType"] = game.i18n.localize("YZE.Vehicle.DefaultType");
+      }
     }
 
     // Auto-seed the 12 core SRD skills on new character/npc if enabled and no skills provided

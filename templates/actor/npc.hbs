@@ -129,7 +129,7 @@
           <div class="yze-skill-row draggable" data-item-id="{{it.id}}">
             <button type="button" class="yze-skill-roll" data-action="rollItem">
               <i class="fa-solid fa-shield"></i>
-              <span>{{it.name}} ({{it.system.rating}} / {{stepLetter it.system.die}})</span>
+              <span>{{it.name}} ({{#if ../isStepDice}}{{stepLetter it.system.die}}{{else}}{{it.system.rating}}{{/if}})</span>
             </button>
             <div class="yze-row-controls">
               <a data-action="editItem"><i class="fa-solid fa-pen"></i></a>

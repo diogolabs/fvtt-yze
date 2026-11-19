@@ -15,7 +15,7 @@
     </div>
 
     <div class="yze-field">
-      <label>{{localize "YZE.Magic.ExtraWillpower"}} (Obscure / Bind / Range)</label>
+      <label>{{localize "YZE.Magic.ExtraWillpower"}} ({{localize "YZE.Magic.ExtraWillpowerHint"}})</label>
       <input type="number" name="extraWp" value="{{extraWp}}" min="0" max="10" />
     </div>
 
@@ -57,7 +57,7 @@
 
   <footer class="yze-dialog-footer">
     <button type="submit" class="yze-btn yze-btn-primary" {{#if tooHighRank}}disabled{{/if}}>
-      <i class="fa-solid fa-wand-sparkles"></i> {{localize "YZE.Magic.CastSpell"}} ({{totalWp}} WP)
+      <i class="fa-solid fa-wand-sparkles"></i> {{localize "YZE.Magic.CastSpell"}} ({{totalWp}} {{localize "YZE.WillpowerAbbr"}})
     </button>
   </footer>
 </div>

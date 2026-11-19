@@ -35,7 +35,7 @@ export class YzeRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     this.passiveRoll = maxPush === 0;
     this.overrideMaxPush = maxPush;
     this.customTitle = customTitle;
-    this.resolutionMode = actor?.activeResolutionMode || "dicePool";
+    this.resolutionMode = game.settings.get(YZE_CONFIG.ID, "resolutionMode") || "dicePool";
     this.stepModifierMode = game.settings.get(YZE_CONFIG.ID, "stepModifierMode") || "step";
 
     this.options.window.title = customTitle || `${actor.name} — ${game.i18n.localize("YZE.RollDialog.Title")}`;
@@ -45,7 +45,7 @@ export class YzeRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     classes: ["yze", "yze-dialog", "yze-roll-dialog"],
     position: { width: 480 },
     window: {
-      title: "Year Zero Roll",
+      title: "YZE.RollDialog.Title",
       icon: "fa-solid fa-dice",
       resizable: false,
     },
@@ -91,9 +91,7 @@ export class YzeRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     const name = target.name;
     if (!name) return;
 
-    if (name === "resolutionMode") this.resolutionMode = target.value;
-    else if (name === "stepModifierMode") this.stepModifierMode = target.value;
-    else if (name === "attribute") this.attribute = target.value;
+    if (name === "attribute") this.attribute = target.value;
     else if (name === "skillId") {
       this.skillId = target.value;
       const sk = this.selectedSkill;
@@ -121,7 +119,10 @@ export class YzeRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
 
   async _prepareContext() {
     const actor = this.actor;
-    const mode = this.resolutionMode;
+    const mode = game.settings.get(YZE_CONFIG.ID, "resolutionMode") || "dicePool";
+    const stepModifierMode = game.settings.get(YZE_CONFIG.ID, "stepModifierMode") || "step";
+    this.resolutionMode = mode;
+    this.stepModifierMode = stepModifierMode;
     const skill = this.selectedSkill;
     const gear = this.selectedGear;
     const specialty = this.selectedSpecialty;
@@ -140,7 +141,12 @@ export class YzeRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     const conditionMod = actor.getConditionModifier(this.attribute);
 
     // Backpack penalty: -2 on Mobility rolls when carrying a backpack (SRD p. 6)
-    const isMobility = skill && (skill.system.skillKey === "mobility" || skill.name.toLowerCase() === "mobility");
+    const mobilityLoc = game.i18n.localize("YZE.CoreSkill.mobility").toLowerCase();
+    const isMobility = skill && (
+      skill.system.skillKey === "mobility" ||
+      skill.name.toLowerCase() === "mobility" ||
+      skill.name.toLowerCase() === mobilityLoc
+    );
     const hasBackpack = actor.system.hasBackpack || actor.items.some(i => i.type === "gear" && i.system.isBackpack && i.system.carried);
     const backpackMod = isMobility && hasBackpack ? -2 : 0;
 
@@ -161,26 +167,34 @@ export class YzeRollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     }
     const ammoDice = Math.min(this.ammoDice, maxAmmoDice);
 
-    // Preview calculation
+    // Preview calculation (strictly locked to world resolution mode)
+    const flavorLabels = {
+      Attribute: game.i18n.localize("YZE.Attribute.Label"),
+      Skill: game.i18n.localize("TYPES.Item.skill"),
+      Advantage: game.i18n.localize("YZE.RollDialog.Advantage"),
+    };
+
     let previewText = "";
     let poolPreview = { base: 0, skill: 0, gear: 0 };
     let stepPreview = [];
 
     if (mode === "stepDice") {
-      stepPreview = computeStepDice(attrDie, skillDie, totalModifier + gearBonus, this.stepModifierMode);
-      previewText = stepPreview.map(d => `${d.die.toUpperCase()} (${d.flavor})`).join(" + ");
+      stepPreview = computeStepDice(attrDie, skillDie, totalModifier + gearBonus, stepModifierMode);
+      previewText = stepPreview
+        .map(d => `${d.die.toUpperCase()} (${flavorLabels[d.flavor] ?? d.flavor})`)
+        .join(" + ");
     } else {
       poolPreview = computeDicePool(attrScore, skillScore, gearBonus, totalModifier);
       const parts = [];
-      if (poolPreview.base > 0) parts.push(`${poolPreview.base} Base`);
-      if (poolPreview.skill > 0) parts.push(`${poolPreview.skill} Skill`);
-      if (poolPreview.gear > 0) parts.push(`${poolPreview.gear} Gear`);
+      if (poolPreview.base > 0) parts.push(`${poolPreview.base} ${game.i18n.localize("YZE.RollDialog.Base")}`);
+      if (poolPreview.skill > 0) parts.push(`${poolPreview.skill} ${game.i18n.localize("YZE.RollDialog.Skill")}`);
+      if (poolPreview.gear > 0) parts.push(`${poolPreview.gear} ${game.i18n.localize("YZE.RollDialog.Gear")}`);
       previewText = parts.join(" + ") || "0D6";
     }
 
-    if (artifactDie) previewText += ` + ${artifactDie.toUpperCase()} (Artifact)`;
-    if (stressDice > 0) previewText += ` + ${stressDice} Stress`;
-    if (ammoDice > 0) previewText += ` + ${ammoDice} Ammo`;
+    if (artifactDie) previewText += ` + ${artifactDie.toUpperCase()} (${game.i18n.localize("YZE.RollDialog.Artifact")})`;
+    if (stressDice > 0) previewText += ` + ${stressDice} ${game.i18n.localize("YZE.Stress")}`;
+    if (ammoDice > 0) previewText += ` + ${ammoDice} ${game.i18n.localize("YZE.RollDialog.Ammo")}`;
 
     const skills = actor.items.filter(i => i.type === "skill").sort((a, b) => a.name.localeCompare(b.name));
     const gears = actor.items

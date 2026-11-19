@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.2.0 (Foundry VTT v14)
+- **GM-Only World Rules Menu (`YzeRulesConfig`)**: Moved core dice mode (`Dice Pool` / `Step Dice`) and modular YZE world rules into a dedicated GM-only Foundry Settings menu (`restricted: true`).
+- **Locked Dice Mode for Players**: Removed all per-actor and roll-dialog dice mode selectors so players can never switch between Dice Pool and Step Dice; `activeResolutionMode` now always enforces the world-level GM setting.
+- **Game Balance Warning & Confirmation**: Added a prominent balance warning inside the GM Rules Configuration menu and a confirmation dialog (`DialogV2.confirm`) whenever the GM attempts to switch between Dice Pool and Step Dice on an existing world.
+- **Complete Portuguese (`pt-BR`) Translation & Full i18n Extensibility**:
+  - Updated `lang/pt-BR.json` with the official Brazilian Portuguese YZE SRD terminology (*Pilha de Dados*, *Escala de Dados*, *Saúde*, *Determinação*, *PFV*, *Pontos de Perdição*, *Perdições*, 12 Core Skills, Conditions, Magic Disciplines, and all SRD roll tables).
+  - Externalized 100% of previously hardcoded English strings (Step Dice labels, Artifact Dice labels, Roll Dialog previews, Panic Table, Magic Mishaps, Physical/Mental Critical Injuries, Vehicle Component Damage, and placeholders) into `lang/en.json` and `lang/pt-BR.json`.
+  - Added `lang/README.md` and `scripts/check-i18n.mjs` so community developers can easily add and validate new languages directly or via external Foundry translation modules.
+
+## 1.0.2 (Foundry VTT v13)
+- Includes all `1.2.0` improvements (GM-only World Rules menu with balance warning & confirmation, locked Dice Mode for players, complete Brazilian Portuguese `pt-BR` translation, 100% i18n externalization, and `lang/README.md` + `scripts/check-i18n.mjs`), packaged specifically for **Foundry VTT v13** (`minimum: "13"`, `verified: "13"`, `maximum: "13"`).
+
 ## 1.1.0 (Foundry VTT v14)
 - **Foundry VTT v14 Release**: Manifest compatibility targeting Foundry VTT v14 (`minimum: "14"`, `verified: "14"`), versioned download link, and full HTTPS metadata URLs (`license`, `readme`, `changelog`).
 - Migrated sheet registration to `foundry.applications.apps.DocumentSheetConfig` without legacy V1 core sheet unregistration on v14.

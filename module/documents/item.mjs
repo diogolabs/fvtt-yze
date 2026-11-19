@@ -15,10 +15,15 @@ export class YzeItem extends foundry.documents.Item {
       critical: "systems/fvtt-yze/assets/icons/critical.svg",
     };
 
+    const updates = {};
     if (!data.img || data.img === "icons/svg/item-bag.svg") {
-      this.updateSource({
-        img: defaultIcons[data.type] || "icons/svg/item-bag.svg",
-      });
+      updates.img = defaultIcons[data.type] || "icons/svg/item-bag.svg";
+    }
+    if (data.type === "weapon" && !data.system?.skill) {
+      updates["system.skill"] = game.i18n.localize("YZE.CoreSkill.melee");
+    }
+    if (Object.keys(updates).length > 0) {
+      this.updateSource(updates);
     }
   }
 

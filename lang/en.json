@@ -49,10 +49,12 @@
     "Health": "Health",
     "Resolve": "Resolve",
     "Willpower": "Willpower",
+    "WillpowerAbbr": "WP",
     "Stress": "Stress",
     "Encumbrance": "Encumbrance",
     "CarryLimit": "Carry Limit",
     "Broken": "BROKEN",
+    "Permanent": "Permanent",
     "Conditions": "Conditions",
     "PhysicalConditions": "Physical",
     "MentalConditions": "Mental",
@@ -127,6 +129,38 @@
     "SpecialtiesAndTalents": "Specialties / Talents",
     "Spells": "Spells (Magic)",
     "CombatAndAbilities": "Combat, Gear & Abilities",
+    "StepDie": {
+      "none": "—",
+      "d6": "D (d6)",
+      "d8": "C (d8)",
+      "d10": "B (d10)",
+      "d12": "A (d12)"
+    },
+    "StepAttr": {
+      "d6": "D (d6) — Feeble",
+      "d8": "C (d8) — Average",
+      "d10": "B (d10) — Capable",
+      "d12": "A (d12) — Extraordinary"
+    },
+    "StepSkill": {
+      "none": "— (Unskilled)",
+      "d6": "D (d6) — Novice",
+      "d8": "C (d8) — Experienced",
+      "d10": "B (d10) — Veteran",
+      "d12": "A (d12) — Elite"
+    },
+    "ArtifactChoice": {
+      "none": "—",
+      "d8": "D8 (Mighty)",
+      "d10": "D10 (Epic)",
+      "d12": "D12 (Legendary)"
+    },
+    "Placeholders": {
+      "SpecialtySkill": "Melee, Healing...",
+      "WeaponSkill": "Melee / Marksmanship",
+      "GearSkill": "Crafting, Healing, Survival...",
+      "HealingTime": "D6, 2D6, Permanent..."
+    },
     "Tabs": {
       "Skills": "Skills",
       "CombatGear": "Combat & Gear",
@@ -267,6 +301,7 @@
       "CastSpell": "Cast Spell",
       "WillpowerToSpend": "Willpower Points (Base Power)",
       "ExtraWillpower": "Extra WP",
+      "ExtraWillpowerHint": "Obscure / Bind / Range",
       "BasePower": "Base Power",
       "Overcharge": "Overcharge",
       "FinalPowerLevel": "Final Power Level",
@@ -310,6 +345,7 @@
       }
     },
     "Critical": {
+      "Short": "Crit",
       "Category": {
         "physical": "Physical",
         "mental": "Mental"
@@ -335,6 +371,8 @@
       "day": "Day"
     },
     "Vehicle": {
+      "DefaultType": "Ground Vehicle",
+      "OnOffRoad": "On/Off",
       "Passengers": "Passengers",
       "Maneuverability": "Maneuverability",
       "Hull": "Hull",
@@ -351,6 +389,12 @@
       "PoolPreview": "Dice to Roll",
       "NoSkill": "Unskilled (Attribute Only)",
       "GearOrWeapon": "Gear / Weapon",
+      "Base": "Base",
+      "Skill": "Skill",
+      "Gear": "Gear",
+      "Artifact": "Artifact",
+      "Ammo": "Ammo",
+      "Advantage": "Advantage",
       "ActorBrokenConfirm": "{name} is currently BROKEN! Are you sure you want to roll?"
     },
     "Chat": {
@@ -370,10 +414,155 @@
       "AppliedDamage": "Applied {dmg} damage to selected target(s).",
       "MacroOwnedItemsOnly": "You can only create hotbar macros for owned items."
     },
+    "Tables": {
+      "Panic": {
+        "r6": {
+          "title": "Keeping it Together",
+          "effect": "You manage to keep your nerves in check. Barely."
+        },
+        "r7": {
+          "title": "Nervous Twitch",
+          "effect": "You and all PCs in Short range gain a stress point."
+        },
+        "r8": {
+          "title": "Tremble",
+          "effect": "You tremble uncontrollably. All skill rolls using Agility suffer a −2 modifier."
+        },
+        "r9": {
+          "title": "Drop Item",
+          "effect": "You drop a weapon or other important item – the GM decides which one."
+        },
+        "r10": {
+          "title": "Freeze",
+          "effect": "You’re frozen by fear or stress for one round, losing your next turn."
+        },
+        "r11": {
+          "title": "Seek Cover",
+          "effect": "You must use your next action to move away from danger and find a safe spot if possible. You lose 1 stress point, but all other PCs in Short range gain 1 stress point."
+        },
+        "r12": {
+          "title": "Scream",
+          "effect": "You scream for one round, losing your next turn. You lose 1 stress point, but every PC who hears your scream must make an immediate panic roll."
+        },
+        "r13": {
+          "title": "Flee",
+          "effect": "You must flee to a safe place and refuse to leave it. You lose 1 stress point, but every PC who hears your scream must make an immediate panic roll."
+        },
+        "r14": {
+          "title": "Berserk",
+          "effect": "You must immediately attack the nearest person or creature, friendly or not, until you or the target is broken. Every PC who witnesses your rampage must make an immediate panic roll."
+        },
+        "r15": {
+          "title": "Catatonic",
+          "effect": "You collapse to the floor and can’t talk or move, staring blankly into oblivion."
+        }
+      },
+      "MagicMishap": {
+        "r1": "The magic makes you unable to sleep for D6 days.",
+        "r2": "Your spell drains your energy, inflicting one point of stress.",
+        "r3": "Your magic hurts your body and you suffer one point of damage.",
+        "r4": "The spell triggers a magical disease with a virulence of 2D6. You and everyone within Engaged range for the next shift are exposed.",
+        "r5": "The spell also affects a friend or other unintended victim.",
+        "r6": "Your magic permanently alters your appearance. The GM decides how.",
+        "r7": "The spell blinds you. You act as in total darkness for the next full day.",
+        "r8": "The spell ravages your mind. Immediately roll for a mental critical injury.",
+        "r9": "The force of the magic breaks bones in your body. Immediately roll for a physical critical injury.",
+        "r10": "Your magic attracts a demon from another dimension. The demon appears within the next shift.",
+        "r11": "The spell backfires. An offensive spell affects you instead of your intended target; a healing spell wounds instead of healing.",
+        "r12": "Your magic rips open a rift to another dimension, and a demon pulls you over to the other side. Your character returns as an NPC after D66 days… changed."
+      },
+      "PhysicalCrit": {
+        "11": { "name": "Winded", "effects": "None." },
+        "12": { "name": "Stunned", "effects": "None." },
+        "13": { "name": "Crippling pain", "effects": "None." },
+        "14": { "name": "Sprained ankle", "effects": "Mobility −2 and movement is a slow action until a Healing roll is made." },
+        "15": { "name": "Blood in eyes", "effects": "Observation and Marksmanship −2 until a Healing roll is made." },
+        "16": { "name": "Concussion", "effects": "Mobility −2." },
+        "21": { "name": "Severed ear", "effects": "Observation −2." },
+        "22": { "name": "Broken toes", "effects": "Movement becomes a slow action." },
+        "23": { "name": "Broken hand", "effects": "Hand cannot be used." },
+        "24": { "name": "Knocked out teeth", "effects": "Persuasion −2." },
+        "25": { "name": "Impaled thigh", "effects": "Movement becomes a slow action." },
+        "26": { "name": "Slashed shoulder", "effects": "Arm cannot be used." },
+        "31": { "name": "Broken nose", "effects": "Persuasion and Observation −1." },
+        "32": { "name": "Crotch hit", "effects": "One point of damage for every Mobility or Melee roll made." },
+        "33": { "name": "Broken ribs", "effects": "Mobility and Observation −2." },
+        "34": { "name": "Gouged eye", "effects": "Marksmanship and Observation −2." },
+        "35": { "name": "Busted kneecap", "effects": "Movement becomes a slow action." },
+        "36": { "name": "Broken arm", "effects": "Arm cannot be used." },
+        "41": { "name": "Broken leg", "effects": "Movement becomes a slow action." },
+        "42": { "name": "Crushed foot", "effects": "Movement becomes a slow action." },
+        "43": { "name": "Crushed elbow", "effects": "Arm cannot be used." },
+        "44": { "name": "Punctured lung", "effects": "Stamina and Mobility −2." },
+        "45": { "name": "Bleeding gut", "effects": "One point of damage for every Mobility or Melee roll made." },
+        "46": { "name": "Ruptured intestines", "effects": "Disease with virulence 6." },
+        "51": { "name": "Busted kidney", "effects": "Mobility −2 and movement is a slow action." },
+        "52": { "name": "Severed arm artery", "effects": "Arm cannot be used." },
+        "53": { "name": "Severed leg artery", "effects": "Movement becomes a slow action." },
+        "54": { "name": "Severed arm", "effects": "Arm cannot be used." },
+        "55": { "name": "Severed leg", "effects": "Movement becomes a slow action." },
+        "56": { "name": "Cracked spine", "effects": "Paralyzed from the neck down. If no Healing roll is made in time, the effect is permanent." },
+        "61": { "name": "Ruptured jugular", "effects": "Stamina −1." },
+        "62": { "name": "Ruptured aorta", "effects": "Stamina −2." },
+        "63": { "name": "Disemboweled", "effects": "Instant death." },
+        "64": { "name": "Crushed skull", "effects": "Your story ends here." },
+        "65": { "name": "Pierced head", "effects": "You die immediately." },
+        "66": { "name": "Impaled heart", "effects": "Your heart beats for the last time." }
+      },
+      "MentalCrit": {
+        "11": { "name": "Trembling", "effects": "Modifier −1 on all Agility-based rolls." },
+        "21": { "name": "White hair", "effects": "None." },
+        "22": { "name": "Anxious", "effects": "Modifier −1 on all Wits-based rolls." },
+        "25": { "name": "Sullen", "effects": "Modifier −1 on all Empathy-based rolls." },
+        "32": { "name": "Nightmares", "effects": "Make an Insight roll every shift spent sleeping. Failure means the sleep doesn’t count." },
+        "36": { "name": "Nocturnal", "effects": "You can only sleep during the light part of the day." },
+        "42": { "name": "Phobic", "effects": "You are terrified by something related to what broke you. Suffer 1 stress/Wits damage each round within Short range." },
+        "44": { "name": "Alcoholic", "effects": "You must drink alcohol every day, or suffer 1 stress/damage to Agility." },
+        "46": { "name": "Claustrophobic", "effects": "Every stretch in a confined environment, you suffer 1 stress/damage to Wits." },
+        "52": { "name": "Mythomaniac", "effects": "You cannot stop yourself from lying about everything." },
+        "53": { "name": "Paranoia", "effects": "You are certain that someone is out to get you." },
+        "55": { "name": "Delusion", "effects": "You are totally convinced of something that is totally untrue." },
+        "56": { "name": "Hallucinations", "effects": "Make an Insight roll every shift. If you fail, you suffer a powerful hallucination." },
+        "61": { "name": "Altered personality", "effects": "Your personality is altered in a fundamental way." },
+        "63": { "name": "Amnesia", "effects": "You lose all memory, and cannot recollect who you or the other PCs are." },
+        "64": { "name": "Catatonic", "effects": "You stare blankly into oblivion, and do not respond to any stimuli." },
+        "66": { "name": "Heart attack", "effects": "Your heart stops, and you die of pure fright." }
+      },
+      "VehicleCrit": {
+        "r1": { "name": "Ricochet", "effects": "The attack bounces off the vehicle and strikes another random target in the same zone, inflicting the same damage." },
+        "r2": { "name": "Skid", "effects": "The vehicle skids severely. The driver must make an immediate skill roll (not an action) – failure loses their next turn." },
+        "r3": { "name": "Windshield Shattered", "effects": "The windshield is shattered, reducing Maneuverability by one step." },
+        "r4": { "name": "Driver Hit", "effects": "The driver is hit and suffers damage equal to the damage inflicted on the vehicle." },
+        "r5": { "name": "Passenger Hit", "effects": "A random passenger is hit and suffers damage equal to the damage inflicted on the vehicle, plus a critical injury." },
+        "r6": { "name": "Wheel Blown", "effects": "A wheel or thruster is blown out, giving a −2 modifier to all driving skill rolls." },
+        "r7": { "name": "Severe Spin", "effects": "The driver must make an immediate skill roll – failure means the vehicle crashes and is automatically wrecked." },
+        "r8": { "name": "Fuel Fire", "effects": "The vehicle catches fire. Everyone inside is exposed to intensity 6 (C) fire." },
+        "r9": { "name": "Weapon Disabled", "effects": "A random weapon mounted on the vehicle is disabled." },
+        "r10": { "name": "Massive Crash", "effects": "The vehicle careens out of control and crashes violently. Automatically wrecked; passengers suffer D6 falling damage." },
+        "r11": { "name": "Engine Disabled", "effects": "The engine is disabled, and the vehicle can’t continue." },
+        "r12": { "name": "Explosion", "effects": "The vehicle explodes in a ball of flame! Everyone inside is exposed to a blast power 9 (B) explosion; vehicle destroyed beyond repair." }
+      }
+    },
     "Settings": {
+      "Menu": {
+        "name": "Year Zero Engine World Rules",
+        "label": "Configure YZE Rules",
+        "hint": "GM-only menu to configure core dice mechanics (Dice Pool vs Step Dice) and modular Year Zero Engine rules for this world.",
+        "title": "Year Zero Engine — World Rules Configuration",
+        "CoreMechanicsHeading": "Core Dice System (World-Wide)",
+        "VariantsHeading": "Modular YZE Rule Variants",
+        "BalanceWarningTitle": "Game Balance Warning",
+        "BalanceWarningText": "Choose between Dice Pool and Step Dice when first setting up your table. Players cannot change this mode, and switching it during an ongoing campaign is strongly discouraged because attribute scales, skill ratings, derived Health/Resolve, carry limits, armor ratings, and modifiers are balanced differently between both systems.",
+        "ModeChangePendingNotice": "You are about to change the world's core dice system. You will be asked to confirm the balance impact before saving.",
+        "ConfirmModeChangeTitle": "Change Core Dice System?",
+        "ConfirmModeChangeBody": "Are you sure you want to switch this world from <strong>{from}</strong> to <strong>{to}</strong>? Changing the dice system mid-campaign can cause severe rule and character balance issues, and existing character sheets may need manual re-calibration.",
+        "Save": "Save World Rules",
+        "Saved": "Year Zero Engine world rules saved.",
+        "GMOnlyError": "Only the Gamemaster / world owner can change Year Zero Engine world rules."
+      },
       "resolutionMode": {
         "name": "Core Dice Mechanics",
-        "hint": "Choose between Dice Pool (pools of D6s, ratings 1–5) and Step Dice (polyhedral dice D6/D8/D10/D12, ratings D–A).",
+        "hint": "Choose between Dice Pool (pools of D6s, ratings 1–5) and Step Dice (polyhedral dice D6/D8/D10/D12, ratings D–A). Only the GM can set this option.",
         "dicePool": "Dice Pool (D6 Pools)",
         "stepDice": "Step Dice (D6 / D8 / D10 / D12)"
       },

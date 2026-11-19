@@ -4,8 +4,12 @@ A clean, minimalist, generic **Year Zero Engine (YZE)** system for **Foundry VTT
 
 ## ✨ Features
 
-- **Dice Pool & Step Dice Modes**:
-  - Switch globally in System Settings (or override per actor) between **Dice Pool** (1–5 Attributes, 0–5 Skills, Base/Skill/Gear/Artifact Dice) and **Step Dice** (D / C / B / A = `d6` / `d8` / `d10` / `d12` with automatic step-up/step-down balancing or Advantage/Disadvantage).
+- **Dice Pool & Step Dice Modes (GM-Only World Configuration)**:
+  - Configured exclusively by the Gamemaster / world owner inside Foundry's System Settings via the dedicated **Year Zero Engine World Rules** menu (**Dice Pool** — 1–5 Attributes, 0–5 Skills, Base/Skill/Gear/Artifact Dice — or **Step Dice** — D / C / B / A = `d6` / `d8` / `d10` / `d12` with automatic step-up/step-down balancing or Advantage/Disadvantage).
+  - Players can never switch dice modes from sheets or roll dialogs, and changing the mode on an existing world triggers an explicit balance warning and confirmation dialog for the GM.
+- **Full Bilingual Support (`en` & `pt-BR`) & Extensible Localization**:
+  - 100% of UI labels, core skills, settings, and SRD roll tables (Panic, Physical & Mental Critical Injuries, Vehicle Critical Damage, Magic Mishaps) are localized in **English (`en`)** and **Português (Brasil) (`pt-BR`)**.
+  - Community developers can easily add new languages either directly in `lang/` + `system.json` (validated via `node scripts/check-i18n.mjs`) or through a standalone Foundry VTT translation module — see [lang/README.md](lang/README.md).
 - **Configurable YZE Core Variants**:
   - **Damage & Trauma**: *Health & Resolve*, *Direct Attribute Damage*, or *Conditions* (Exhausted, Battered, Wounded, Angry, Scared, Disheartened).
   - **Cost of Pushing**: *Damage & Stress*, *Attribute Damage (+ Willpower Points)*, *Stress Dice (+ Panic Table Rolls)*, *Conditions*, or *Doom Points*.
@@ -34,7 +38,7 @@ https://github.com/diogolabs/fvtt-yze/releases/latest/download/system.json
 ### Foundry VTT v13
 Manifest URL:
 ```
-https://github.com/diogolabs/fvtt-yze/releases/download/v1.0.1/system.json
+https://github.com/diogolabs/fvtt-yze/releases/download/v1.0.2/system.json
 ```
 
 ## 📜 License

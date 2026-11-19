@@ -16,6 +16,7 @@ import { YzeChatMessage } from "./documents/chat-message.mjs";
 import { YzeChatLog } from "./applications/chat-log.mjs";
 import { YzeRollDialog } from "./applications/roll-dialog.mjs";
 import { YzeSpellDialog } from "./applications/spell-dialog.mjs";
+import { YzeRulesConfig } from "./applications/rules-config.mjs";
 import { YzeActorSheet } from "./sheets/actor-sheet.mjs";
 import { YzeItemSheet } from "./sheets/item-sheet.mjs";
 import { YearZeroRollManager } from "../lib/yzur.js";
@@ -31,7 +32,7 @@ import {
 globalThis.yze = {
   config: YZE_CONFIG,
   documents: { YzeActor, YzeItem, YzeChatMessage },
-  applications: { YzeRollDialog, YzeSpellDialog, YzeActorSheet, YzeItemSheet },
+  applications: { YzeRollDialog, YzeSpellDialog, YzeRulesConfig, YzeActorSheet, YzeItemSheet },
   models: {
     YzeCharacterData,
     YzeNpcData,
@@ -74,7 +75,10 @@ function registerHandlebarsHelpers() {
   Handlebars.registerHelper("add", (a, b) => (Number(a) || 0) + (Number(b) || 0));
   Handlebars.registerHelper("upper", str => String(str ?? "").toUpperCase());
   Handlebars.registerHelper("stepLetter", die => YZE_CONFIG.stepDice[die]?.letter ?? "—");
-  Handlebars.registerHelper("stepLabel", die => YZE_CONFIG.stepDice[die]?.label ?? "—");
+  Handlebars.registerHelper("stepLabel", die => {
+    const key = YZE_CONFIG.stepDice[die]?.label;
+    return key ? game.i18n.localize(key) : "—";
+  });
 }
 
 Hooks.once("init", () => {

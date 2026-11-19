@@ -2,10 +2,11 @@
   "id": "fvtt-yze",
   "title": "Year Zero Engine (Generic SRD)",
   "description": "A minimalist, generic Year Zero Engine (YZE SRD v1.0) system for Foundry VTT supporting both Dice Pool and Step Dice modes, with skills, specialties, gear, weapons, armor, spells, and critical injuries as items.",
-  "version": "1.1.0",
+  "version": "1.0.2",
   "compatibility": {
-    "minimum": "14",
-    "verified": "14"
+    "minimum": "13",
+    "verified": "13",
+    "maximum": "13"
   },
   "authors": [
     {
@@ -76,8 +77,8 @@
   "packs": [],
   "packFolders": [],
   "socket": false,
-  "manifest": "https://github.com/diogolabs/fvtt-yze/releases/latest/download/system.json",
-  "download": "https://github.com/diogolabs/fvtt-yze/releases/download/v1.1.0/system.zip",
+  "manifest": "https://github.com/diogolabs/fvtt-yze/releases/download/v1.0.2/system.json",
+  "download": "https://github.com/diogolabs/fvtt-yze/releases/download/v1.0.2/system.zip",
   "grid": {
     "type": 1,
     "distance": 1,

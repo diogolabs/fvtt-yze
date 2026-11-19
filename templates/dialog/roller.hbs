@@ -6,24 +6,6 @@
 
   <div class="yze-form-grid">
     <div class="yze-field">
-      <label>{{localize "YZE.Settings.resolutionMode.name"}}</label>
-      <select name="resolutionMode">
-        <option value="dicePool" {{#if (eq resolutionMode "dicePool")}}selected{{/if}}>{{localize "YZE.Settings.resolutionMode.dicePool"}}</option>
-        <option value="stepDice" {{#if (eq resolutionMode "stepDice")}}selected{{/if}}>{{localize "YZE.Settings.resolutionMode.stepDice"}}</option>
-      </select>
-    </div>
-
-    {{#if isStepDice}}
-    <div class="yze-field">
-      <label>{{localize "YZE.Settings.stepModifierMode.name"}}</label>
-      <select name="stepModifierMode">
-        <option value="step" {{#if (eq stepModifierMode "step")}}selected{{/if}}>{{localize "YZE.Settings.stepModifierMode.step"}}</option>
-        <option value="advDisadv" {{#if (eq stepModifierMode "advDisadv")}}selected{{/if}}>{{localize "YZE.Settings.stepModifierMode.advDisadv"}}</option>
-      </select>
-    </div>
-    {{/if}}
-
-    <div class="yze-field">
       <label>{{localize "YZE.Attribute.Label"}}</label>
       <select name="attribute">
         {{#each config.attributes as |label key|}}

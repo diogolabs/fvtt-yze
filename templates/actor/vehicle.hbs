@@ -50,17 +50,20 @@
       <div class="yze-resource-box">
         <label>{{localize "YZE.Armor.Rating"}}</label>
         <div class="yze-pair-inputs">
-          <input type="number" name="system.armor.rating" value="{{system.armor.rating}}" min="0" />
+          {{#if isStepDice}}
           <select name="system.armor.die">
             {{#each config.skillStepChoices as |sLabel sKey|}}
               <option value="{{sKey}}" {{#if (eq ../system.armor.die sKey)}}selected{{/if}}>{{stepLetter sKey}}</option>
             {{/each}}
           </select>
+          {{else}}
+          <input type="number" name="system.armor.rating" value="{{system.armor.rating}}" min="0" />
+          {{/if}}
         </div>
       </div>
 
       <div class="yze-resource-box">
-        <label>{{localize "YZE.Vehicle.TravelSpeed"}} (On/Off)</label>
+        <label>{{localize "YZE.Vehicle.TravelSpeed"}} ({{localize "YZE.Vehicle.OnOffRoad"}})</label>
         <div class="yze-pair-inputs">
           <input type="number" name="system.speed.onRoad" value="{{system.speed.onRoad}}" min="0" />
           <span>/</span>

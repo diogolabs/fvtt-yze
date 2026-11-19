@@ -15,16 +15,6 @@
           <input type="text" name="system.archetype" value="{{system.archetype}}" placeholder="{{localize 'YZE.Archetype'}}" />
         </div>
         <div class="yze-inline-field">
-          <label>{{localize "YZE.Mode"}}</label>
-          <select name="system.resolutionMode">
-            <option value="" {{#if (eq system.resolutionMode "")}}selected{{/if}}>
-              {{localize "YZE.Default"}} ({{#if isStepDice}}{{localize "YZE.StepDice"}}{{else}}{{localize "YZE.DicePool"}}{{/if}})
-            </option>
-            <option value="dicePool" {{#if (eq system.resolutionMode "dicePool")}}selected{{/if}}>{{localize "YZE.DicePool"}}</option>
-            <option value="stepDice" {{#if (eq system.resolutionMode "stepDice")}}selected{{/if}}>{{localize "YZE.StepDice"}}</option>
-          </select>
-        </div>
-        <div class="yze-inline-field">
           <label>{{localize "YZE.XP"}}</label>
           <input type="number" name="system.experience.value" value="{{system.experience.value}}" min="0" />
         </div>
@@ -84,7 +74,7 @@
 
     {{#if enableWillpower}}
     <div class="yze-resource-box">
-      <label>{{localize "YZE.Willpower"}} (WP)</label>
+      <label>{{localize "YZE.Willpower"}} ({{localize "YZE.WillpowerAbbr"}})</label>
       <div class="yze-pair-inputs">
         <input type="number" name="system.willpower.value" value="{{system.willpower.value}}" min="0" />
         <span>/</span>

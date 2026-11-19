@@ -29,18 +29,21 @@
           {{/each}}
         </select>
       </div>
-      <div class="yze-field">
-        <label>{{localize "YZE.Skill.PoolLevel"}} (0–5)</label>
-        <input type="number" name="system.level" value="{{system.level}}" min="0" max="10" />
-      </div>
+      {{#if isStepDice}}
       <div class="yze-field">
         <label>{{localize "YZE.Skill.StepDie"}} (D–A)</label>
         <select name="system.die">
           {{#each config.skillStepChoices as |label key|}}
-          <option value="{{key}}" {{#if (eq ../system.die key)}}selected{{/if}}>{{label}}</option>
+          <option value="{{key}}" {{#if (eq ../system.die key)}}selected{{/if}}>{{localize label}}</option>
           {{/each}}
         </select>
       </div>
+      {{else}}
+      <div class="yze-field">
+        <label>{{localize "YZE.Skill.PoolLevel"}} (0–5)</label>
+        <input type="number" name="system.level" value="{{system.level}}" min="0" max="10" />
+      </div>
+      {{/if}}
       <div class="yze-field">
         <label class="yze-check">
           <input type="checkbox" name="system.xpMarked" {{#if system.xpMarked}}checked{{/if}} />
@@ -97,7 +100,7 @@
 
       <div class="yze-field">
         <label>{{localize "YZE.AssociatedSkill"}}</label>
-        <input type="text" name="system.associatedSkill" value="{{system.associatedSkill}}" placeholder="Melee, Healing..." />
+        <input type="text" name="system.associatedSkill" value="{{system.associatedSkill}}" placeholder="{{localize 'YZE.Placeholders.SpecialtySkill'}}" />
       </div>
 
       <div class="yze-field">
@@ -137,7 +140,7 @@
     <div class="yze-form-grid">
       <div class="yze-field">
         <label>{{localize "YZE.AssociatedSkill"}}</label>
-        <input type="text" name="system.skill" value="{{system.skill}}" placeholder="Melee / Marksmanship" />
+        <input type="text" name="system.skill" value="{{system.skill}}" placeholder="{{localize 'YZE.Placeholders.WeaponSkill'}}" />
       </div>
       <div class="yze-field">
         <label>{{localize "YZE.Attribute.Label"}}</label>
@@ -175,7 +178,7 @@
         <label>{{localize "YZE.ArtifactDie"}}</label>
         <select name="system.artifactDie">
           {{#each config.artifactDiceChoices as |label key|}}
-          <option value="{{key}}" {{#if (eq ../system.artifactDie key)}}selected{{/if}}>{{label}}</option>
+          <option value="{{key}}" {{#if (eq ../system.artifactDie key)}}selected{{/if}}>{{localize label}}</option>
           {{/each}}
         </select>
       </div>
@@ -235,6 +238,16 @@
           {{/each}}
         </select>
       </div>
+      {{#if isStepDice}}
+      <div class="yze-field">
+        <label>{{localize "YZE.Skill.StepDie"}} (D–A)</label>
+        <select name="system.die">
+          {{#each config.skillStepChoices as |label key|}}
+          <option value="{{key}}" {{#if (eq ../system.die key)}}selected{{/if}}>{{localize label}}</option>
+          {{/each}}
+        </select>
+      </div>
+      {{else}}
       <div class="yze-field">
         <label>{{localize "YZE.Armor.Rating"}} ({{localize "YZE.Current"}} / {{localize "YZE.Max"}})</label>
         <div class="yze-pair-inputs">
@@ -243,14 +256,7 @@
           <input type="number" name="system.maxRating" value="{{system.maxRating}}" min="0" />
         </div>
       </div>
-      <div class="yze-field">
-        <label>{{localize "YZE.Skill.StepDie"}} (D–A)</label>
-        <select name="system.die">
-          {{#each config.skillStepChoices as |label key|}}
-          <option value="{{key}}" {{#if (eq ../system.die key)}}selected{{/if}}>{{label}}</option>
-          {{/each}}
-        </select>
-      </div>
+      {{/if}}
       <div class="yze-field">
         <label>{{localize "YZE.Weight.Label"}}</label>
         <select name="system.weight" data-dtype="Number">
@@ -285,7 +291,7 @@
       </div>
       <div class="yze-field">
         <label>{{localize "YZE.AssociatedSkill"}}</label>
-        <input type="text" name="system.associatedSkill" value="{{system.associatedSkill}}" placeholder="Crafting, Healing, Survival..." />
+        <input type="text" name="system.associatedSkill" value="{{system.associatedSkill}}" placeholder="{{localize 'YZE.Placeholders.GearSkill'}}" />
       </div>
       <div class="yze-field">
         <label>{{localize "YZE.Bonus"}} ({{localize "YZE.Current"}} / {{localize "YZE.Max"}})</label>
@@ -299,7 +305,7 @@
         <label>{{localize "YZE.ArtifactDie"}}</label>
         <select name="system.artifactDie">
           {{#each config.artifactDiceChoices as |label key|}}
-          <option value="{{key}}" {{#if (eq ../system.artifactDie key)}}selected{{/if}}>{{label}}</option>
+          <option value="{{key}}" {{#if (eq ../system.artifactDie key)}}selected{{/if}}>{{localize label}}</option>
           {{/each}}
         </select>
       </div>
@@ -417,7 +423,7 @@
       </div>
       <div class="yze-field">
         <label>{{localize "YZE.Critical.HealingTime"}}</label>
-        <input type="text" name="system.healingTime" value="{{system.healingTime}}" placeholder="D6, 2D6, Permanent..." />
+        <input type="text" name="system.healingTime" value="{{system.healingTime}}" placeholder="{{localize 'YZE.Placeholders.HealingTime'}}" />
       </div>
       <div class="yze-field">
         <label>{{localize "YZE.Critical.EffectsSummary"}}</label>

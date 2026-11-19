@@ -44,7 +44,7 @@
               {{/if}}
             </div>
           </td>
-          <td><strong>{{wpn.system.damage}}</strong>{{#if wpn.system.critThreshold}} <small>(Crit {{wpn.system.critThreshold}})</small>{{/if}}</td>
+          <td><strong>{{wpn.system.damage}}</strong>{{#if wpn.system.critThreshold}} <small>({{localize "YZE.Critical.Short"}} {{wpn.system.critThreshold}})</small>{{/if}}</td>
           <td>{{localize (concat "YZE.Range." wpn.system.range)}}</td>
           <td>
             {{#if (gt wpn.system.mag.max 0)}}

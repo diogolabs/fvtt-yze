@@ -82,9 +82,6 @@ export class YzeCharacterData extends foundry.abstract.TypeDataModel {
   }
 
   get activeResolutionMode() {
-    if (this.resolutionMode === "dicePool" || this.resolutionMode === "stepDice") {
-      return this.resolutionMode;
-    }
     try {
       return game.settings.get(YZE_CONFIG.ID, "resolutionMode") || "dicePool";
     } catch {
@@ -256,9 +253,6 @@ export class YzeNpcData extends foundry.abstract.TypeDataModel {
   }
 
   get activeResolutionMode() {
-    if (this.resolutionMode === "dicePool" || this.resolutionMode === "stepDice") {
-      return this.resolutionMode;
-    }
     try {
       return game.settings.get(YZE_CONFIG.ID, "resolutionMode") || "dicePool";
     } catch {
@@ -310,7 +304,7 @@ export class YzeNpcData extends foundry.abstract.TypeDataModel {
 export class YzeVehicleData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
-      vehicleType: new fields.StringField({ initial: "Ground Vehicle" }),
+      vehicleType: new fields.StringField({ initial: "" }),
       passengers: new fields.NumberField({ required: true, integer: true, initial: 4, min: 0 }),
       maneuverability: new fields.NumberField({ required: true, integer: true, initial: 1 }),
       maxManeuverability: new fields.NumberField({ required: true, integer: true, initial: 1 }),

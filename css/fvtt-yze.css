@@ -846,3 +846,114 @@
   grid-template-columns: 1fr 1.2fr;
   gap: 10px;
 }
+
+
+/* ============================================================================
+ * GM Rules Configuration Menu (YzeRulesConfig)
+ * ============================================================================ */
+.yze-rules-config-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.yze-rules-section {
+  background: var(--yze-panel);
+  border: 1px solid var(--yze-border);
+  border-radius: var(--yze-radius);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.yze-rules-heading {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--yze-border);
+  padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.yze-balance-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fef3c7;
+  color: #78350f;
+  border: 1px solid #f59e0b;
+  border-left: 4px solid #d97706;
+  border-radius: var(--yze-radius);
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.yze-balance-warning i {
+  margin-top: 2px;
+  font-size: 15px;
+  color: #d97706;
+  flex-shrink: 0;
+}
+
+.yze-balance-warning p {
+  margin: 3px 0 0;
+}
+
+.yze-balance-warning-danger {
+  background: #fee2e2;
+  color: #7f1d1d;
+  border-color: #ef4444;
+  border-left-color: #b91c1c;
+}
+
+.yze-balance-warning-danger i {
+  color: #b91c1c;
+}
+
+.theme-dark .yze-balance-warning {
+  background: #451a03;
+  color: #fef3c7;
+  border-color: #b45309;
+}
+
+.theme-dark .yze-balance-warning-danger {
+  background: #450a0a;
+  color: #fee2e2;
+  border-color: #dc2626;
+}
+
+.yze-hint {
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: var(--yze-muted);
+  line-height: 1.35;
+}
+
+.yze-rules-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 4px;
+}
+
+.yze-rules-toggles .yze-check {
+  align-items: flex-start;
+}
+
+.yze-rules-toggles .yze-check span {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.yze-hint-inline {
+  font-size: 11px;
+  color: var(--yze-muted);
+  font-weight: 400;
+}

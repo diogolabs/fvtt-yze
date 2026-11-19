@@ -27,7 +27,7 @@
               <i class="fa-solid fa-star"></i>
               <span>{{spec.name}}</span>
               {{#if (gt spec.system.willpowerCost 0)}}
-                <span class="yze-tag">{{spec.system.willpowerCost}} WP</span>
+                <span class="yze-tag">{{spec.system.willpowerCost}} {{localize "YZE.WillpowerAbbr"}}</span>
               {{/if}}
             </button>
           </td>

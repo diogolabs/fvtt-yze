@@ -1,0 +1,122 @@
+<div class="yze-dialog-content yze-rules-config-body">
+  <div class="yze-rules-section">
+    <h3 class="yze-rules-heading">
+      <i class="fa-solid fa-dice"></i> {{localize "YZE.Settings.Menu.CoreMechanicsHeading"}}
+    </h3>
+
+    <div class="yze-balance-warning">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <div>
+        <strong>{{localize "YZE.Settings.Menu.BalanceWarningTitle"}}</strong>
+        <p>{{localize "YZE.Settings.Menu.BalanceWarningText"}}</p>
+      </div>
+    </div>
+
+    <div class="yze-field">
+      <label>{{localize "YZE.Settings.resolutionMode.name"}}</label>
+      <select name="resolutionMode">
+        {{#each resolutionChoices as |label key|}}
+        <option value="{{key}}" {{#if (eq ../resolutionMode key)}}selected{{/if}}>{{localize label}}</option>
+        {{/each}}
+      </select>
+      <p class="yze-hint">{{localize "YZE.Settings.resolutionMode.hint"}}</p>
+    </div>
+
+    <div class="yze-balance-warning yze-balance-warning-danger" data-mode-changed-warning hidden>
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <div>{{localize "YZE.Settings.Menu.ModeChangePendingNotice"}}</div>
+    </div>
+
+    <div class="yze-field" data-step-modifier-row {{#unless isStepDice}}hidden{{/unless}}>
+      <label>{{localize "YZE.Settings.stepModifierMode.name"}}</label>
+      <select name="stepModifierMode">
+        {{#each stepModifierChoices as |label key|}}
+        <option value="{{key}}" {{#if (eq ../stepModifierMode key)}}selected{{/if}}>{{localize label}}</option>
+        {{/each}}
+      </select>
+      <p class="yze-hint">{{localize "YZE.Settings.stepModifierMode.hint"}}</p>
+    </div>
+  </div>
+
+  <div class="yze-rules-section">
+    <h3 class="yze-rules-heading">
+      <i class="fa-solid fa-gears"></i> {{localize "YZE.Settings.Menu.VariantsHeading"}}
+    </h3>
+
+    <div class="yze-form-grid">
+      <div class="yze-field">
+        <label>{{localize "YZE.Settings.damageMode.name"}}</label>
+        <select name="damageMode">
+          {{#each damageChoices as |label key|}}
+          <option value="{{key}}" {{#if (eq ../damageMode key)}}selected{{/if}}>{{localize label}}</option>
+          {{/each}}
+        </select>
+        <p class="yze-hint">{{localize "YZE.Settings.damageMode.hint"}}</p>
+      </div>
+
+      <div class="yze-field">
+        <label>{{localize "YZE.Settings.pushMode.name"}}</label>
+        <select name="pushMode">
+          {{#each pushChoices as |label key|}}
+          <option value="{{key}}" {{#if (eq ../pushMode key)}}selected{{/if}}>{{localize label}}</option>
+          {{/each}}
+        </select>
+        <p class="yze-hint">{{localize "YZE.Settings.pushMode.hint"}}</p>
+      </div>
+    </div>
+
+    <div class="yze-rules-toggles">
+      <label class="yze-check">
+        <input type="checkbox" name="enableWillpower" {{#if enableWillpower}}checked{{/if}} />
+        <span>
+          <strong>{{localize "YZE.Settings.enableWillpower.name"}}</strong>
+          <small class="yze-hint-inline">{{localize "YZE.Settings.enableWillpower.hint"}}</small>
+        </span>
+      </label>
+
+      <label class="yze-check">
+        <input type="checkbox" name="enableStressTrack" {{#if enableStressTrack}}checked{{/if}} />
+        <span>
+          <strong>{{localize "YZE.Settings.enableStressTrack.name"}}</strong>
+          <small class="yze-hint-inline">{{localize "YZE.Settings.enableStressTrack.hint"}}</small>
+        </span>
+      </label>
+
+      <label class="yze-check">
+        <input type="checkbox" name="enableEncumbrance" {{#if enableEncumbrance}}checked{{/if}} />
+        <span>
+          <strong>{{localize "YZE.Settings.enableEncumbrance.name"}}</strong>
+          <small class="yze-hint-inline">{{localize "YZE.Settings.enableEncumbrance.hint"}}</small>
+        </span>
+      </label>
+
+      <label class="yze-check">
+        <input type="checkbox" name="weaponsAtHandRule" {{#if weaponsAtHandRule}}checked{{/if}} />
+        <span>
+          <strong>{{localize "YZE.Settings.weaponsAtHandRule.name"}}</strong>
+          <small class="yze-hint-inline">{{localize "YZE.Settings.weaponsAtHandRule.hint"}}</small>
+        </span>
+      </label>
+
+      <label class="yze-check">
+        <input type="checkbox" name="autoSeedCoreSkills" {{#if autoSeedCoreSkills}}checked{{/if}} />
+        <span>
+          <strong>{{localize "YZE.Settings.autoSeedCoreSkills.name"}}</strong>
+          <small class="yze-hint-inline">{{localize "YZE.Settings.autoSeedCoreSkills.hint"}}</small>
+        </span>
+      </label>
+    </div>
+
+    <div class="yze-field" style="margin-top: 8px; max-width: 220px;">
+      <label>{{localize "YZE.Settings.doomPoints.name"}}</label>
+      <input type="number" name="doomPoints" value="{{doomPoints}}" min="0" />
+      <p class="yze-hint">{{localize "YZE.Settings.doomPoints.hint"}}</p>
+    </div>
+  </div>
+
+  <footer class="yze-dialog-footer">
+    <button type="submit" class="yze-btn yze-btn-primary">
+      <i class="fa-solid fa-floppy-disk"></i> {{localize "YZE.Settings.Menu.Save"}}
+    </button>
+  </footer>
+</div>

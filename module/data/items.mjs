@@ -84,7 +84,7 @@ export class YzeGearData extends foundry.abstract.TypeDataModel {
 export class YzeWeaponData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
-      skill: new fields.StringField({ initial: "Melee" }),
+      skill: new fields.StringField({ initial: "" }),
       attribute: new fields.StringField({
         required: true,
         initial: "strength",

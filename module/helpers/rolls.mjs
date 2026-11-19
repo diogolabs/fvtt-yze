@@ -399,7 +399,7 @@ export async function pushYzeRoll(event) {
         if (actor.system.willpower !== undefined) {
           const nextWp = Math.min(actor.system.willpower.max || 10, (actor.system.willpower.value || 0) + trauma);
           updates["system.willpower.value"] = nextWp;
-          pushSummary.push(`+${trauma} WP`);
+          pushSummary.push(`+${trauma} ${game.i18n.localize("YZE.WillpowerAbbr")}`);
         }
         await actor.update(updates);
         pushSummary.push(`${game.i18n.localize(YZE_CONFIG.attributes[attribute])}: -${trauma}`);
@@ -584,8 +584,8 @@ export async function rollPanic(actor) {
     {
       tableTitle: game.i18n.localize("YZE.PanicRoll"),
       rollLabel: `1D6 (${dieVal}) + ${game.i18n.localize("YZE.Stress")} (${stress}) = ${total}`,
-      resultTitle: entry.title,
-      resultText: entry.effect,
+      resultTitle: game.i18n.localize(entry.titleKey),
+      resultText: game.i18n.localize(entry.effectKey),
       isAlert: total >= 7,
     }
   );
@@ -609,7 +609,7 @@ export async function rollMagicMishap(actor) {
       tableTitle: game.i18n.localize("YZE.Magic.MishapRoll"),
       rollLabel: `D12 = ${d12}`,
       resultTitle: `${game.i18n.localize("YZE.Magic.Mishap")} #${d12}`,
-      resultText: entry.effect,
+      resultText: game.i18n.localize(entry.effectKey),
       isAlert: true,
     }
   );
@@ -628,13 +628,15 @@ export async function rollCriticalTable(actor, category = "physical", addToActor
   if (category === "vehicle") {
     const d12 = Math.floor(Math.random() * 12) + 1;
     const entry = YZE_CONFIG.vehicleCritTable.find(e => e.roll === d12) || YZE_CONFIG.vehicleCritTable[0];
+    const entryName = game.i18n.localize(`YZE.Tables.VehicleCrit.${entry.key}.name`);
+    const entryEffects = game.i18n.localize(`YZE.Tables.VehicleCrit.${entry.key}.effects`);
     const content = await foundry.applications.handlebars.renderTemplate(
       "systems/fvtt-yze/templates/chat/table-result.hbs",
       {
         tableTitle: game.i18n.localize("YZE.Vehicle.ComponentDamage"),
         rollLabel: `D12 = ${d12}`,
-        resultTitle: entry.name,
-        resultText: entry.effects,
+        resultTitle: entryName,
+        resultText: entryEffects,
         isAlert: true,
       }
     );
@@ -648,13 +650,21 @@ export async function rollCriticalTable(actor, category = "physical", addToActor
   const ones = Math.floor(Math.random() * 6) + 1;
   const d66 = tens * 10 + ones;
 
-  const table = category === "mental" ? YZE_CONFIG.mentalCritTable : YZE_CONFIG.physicalCritTable;
+  const isMental = category === "mental";
+  const table = isMental ? YZE_CONFIG.mentalCritTable : YZE_CONFIG.physicalCritTable;
   const entry = table.find(e => e.d66.includes(d66)) || table[0];
+  const tablePrefix = isMental ? "YZE.Tables.MentalCrit" : "YZE.Tables.PhysicalCrit";
+  const entryName = game.i18n.localize(`${tablePrefix}.${entry.key}.name`);
+  const entryEffects = game.i18n.localize(`${tablePrefix}.${entry.key}.effects`);
+  const healingTime = entry.healingTime?.startsWith("YZE.")
+    ? game.i18n.localize(entry.healingTime)
+    : (entry.healingTime || "—");
+  const timeLimitLabel = game.i18n.localize(`YZE.TimeLimit.${entry.timeLimit || "none"}`);
 
   if (addToActor && actor && ["character", "npc"].includes(actor.type)) {
     await actor.createEmbeddedDocuments("Item", [
       {
-        name: `${entry.name} (D66: ${d66})`,
+        name: `${entryName} (D66: ${d66})`,
         type: "critical",
         img: "systems/fvtt-yze/assets/icons/critical.svg",
         system: {
@@ -663,9 +673,9 @@ export async function rollCriticalTable(actor, category = "physical", addToActor
           lethal: Boolean(entry.lethal),
           timeLimit: entry.timeLimit || "none",
           deathSaveModifier: entry.mod || 0,
-          healingTime: entry.healingTime || "—",
-          effectsSummary: entry.effects,
-          description: `<p><strong>D66 (${d66}) — ${entry.name}:</strong> ${entry.effects}</p>`,
+          healingTime,
+          effectsSummary: entryEffects,
+          description: `<p><strong>D66 (${d66}) — ${entryName}:</strong> ${entryEffects}</p>`,
         },
       },
     ]);
@@ -674,15 +684,15 @@ export async function rollCriticalTable(actor, category = "physical", addToActor
   const content = await foundry.applications.handlebars.renderTemplate(
     "systems/fvtt-yze/templates/chat/table-result.hbs",
     {
-      tableTitle: category === "mental"
+      tableTitle: isMental
         ? game.i18n.localize("YZE.Critical.MentalTable")
         : game.i18n.localize("YZE.Critical.PhysicalTable"),
       rollLabel: `D66 = ${d66}`,
-      resultTitle: entry.name,
-      resultText: entry.effects,
+      resultTitle: entryName,
+      resultText: entryEffects,
       metaLine: entry.lethal
-        ? `${game.i18n.localize("YZE.Critical.Lethal")}: ${game.i18n.localize("YZE.Yes")} (${entry.timeLimit}) | ${game.i18n.localize("YZE.Critical.HealingTime")}: ${entry.healingTime}`
-        : `${game.i18n.localize("YZE.Critical.HealingTime")}: ${entry.healingTime}`,
+        ? `${game.i18n.localize("YZE.Critical.Lethal")}: ${game.i18n.localize("YZE.Yes")} (${timeLimitLabel}) | ${game.i18n.localize("YZE.Critical.HealingTime")}: ${healingTime}`
+        : `${game.i18n.localize("YZE.Critical.HealingTime")}: ${healingTime}`,
       isAlert: true,
     }
   );

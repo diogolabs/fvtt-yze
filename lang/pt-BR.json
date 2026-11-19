@@ -1,8 +1,8 @@
 {
   "TYPES": {
     "Actor": {
-      "character": "Personagem de Jogador (PJ)",
-      "npc": "Personagem do Mestre (PdM)",
+      "character": "Personagem do Jogador (PJ)",
+      "npc": "Personagem Não-Jogador (PNJ)",
       "vehicle": "Veículo / Montaria"
     },
     "Item": {
@@ -11,8 +11,8 @@
       "gear": "Equipamento / Consumível",
       "weapon": "Arma",
       "armor": "Armadura",
-      "spell": "Magia",
-      "critical": "Ferimento Crítico"
+      "spell": "Feitiço",
+      "critical": "Lesão Crítica"
     }
   },
   "YZUR": {
@@ -23,10 +23,10 @@
       "NegativeDie": "Dados Negativos",
       "StressDie": "Dados de Estresse",
       "AmmoDie": "Dados de Munição",
-      "D6TwilightDie": "Dado Escalonado (D6)",
-      "D8TwilightDie": "Dado Escalonado (D8)",
-      "D10TwilightDie": "Dado Escalonado (D10)",
-      "D12TwilightDie": "Dado Escalonado (D12)",
+      "D6TwilightDie": "Dado de Escala (D6)",
+      "D8TwilightDie": "Dado de Escala (D8)",
+      "D10TwilightDie": "Dado de Escala (D10)",
+      "D12TwilightDie": "Dado de Escala (D12)",
       "D8ArtifactDie": "Dado de Artefato (D8)",
       "D10ArtifactDie": "Dado de Artefato (D10)",
       "D12ArtifactDie": "Dado de Artefato (D12)"
@@ -43,23 +43,25 @@
     "Archetype": "Arquétipo",
     "Mode": "Modo de Dados",
     "Default": "Padrão do Mundo",
-    "DicePool": "Parada de Dados (Dice Pool)",
-    "StepDice": "Dados Escalonados (Step Dice)",
+    "DicePool": "Pilha de Dados",
+    "StepDice": "Escala de Dados",
     "XP": "XP",
-    "Health": "Vitalidade (Health)",
-    "Resolve": "Determinação (Resolve)",
+    "Health": "Saúde",
+    "Resolve": "Determinação",
     "Willpower": "Força de Vontade",
+    "WillpowerAbbr": "PFV",
     "Stress": "Estresse",
     "Encumbrance": "Carga",
     "CarryLimit": "Limite de Carga",
     "Broken": "QUEBRADO",
+    "Permanent": "Permanente",
     "Conditions": "Condições",
     "PhysicalConditions": "Físicas",
     "MentalConditions": "Mentais",
     "Bonus": "Bônus",
     "Damage": "Dano",
     "Modifier": "Modificador",
-    "Rank": "Grau",
+    "Rank": "Nível",
     "Quantity": "Qtd",
     "Cost": "Custo",
     "Current": "Atual",
@@ -68,7 +70,7 @@
     "Remaining": "Restante",
     "Dice": "Dados",
     "Roll": "Rolar",
-    "GMRoll": "Rolar p/ GM",
+    "GMRoll": "Rolar p/ MJ",
     "SendToChat": "Enviar ao Chat",
     "Edit": "Editar",
     "Delete": "Excluir",
@@ -86,47 +88,79 @@
     "Features": "Características",
     "Carried": "Carregado",
     "Equipped": "Equipado",
-    "AtHand": "À Mão",
+    "AtHand": "Em Mãos",
     "Backpack": "Mochila",
     "Repair": "Reparar",
     "Reload": "Recarregar",
     "AssociatedSkill": "Perícia Associada",
     "ArtifactDie": "Dado de Artefato",
-    "SupplyRating": "Nível de Suprimento",
-    "SupplyRoll": "Teste de Suprimento",
-    "PanicRoll": "Teste de Pânico",
-    "PanicTriggered": "PÂNICO DESENCADEADO",
-    "ArmorRoll": "Teste de Armadura",
-    "CoverRoll": "Teste de Cobertura",
+    "SupplyRating": "Classificação de Suprimento",
+    "SupplyRoll": "Rolagem de Suprimento",
+    "PanicRoll": "Rolagem de Pânico",
+    "PanicTriggered": "PÂNICO ACIONADO",
+    "ArmorRoll": "Rolagem de Armadura",
+    "CoverRoll": "Rolagem de Cobertura",
     "Help": "Ajuda de Outros",
-    "AimedShot": "Disparo Mirado",
+    "AimedShot": "Fogo Mirado",
     "PassiveRoll": "Rolagem Passiva",
     "NoPush": "Sem Forçar",
     "AmmoDice": "Dados de Munição",
     "AmmoSuccesses": "Sucessos de Munição",
     "AmmoSpent": "Munição Gasta",
-    "DoomPoint": "Ponto de Ruína (Doom)",
-    "Pride": "Orgulho (Pride)",
+    "DoomPoint": "Ponto de Perdição",
+    "Pride": "Orgulho",
     "UsePride": "Usar Orgulho",
     "UsedThisSession": "Usado nesta sessão",
     "Weakness": "Fraqueza",
     "DarkSecret": "Segredo Sombrio",
     "BigDream": "Grande Sonho",
-    "Buddy": "Parceiro (Buddy)",
+    "Buddy": "Companheiro",
     "Relationships": "Relacionamentos",
     "Appearance": "Aparência",
     "PersonalityTraits": "Traços de Personalidade",
     "BiographyAndNotes": "Biografia e Notas",
     "SkillsAndAttributes": "Perícias",
-    "SeedCoreSkills": "Adicionar 12 Perícias Básicas SRD",
-    "SeedCoreSkillsHint": "Adiciona as 12 perícias básicas do YZE SRD como itens na ficha.",
+    "SeedCoreSkills": "Adicionar 12 Perícias Básicas",
+    "SeedCoreSkillsHint": "Adiciona as 12 perícias básicas do SRD do Year Zero Engine como itens na ficha.",
     "Weapons": "Armas",
     "ArmorAndCover": "Armaduras e Cobertura",
     "GearAndConsumables": "Equipamentos e Consumíveis",
-    "CriticalInjuries": "Ferimentos Críticos",
+    "CriticalInjuries": "Lesões Críticas",
     "SpecialtiesAndTalents": "Especialidades / Talentos",
-    "Spells": "Magias",
+    "Spells": "Feitiços (Magia)",
     "CombatAndAbilities": "Combate, Equipamento e Habilidades",
+    "StepDie": {
+      "none": "—",
+      "d6": "D (D6)",
+      "d8": "C (D8)",
+      "d10": "B (D10)",
+      "d12": "A (D12)"
+    },
+    "StepAttr": {
+      "d6": "D (D6) — Fraco",
+      "d8": "C (D8) — Médio",
+      "d10": "B (D10) — Capaz",
+      "d12": "A (D12) — Extraordinário"
+    },
+    "StepSkill": {
+      "none": "— (Sem Perícia)",
+      "d6": "D (D6) — Novato",
+      "d8": "C (D8) — Experiente",
+      "d10": "B (D10) — Veterano",
+      "d12": "A (D12) — Elite"
+    },
+    "ArtifactChoice": {
+      "none": "—",
+      "d8": "D8 (Poderoso)",
+      "d10": "D10 (Épico)",
+      "d12": "D12 (Lendário)"
+    },
+    "Placeholders": {
+      "SpecialtySkill": "Lutar, Curar...",
+      "WeaponSkill": "Lutar / Atirar",
+      "GearSkill": "Construir, Curar, Sobreviver...",
+      "HealingTime": "D6, 2D6, Permanente..."
+    },
     "Tabs": {
       "Skills": "Perícias",
       "CombatGear": "Combate e Equip.",
@@ -136,10 +170,10 @@
     },
     "Attribute": {
       "Label": "Atributo",
-      "strength": "Força (Strength)",
-      "agility": "Agilidade (Agility)",
-      "wits": "Astúcia (Wits)",
-      "empathy": "Empatia (Empathy)"
+      "strength": "Força",
+      "agility": "Agilidade",
+      "wits": "Astúcia",
+      "empathy": "Empatia"
     },
     "AttributeAbbr": {
       "strength": "FOR",
@@ -148,36 +182,36 @@
       "empathy": "EMP"
     },
     "CoreSkill": {
-      "force": "Vigor (Force)",
-      "melee": "Combate Corpo a Corpo (Melee)",
-      "stamina": "Resistência (Stamina)",
-      "marksmanship": "Pontaria (Marksmanship)",
-      "mobility": "Mobilidade (Mobility)",
-      "stealth": "Furtividade (Stealth)",
-      "crafting": "Ofícios (Crafting)",
-      "observation": "Observação (Observation)",
-      "survival": "Sobrevivência (Survival)",
-      "healing": "Cura (Healing)",
-      "insight": "Intuição (Insight)",
-      "persuasion": "Persuasão (Persuasion)"
+      "force": "Forçar",
+      "melee": "Lutar",
+      "stamina": "Suportar",
+      "marksmanship": "Atirar",
+      "mobility": "Mover",
+      "stealth": "Esgueirar",
+      "crafting": "Construir",
+      "observation": "Observar",
+      "survival": "Sobreviver",
+      "healing": "Curar",
+      "insight": "Intuir",
+      "persuasion": "Persuadir"
     },
     "CoreSkillDesc": {
-      "force": "Erguer, empurrar ou quebrar obstáculos pesados; feitos de força bruta.",
-      "melee": "Lutar corpo a corpo ou bloquear ataques em combate próximo.",
-      "stamina": "Resistência física, sobreviver debaixo d'água, resistir a venenos/doenças e Testes de Morte.",
-      "marksmanship": "Disparar armas de combate à distância.",
-      "mobility": "Velocidade e controle motor: escaladas, saltos, recuos e perseguições.",
-      "stealth": "Esgueirar-se sem ser detectado, esconder-se ou realizar ataques furtivos.",
-      "crafting": "Reparar equipamentos ou veículos quebrados e construir ou operar mecanismos.",
-      "observation": "Detectar ameaças se aproximando ou examinar uma área em busca de pistas.",
-      "survival": "Navegar, montar acampamento, forragear, caçar e pescar em ambientes hostis.",
-      "healing": "Ajudar personagens quebrados a se recuperar e estabilizar ferimentos críticos letais.",
-      "insight": "Ler emoções de PdMs, detectar mentiras e resistir a Persuasão ou situações estressantes.",
-      "persuasion": "Convencer, enganar ou interrogar outros sem violência (oposto por Intuição)."
+      "force": "Levantar, empurrar ou quebrar obstáculos pesados; qualquer feito de força bruta.",
+      "melee": "Atacar ou se defender em combate corpo a corpo usando seu corpo ou uma arma corpo a corpo.",
+      "stamina": "Resistência física e vigor: sobreviver debaixo d'água, resistir a venenos e fazer Testes de Morte.",
+      "marksmanship": "Disparar todos os tipos de armas de longo alcance em combate.",
+      "mobility": "Velocidade e controle motor: escaladas arriscadas, saltos perigosos, recuos e perseguições.",
+      "stealth": "Passar furtivamente sem ser detectado, bater carteiras ou realizar ataques furtivos (oposto por Observar).",
+      "crafting": "Reparar equipamentos ou veículos quebrados, construir itens e operar mecanismos.",
+      "observation": "Examinar uma área em busca de informações úteis ou avistar ameaças à distância.",
+      "survival": "Sobreviver em ambientes hostis e perigosos, orientar-se, acampar e forragear.",
+      "healing": "Colocar um personagem quebrado de pé novamente e estabilizar lesões críticas letais.",
+      "insight": "Ler outras pessoas, detectar mentiras e resistir a Persuadir ou situações estressantes.",
+      "persuasion": "Convencer, enganar ou interrogar outros sem violência (oposto por Intuir)."
     },
     "Condition": {
       "exhausted": "Exausto",
-      "battered": "Surrado",
+      "battered": "Maltratado",
       "wounded": "Ferido",
       "angry": "Irritado",
       "scared": "Assustado",
@@ -206,20 +240,20 @@
     "Weight": {
       "Label": "Peso",
       "tiny": "0 — Minúsculo",
-      "quarter": "¼ — Leve (0.25)",
-      "light": "½ — Leve (0.5)",
+      "quarter": "¼ — Leve (0,25)",
+      "light": "½ — Leve (0,5)",
       "regular": "1 — Regular",
       "heavy": "2 — Pesado",
       "veryHeavy": "3 — Muito Pesado"
     },
     "Skill": {
-      "PoolLevel": "Nível de Perícia (Dice Pool)",
-      "StepDie": "Dado da Perícia (Step Dice)",
+      "PoolLevel": "Nível de Perícia (Pilha de Dados)",
+      "StepDie": "Dado da Perícia (Escala de Dados)",
       "XpMark": "Usada com sucesso nesta sessão (Marca de XP)"
     },
     "Specialty": {
-      "Tiered": "Especialidade com Graus (1–3)",
-      "MaxPush": "Máximo de Forçadas (Push)",
+      "Tiered": "Especialidade em Níveis (1–3)",
+      "MaxPush": "Máximo de Forçadas",
       "Category": {
         "general": "Geral",
         "combat": "Combate",
@@ -235,15 +269,15 @@
         "unarmed": "Desarmado"
       },
       "CritThreshold": "Limiar de Crítico",
-      "RoF": "Cadência de Tiro (RoF)",
-      "Magazine": "Carregador"
+      "RoF": "Cadência de Tiro (CdT)",
+      "Magazine": "Pente / Carregador"
     },
     "Armor": {
-      "Rating": "Valor de Armadura",
+      "Rating": "Classificação de Armadura",
       "Part": {
         "Label": "Parte",
         "body": "Armadura Corporal",
-        "helmet": "Elmo / Capacete",
+        "helmet": "Capacete / Elmo",
         "shield": "Escudo",
         "cover": "Cobertura"
       }
@@ -254,7 +288,7 @@
       "woodenDoor": "Porta de Madeira",
       "treeTrunk": "Tronco de Árvore",
       "woodenWall": "Parede de Madeira",
-      "stoneWall": "Muro de Pedra"
+      "stoneWall": "Parede de Pedra"
     },
     "Gear": {
       "Subtype": {
@@ -264,29 +298,30 @@
       }
     },
     "Magic": {
-      "CastSpell": "Conjurar Magia",
-      "WillpowerToSpend": "Pontos de Vontade (Poder Base)",
-      "ExtraWillpower": "PV Extras",
-      "BasePower": "Poder Base",
+      "CastSpell": "Lançar Feitiço",
+      "WillpowerToSpend": "Pontos de Força de Vontade (Poder Base)",
+      "ExtraWillpower": "PFV Extras",
+      "ExtraWillpowerHint": "Ocultar / Vincular / Alcance",
+      "BasePower": "Nível de Poder Base",
       "Overcharge": "Sobrecarga",
       "FinalPowerLevel": "Nível de Poder Final",
-      "SafeCasting": "Conjuração Segura (Reduzir Dados)",
-      "ChanceCasting": "Conjuração Arriscada",
-      "ChanceCastingWarning": "Conjuração Arriscada (1 grau acima da sua disciplina): Causa automaticamente um Acidente Mágico!",
-      "RankTooHighWarning": "Não é possível conjurar magia 2 ou mais graus acima da sua disciplina.",
-      "CastFromGrimoire": "Conjurar de Grimório",
-      "InGrimoire": "Escrita em Grimório",
+      "SafeCasting": "Lançamento Seguro (Reduzir Dados)",
+      "ChanceCasting": "Lançamento Arriscado",
+      "ChanceCastingWarning": "Lançamento Arriscado (1 nível acima do seu talento mágico): Sofre automaticamente um Percalço Mágico!",
+      "RankTooHighWarning": "Você nunca pode lançar um feitiço dois ou mais níveis acima do seu talento mágico.",
+      "CastFromGrimoire": "Lançar de Grimório",
+      "InGrimoire": "Escrito em Grimório",
       "Grimoire": "Grimório",
       "DrawnOrCarved": "Símbolo Desenhado ou Entalhado",
       "Ingredients": "Ingredientes",
-      "Mishap": "Acidente Mágico",
-      "MishapRoll": "Acidente Mágico (D12)",
-      "MishapTriggered": "Acidente Mágico Desencadeado",
-      "RollMishapD12": "Rolar Acidente (D12)",
+      "Mishap": "Percalço Mágico",
+      "MishapRoll": "Percalço Mágico (D12)",
+      "MishapTriggered": "Percalço Mágico Acionado",
+      "RollMishapD12": "Rolar Percalço (D12)",
       "Discipline": {
         "Label": "Disciplina",
-        "general": "Magias Gerais",
-        "awareness": "Percepção (Druídica)",
+        "general": "Feitiços Gerais",
+        "awareness": "Consciência (Druídica)",
         "healing": "Cura (Druídica)",
         "shapeshifting": "Metamorfose (Druídica)",
         "bloodMagic": "Magia de Sangue (Feitiçaria)",
@@ -295,55 +330,58 @@
         "symbolism": "Simbolismo (Feitiçaria)"
       },
       "CastingType": {
-        "Label": "Tempo de Conjuração",
+        "Label": "Tempo de Lançamento",
         "action": "Ação Lenta",
         "powerWord": "Palavra de Poder (Ação Rápida)",
-        "ritual": "Ritual (Turno / Shift)"
+        "ritual": "Ritual (Turno)"
       },
       "Duration": {
         "Label": "Duração",
         "immediate": "Imediata",
         "round": "Rodada (Por Nível de Poder)",
-        "stretch": "Trecho (Stretch)",
-        "shift": "Turno (Shift)",
+        "stretch": "Trecho",
+        "shift": "Turno",
         "varies": "Varia"
       }
     },
     "Critical": {
+      "Short": "Crít",
       "Category": {
-        "physical": "Físico",
+        "physical": "Física",
         "mental": "Mental"
       },
       "Lethal": "Letal",
-      "Stabilized": "Estabilizado",
-      "DeathSave": "Teste de Morte (Resistência)",
+      "Stabilized": "Estabilizada",
+      "DeathSave": "Teste de Morte (Suportar)",
       "DeathSaveMod": "Mod. Teste de Morte",
-      "HealingTime": "Tempo de Recuperação",
+      "HealingTime": "Tempo de Cura",
       "EffectsSummary": "Efeitos",
       "ThresholdTriggered": "Limiar de Crítico Atingido",
-      "RollPhysical": "Crítico Físico",
-      "RollMental": "Crítico Mental",
-      "PhysicalTable": "Ferimento Crítico Físico (D66)",
-      "MentalTable": "Trauma Crítico Mental (D66)"
+      "RollPhysical": "Lesão Crítica Física",
+      "RollMental": "Lesão Crítica Mental",
+      "PhysicalTable": "Lesões Críticas — Físicas (D66)",
+      "MentalTable": "Lesões Críticas — Mentais (D66)"
     },
     "TimeLimit": {
       "Label": "Limite de Tempo",
       "none": "—",
       "round": "Rodada",
-      "stretch": "Trecho (Stretch)",
-      "shift": "Turno (Shift)",
+      "stretch": "Trecho",
+      "shift": "Turno",
       "day": "Dia"
     },
     "Vehicle": {
+      "DefaultType": "Veículo Terrestre",
+      "OnOffRoad": "Estrada/Fora",
       "Passengers": "Passageiros",
       "Maneuverability": "Manobrabilidade",
-      "Hull": "Casco (Hull)",
-      "TravelSpeed": "Velocidade",
+      "Hull": "Casco",
+      "TravelSpeed": "Velocidade de Viagem",
       "Fuel": "Combustível",
       "Wrecked": "DESTRUÍDO",
-      "DriveRoll": "Dirigir / Manobra",
-      "RammingAttack": "Atropelar / Abalroar",
-      "ComponentDamage": "Dano a Componente",
+      "DriveRoll": "Dirigir / Manobrar",
+      "RammingAttack": "Abalroar / Atropelar",
+      "ComponentDamage": "Dano Crítico no Veículo",
       "WeaponsAndCargo": "Armas Montadas e Carga"
     },
     "RollDialog": {
@@ -351,77 +389,228 @@
       "PoolPreview": "Dados a Rolar",
       "NoSkill": "Sem Perícia (Apenas Atributo)",
       "GearOrWeapon": "Equipamento / Arma",
+      "Base": "Base",
+      "Skill": "Perícia",
+      "Gear": "Equipamento",
+      "Artifact": "Artefato",
+      "Ammo": "Munição",
+      "Advantage": "Vantagem",
       "ActorBrokenConfirm": "{name} está QUEBRADO! Tem certeza que deseja realizar a rolagem?"
     },
     "Chat": {
       "Successes": "Sucessos",
-      "Banes": "Falhas Críticas (1s)",
-      "GearDamage": "Dano ao Equipamento",
+      "Banes": "Perdições (1s)",
+      "GearDamage": "Desgaste de Equipamento",
       "PushCost": "Custo de Forçar Aplicado",
       "Push": "Forçar Rolagem",
       "Accept": "Aceitar",
       "ApplyDamage": "Aplicar Dano"
     },
     "Notifications": {
-      "NoDiceToRoll": "Nenhum dado disponível na parada para rolar!",
-      "NotEnoughWillpower": "Pontos de Força de Vontade (WP) insuficientes!",
+      "NoDiceToRoll": "Nenhum dado disponível na pilha para rolar!",
+      "NotEnoughWillpower": "Pontos de Força de Vontade (PFV) insuficientes!",
       "SupplyDepleted": "O suprimento de {name} já está esgotado (0)!",
       "SelectTargetToken": "Selecione um ou mais tokens alvo na cena primeiro.",
       "AppliedDamage": "{dmg} de dano aplicado ao(s) alvo(s) selecionado(s).",
       "MacroOwnedItemsOnly": "Você só pode criar macros na barra para itens pertencentes a um ator."
     },
+    "Tables": {
+      "Panic": {
+        "r6": {
+          "title": "Mantendo a Calma",
+          "effect": "Você consegue manter os nervos sob controle. Por pouco."
+        },
+        "r7": {
+          "title": "Tique Nervoso",
+          "effect": "Você e todos os PJs em Alcance Curto ganham um ponto de estresse."
+        },
+        "r8": {
+          "title": "Tremedeira",
+          "effect": "Você treme incontrolavelmente. Todas as rolagens de perícia baseadas em Agilidade sofrem um modificador de −2."
+        },
+        "r9": {
+          "title": "Derrubar Item",
+          "effect": "Você derruba uma arma ou outro item importante — o MJ decide qual."
+        },
+        "r10": {
+          "title": "Paralisado",
+          "effect": "Você fica paralisado pelo medo ou estresse por uma rodada, perdendo seu próximo turno."
+        },
+        "r11": {
+          "title": "Procurar Cobertura",
+          "effect": "Você deve usar sua próxima ação para se afastar do perigo e encontrar um local seguro, se possível. Você perde 1 ponto de estresse, mas todos os outros PJs em Alcance Curto ganham 1 ponto de estresse."
+        },
+        "r12": {
+          "title": "Gritar",
+          "effect": "Você grita por uma rodada, perdendo seu próximo turno. Você perde 1 ponto de estresse, mas todo PJ que ouvir seu grito deve fazer uma rolagem de pânico imediata."
+        },
+        "r13": {
+          "title": "Fugir",
+          "effect": "Você deve fugir para um local seguro e se recusar a sair dele. Você perde 1 ponto de estresse, mas todo PJ que ouvir seu grito deve fazer uma rolagem de pânico imediata."
+        },
+        "r14": {
+          "title": "Fúria Incontrolável",
+          "effect": "Você deve atacar imediatamente a pessoa ou criatura mais próxima, aliada ou não, até que você ou o alvo seja quebrado. Todo PJ que testemunhar seu surto deve fazer uma rolagem de pânico imediata."
+        },
+        "r15": {
+          "title": "Catatônico",
+          "effect": "Você desaba no chão e não consegue falar nem se mover, encarando o vazio."
+        }
+      },
+      "MagicMishap": {
+        "r1": "A magia o impede de dormir por D6 dias.",
+        "r2": "Seu feitiço drena sua energia, infligindo um ponto de estresse.",
+        "r3": "Sua magia fere seu corpo e você sofre um ponto de dano.",
+        "r4": "O feitiço desencadeia uma doença mágica com uma virulência de 2D6. Você e todos no alcance Engajado de você no próximo turno são expostos ao contágio.",
+        "r5": "O feitiço também afeta um amigo ou outra vítima não intencional. Um feitiço de cura ou ajuda afeta um inimigo juntamente com o alvo pretendido.",
+        "r6": "Sua magia altera permanentemente sua aparência. O MJ decide como.",
+        "r7": "O feitiço te cega. Você age como se estivesse em escuridão total pelo próximo dia inteiro.",
+        "r8": "O feitiço devasta sua mente. Role imediatamente para uma lesão crítica mental.",
+        "r9": "A força da magia quebra ossos em seu corpo. Role imediatamente para uma lesão crítica física.",
+        "r10": "Sua magia atrai um demônio de outra dimensão. O demônio aparece no próximo turno e criará todo tipo de problema.",
+        "r11": "O feitiço sai pela culatra. Um feitiço ofensivo afeta você em vez do seu alvo pretendido. Um feitiço protetor ou de cura fere em vez de curar. O MJ especifica os detalhes.",
+        "r12": "Sua magia abre uma fenda para outra dimensão, e um demônio o puxa para o outro lado. Seu personagem antigo voltará como um PNJ após D66 dias, mas estará… mudado."
+      },
+      "PhysicalCrit": {
+        "11": { "name": "Sem fôlego", "effects": "Nenhum." },
+        "12": { "name": "Atordoado", "effects": "Nenhum." },
+        "13": { "name": "Dor incapacitante", "effects": "Nenhum." },
+        "14": { "name": "Tornozelo torcido", "effects": "Mover −2 e movimento é uma ação lenta até que uma rolagem de Curar seja feita." },
+        "15": { "name": "Sangue nos olhos", "effects": "Observar e Atirar −2 até que uma rolagem de Curar seja feita." },
+        "16": { "name": "Concussão", "effects": "Mover −2." },
+        "21": { "name": "Orelha cortada", "effects": "Observar −2." },
+        "22": { "name": "Dedos do pé quebrados", "effects": "Movimento se torna uma ação lenta." },
+        "23": { "name": "Mão quebrada", "effects": "A mão não pode ser usada." },
+        "24": { "name": "Dentes arrancados", "effects": "Persuadir −2." },
+        "25": { "name": "Coxa empalada", "effects": "Movimento se torna uma ação lenta." },
+        "26": { "name": "Ombro cortado", "effects": "O braço não pode ser usado." },
+        "31": { "name": "Nariz quebrado", "effects": "Persuadir e Observar −1." },
+        "32": { "name": "Golpe na virilha", "effects": "Um ponto de dano para cada rolagem de Mover ou Lutar feita." },
+        "33": { "name": "Costelas quebradas", "effects": "Mover e Observar −2." },
+        "34": { "name": "Olho arrancado", "effects": "Atirar e Observar −2." },
+        "35": { "name": "Rótula estourada", "effects": "Movimento se torna uma ação lenta." },
+        "36": { "name": "Braço quebrado", "effects": "O braço não pode ser usado." },
+        "41": { "name": "Perna quebrada", "effects": "Movimento se torna uma ação lenta." },
+        "42": { "name": "Pé esmagado", "effects": "Movimento se torna uma ação lenta." },
+        "43": { "name": "Cotovelo esmagado", "effects": "O braço não pode ser usado." },
+        "44": { "name": "Pulmão perfurado", "effects": "Suportar e Mover −2." },
+        "45": { "name": "Intestino sangrando", "effects": "Um ponto de dano para cada rolagem de Mover ou Lutar feita." },
+        "46": { "name": "Intestinos rompidos", "effects": "Doença com virulência 6." },
+        "51": { "name": "Rim estourado", "effects": "Mover −2 e movimento é uma ação lenta." },
+        "52": { "name": "Artéria do braço cortada", "effects": "O braço não pode ser usado." },
+        "53": { "name": "Artéria da perna cortada", "effects": "Movimento se torna uma ação lenta." },
+        "54": { "name": "Braço amputado", "effects": "O braço não pode ser usado." },
+        "55": { "name": "Perna amputada", "effects": "Movimento se torna uma ação lenta." },
+        "56": { "name": "Coluna fraturada", "effects": "Paralisado do pescoço para baixo. Se nenhuma rolagem de Curar for feita a tempo, o efeito é permanente." },
+        "61": { "name": "Jugular rompida", "effects": "Suportar −1." },
+        "62": { "name": "Aorta rompida", "effects": "Suportar −2." },
+        "63": { "name": "Eviscerado", "effects": "Morte instantânea." },
+        "64": { "name": "Crânio esmagado", "effects": "Sua história termina aqui." },
+        "65": { "name": "Cabeça perfurada", "effects": "Você morre imediatamente." },
+        "66": { "name": "Coração empalado", "effects": "Seu coração bate pela última vez." }
+      },
+      "MentalCrit": {
+        "11": { "name": "Tremor", "effects": "Modificador −1 em todas as rolagens baseadas em Agilidade." },
+        "21": { "name": "Cabelo branco", "effects": "Nenhum." },
+        "22": { "name": "Ansioso", "effects": "Modificador −1 em todas as rolagens baseadas em Astúcia." },
+        "25": { "name": "Melancólico", "effects": "Modificador −1 em todas as rolagens baseadas em Empatia." },
+        "32": { "name": "Pesadelos", "effects": "Faça uma rolagem de Intuir a cada turno gasto dormindo. Falha significa que o sono não conta." },
+        "36": { "name": "Noturno", "effects": "Você só pode dormir durante a parte clara do dia." },
+        "42": { "name": "Fóbico", "effects": "Você fica aterrorizado por algo relacionado ao que o quebrou. O MJ decide o que é. Você sofre um ponto de estresse / dano na Astúcia a cada rodada a um Alcance Curto do objeto de sua fobia." },
+        "44": { "name": "Alcoólatra", "effects": "Você deve beber álcool todos os dias, ou sofrer um ponto de estresse / dano na Agilidade." },
+        "46": { "name": "Claustrofóbico", "effects": "A cada trecho em um ambiente confinado, você sofre um ponto de estresse / dano na Astúcia." },
+        "52": { "name": "Mitomaníaco", "effects": "Você não consegue parar de mentir sobre tudo. O efeito precisa ser interpretado." },
+        "53": { "name": "Paranoia", "effects": "Você tem certeza de que alguém está querendo te pegar. O efeito precisa ser interpretado." },
+        "55": { "name": "Delírio", "effects": "Você está totalmente convencido de algo que é totalmente falso." },
+        "56": { "name": "Alucinações", "effects": "Faça uma rolagem de Intuir a cada turno. Se falhar, você sofre uma alucinação poderosa. O MJ determina os detalhes." },
+        "61": { "name": "Personalidade alterada", "effects": "Sua personalidade é alterada de forma fundamental. Determine como junto com o MJ." },
+        "63": { "name": "Amnésia", "effects": "Você perde toda a memória e não consegue se lembrar de quem você ou os outros PJs são." },
+        "64": { "name": "Catatônico", "effects": "Você encara o vazio e não responde a nenhum estímulo." },
+        "66": { "name": "Ataque cardíaco", "effects": "Seu coração para, e você morre de puro pavor." }
+      },
+      "VehicleCrit": {
+        "r1": { "name": "Ricochete", "effects": "O ataque ricocheteia no veículo e atinge outro alvo aleatório na mesma zona, infligindo o mesmo dano." },
+        "r2": { "name": "Derrapagem", "effects": "O veículo derrapa violentamente. O motorista deve fazer uma rolagem imediata de Mover (não é uma ação) — falha faz perder o próximo turno." },
+        "r3": { "name": "Para-brisa Estilhaçado", "effects": "O para-brisa se estilhaça, reduzindo a Manobrabilidade em um passo." },
+        "r4": { "name": "Motorista Atingido", "effects": "O motorista é atingido e sofre dano igual ao dano infligido ao veículo." },
+        "r5": { "name": "Passageiro Atingido", "effects": "Um passageiro aleatório é atingido e sofre dano igual ao dano infligido ao veículo, além de uma lesão crítica." },
+        "r6": { "name": "Roda Estourada", "effects": "Uma roda ou propulsor estoura, aplicando um modificador de −2 em todas as rolagens para dirigir." },
+        "r7": { "name": "Rodopio Grave", "effects": "O motorista deve fazer uma rolagem imediata de Mover — falha faz o veículo capotar/bater e ficar automaticamente destruído." },
+        "r8": { "name": "Incêndio no Combustível", "effects": "O veículo pega fogo. Todos dentro ficam expostos a fogo de intensidade 6 (C)." },
+        "r9": { "name": "Arma Desativada", "effects": "Uma arma montada aleatória no veículo fica desativada." },
+        "r10": { "name": "Colisão Massiva", "effects": "O veículo sai do controle e colide violentamente. Fica automaticamente destruído; passageiros sofrem D6 de dano de queda." },
+        "r11": { "name": "Motor Desativado", "effects": "O motor para de funcionar e o veículo não pode continuar." },
+        "r12": { "name": "Explosão", "effects": "O veículo explode em uma bola de fogo! Todos dentro ficam expostos a uma explosão de poder 9 (B); o veículo é destruído sem possibilidade de reparo." }
+      }
+    },
     "Settings": {
+      "Menu": {
+        "name": "Regras do Mundo Year Zero Engine",
+        "label": "Configurar Regras YZE",
+        "hint": "Menu exclusivo do Mestre de Jogo (dono da mesa) para definir a mecânica principal de dados (Pilha de Dados vs Escala de Dados) e as variantes modulares do sistema.",
+        "title": "Year Zero Engine — Configuração das Regras do Mundo",
+        "CoreMechanicsHeading": "Sistema Principal de Dados (Global do Mundo)",
+        "VariantsHeading": "Variantes Modulares de Regras YZE",
+        "BalanceWarningTitle": "Aviso de Equilíbrio das Regras",
+        "BalanceWarningText": "Escolha entre Pilha de Dados e Escala de Dados ao montar a mesa. Jogadores nunca podem alterar este modo, e mudá-lo no meio de uma campanha em andamento é fortemente desaconselhado porque causa desbalanceamento: escalas de atributos, níveis de perícias, Saúde/Determinação derivadas, limites de carga, armaduras e modificadores possuem equilíbrio distinto em cada sistema.",
+        "ModeChangePendingNotice": "Você está alterando o sistema principal de dados do mundo. Será solicitada confirmação sobre o impacto no equilíbrio das regras antes de salvar.",
+        "ConfirmModeChangeTitle": "Alterar o Sistema Principal de Dados?",
+        "ConfirmModeChangeBody": "Tem certeza de que deseja alterar este mundo de <strong>{from}</strong> para <strong>{to}</strong>? Alterar o sistema de dados durante o curso de uma campanha pode causar forte desbalanceamento nas regras e exigir recalibração manual das fichas existentes.",
+        "Save": "Salvar Regras do Mundo",
+        "Saved": "Regras do mundo Year Zero Engine salvas.",
+        "GMOnlyError": "Apenas o Mestre de Jogo / dono da mesa pode alterar as regras do mundo Year Zero Engine."
+      },
       "resolutionMode": {
         "name": "Mecânica Principal de Dados",
-        "hint": "Escolha entre Parada de Dados (Dice Pool: dados D6, valores 1–5) e Dados Escalonados (Step Dice: D6/D8/D10/D12, níveis D–A).",
-        "dicePool": "Parada de Dados (Dice Pool D6)",
-        "stepDice": "Dados Escalonados (Step Dice D6/D8/D10/D12)"
+        "hint": "Escolha entre Pilha de Dados (conjuntos de D6, valores 1–5) e Escala de Dados (dados poliédricos D6/D8/D10/D12, níveis D–A). Apenas o MJ pode definir esta opção.",
+        "dicePool": "Pilha de Dados (Dice Pool — D6)",
+        "stepDice": "Escala de Dados (Step Dice — D6 / D8 / D10 / D12)"
       },
       "stepModifierMode": {
-        "name": "Estilo de Modificadores no Step Dice",
-        "hint": "Define se modificadores no modo Step Dice aumentam/reduzem o tipo de dado (SRD p. 10) ou aplicam Vantagem/Desvantagem (SRD p. 11).",
-        "step": "Escalonar Dados (+1 / −1 Passo)",
+        "name": "Estilo de Modificadores na Escala de Dados",
+        "hint": "Define se modificadores na Escala de Dados escalonam os dados para cima/baixo (SRD p. 10) ou aplicam Vantagem/Desvantagem (SRD p. 11).",
+        "step": "Aumentar / Rebaixar Passos",
         "advDisadv": "Vantagem / Desvantagem"
       },
       "damageMode": {
         "name": "Sistema de Dano e Trauma",
         "hint": "Escolha como dano e trauma são registrados nos personagens (SRD p. 5 e 20–21).",
-        "healthResolve": "Vitalidade e Determinação (Health & Resolve)",
+        "healthResolve": "Saúde e Determinação",
         "attributeDamage": "Dano Direto nos Atributos",
         "conditions": "Apenas Condições"
       },
       "pushMode": {
-        "name": "Custo de Forçar a Rolagem (Push)",
-        "hint": "Define o que acontece ao forçar uma rolagem (SRD p. 9).",
-        "damageStress": "Dano e Estresse (Health/Resolve + Desgaste de Equipamento)",
-        "attributeDamage": "Dano no Atributo (+1 Ponto de Vontade por 1 no atributo + Desgaste de Equip.)",
-        "stressDice": "Dados de Estresse (+1 Estresse ao forçar; 1s causam Teste de Pânico)",
+        "name": "Custo de Forçar a Rolagem",
+        "hint": "Define o que acontece quando um jogador força uma rolagem (SRD p. 9).",
+        "damageStress": "Dano e Estresse (Saúde/Determinação + Desgaste de Equipamento)",
+        "attributeDamage": "Dano de Atributo (+1 PFV por Perdição no atributo + Desgaste de Equip.)",
+        "stressDice": "Dados de Estresse (+1 Estresse ao forçar; 1s acionam Rolagem de Pânico)",
         "conditions": "Condições (Sofre uma Condição Física ou Mental ao forçar)",
-        "doomPoints": "Pontos de Ruína (Mestre ganha +1 Doom Point ao forçar)"
+        "doomPoints": "Pontos de Perdição (MJ ganha +1 Ponto de Perdição ao forçar)"
       },
       "enableWillpower": {
-        "name": "Habilitar Pontos de Força de Vontade (WP)",
-        "hint": "Exibe Pontos de Vontade na ficha (usados para Magias e Especialidades)."
+        "name": "Habilitar Pontos de Força de Vontade (PFV)",
+        "hint": "Exibe Pontos de Força de Vontade na ficha (usados para Magia e Especialidades de Força de Vontade)."
       },
       "enableStressTrack": {
         "name": "Habilitar Trilha de Estresse e Pânico",
-        "hint": "Exibe Pontos de Estresse e adiciona Dados de Estresse às rolagens (variante de horror, SRD p. 9–10)."
+        "hint": "Exibe Pontos de Estresse e adiciona Dados de Estresse às rolagens de perícia (variante de horror, SRD p. 9–10)."
       },
       "enableEncumbrance": {
         "name": "Habilitar Controle de Carga",
         "hint": "Calcula o peso dos itens carregados contra o limite de carga do personagem (SRD p. 6)."
       },
       "weaponsAtHandRule": {
-        "name": "Variante: Armas à Mão",
-        "hint": "Até 3 armas marcadas como 'À Mão' e armaduras vestidas não contam na carga (SRD p. 6)."
+        "name": "Variante: Armas em Mãos",
+        "hint": "Até 3 armas marcadas como 'Em Mãos' e armaduras vestidas não contam para o limite de carga (SRD p. 6)."
       },
       "autoSeedCoreSkills": {
-        "name": "Adicionar Automaticamente as 12 Perícias do SRD",
-        "hint": "Cria automaticamente as 12 perícias básicas do YZE SRD como itens ao criar um novo Personagem ou PdM."
+        "name": "Adicionar Automaticamente as 12 Perícias Básicas",
+        "hint": "Cria automaticamente as 12 perícias básicas do SRD do YZE como itens ao criar um novo PJ ou PNJ."
       },
       "doomPoints": {
-        "name": "Pontos de Ruína do Mestre (Doom Points)",
-        "hint": "Reserva atual de Doom Points acumulados por rolagens forçadas."
+        "name": "Pontos de Perdição do MJ",
+        "hint": "Reserva atual de Pontos de Perdição acumulados por rolagens forçadas."
       }
     }
   }

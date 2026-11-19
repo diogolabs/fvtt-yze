@@ -21,7 +21,7 @@ export class YzeSpellDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     classes: ["yze", "yze-dialog", "yze-spell-dialog"],
     position: { width: 440 },
     window: {
-      title: "Cast Spell",
+      title: "YZE.Magic.CastSpell",
       icon: "fa-solid fa-wand-sparkles",
       resizable: false,
     },
